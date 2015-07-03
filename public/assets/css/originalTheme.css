@@ -1,4 +1,10 @@
-/* line 1, /Users/andrewcavanagh/zigbop/cms/app/sass/originalTheme.scss */
+/* line 1, stdin */
 body {
   padding-top: 50px;
   overflow-x: hidden; }
+  /* line 4, stdin */
+  body header {
+    width: 83%; }
+    /* line 7, stdin */
+    body header a img {
+      width: 99%; }
