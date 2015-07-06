@@ -1,12 +1,12 @@
 body {
   padding-top: 50px;
   overflow-x: hidden;
-}
-.col-xs-7 {
-  width: 100%;
-}
-@media (min-width: 768px) {
-  .col-md-9 {
-    width: 75%;
+  header {
+    width: 83%;
+    a {
+      img {
+        width: 99%;
+      }
+    }
   }
 }
