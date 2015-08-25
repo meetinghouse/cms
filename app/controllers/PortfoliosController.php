@@ -145,10 +145,35 @@ class PortfoliosController extends \BaseController {
         {
             return Redirect::back()->withErrors($validator)->withInput();
         }
-        $portfolio->update($data);
+
+
+      $order = (int)$data['order'];
+      $id = $portfolio->id;
+      $this->updateSortOrders($order, $id);
+
+      $portfolio->update($data);
+
 
         return Redirect::route('admin_portfolio');
     }
+
+  protected function updateSortOrders($order, $id){
+    Log::debug(sprintf('current order is: %s ', $order));
+    $portfolios = Portfolio::where('order', '>=', $order)->get();
+
+    Log::debug(sprintf('got %s portfolios to update', $portfolios->count()));
+    foreach ($portfolios as $portfolio) {
+      if ($portfolio->id != $id){
+      Log::debug(sprintf('updating portfolio with current order %d', $portfolio->order));
+      $portfolio->order = $portfolio->order +1;
+      Log::debug(sprintf('new order is %d', $portfolio->order));
+      $portfolio->save();
+        }
+
+    }
+
+
+  }
 
     /**
      * Remove the specified portfolio from storage.
