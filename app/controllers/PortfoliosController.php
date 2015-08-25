@@ -7,12 +7,11 @@ class PortfoliosController extends \BaseController {
     public $portfolio;
     private $tags;
 
-    public function __construct(Portfolio $portfolio = null, TagsService $tagsService = null)
-    {
+    public function __construct(Portfolio $portfolio = NULL, TagsService $tagsService = NULL) {
         parent::__construct();
         $this->beforeFilter("auth", array('only' => ['adminIndex', 'create', 'delete', 'edit', 'update', 'store']));
-        $this->portfolio = ($portfolio == null) ? new Portfolio : $portfolio;
-        $this->tags = $tagsService;
+        $this->portfolio = ($portfolio == NULL) ? new Portfolio : $portfolio;
+        $this->tags      = $tagsService;
     }
 
 
@@ -21,8 +20,7 @@ class PortfoliosController extends \BaseController {
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         parent::show();
         $portfolios = Portfolio::Published()->OrderByOrder()->get();
 
@@ -34,11 +32,11 @@ class PortfoliosController extends \BaseController {
      *
      * @return Response
      */
-    public function projectsIndex()
-    {
+    public function projectsIndex() {
         parent::show();
         $projects = Project::where('published', '=', 1)->orderBy('order')->get();
-        $tags = $this->tags->get_tags_for_type('Project');
+        $tags     = $this->tags->get_tags_for_type('Project');
+
         return View::make('portfolios.projectsIndex', compact('projects', 'tags'));
     }
 
@@ -47,8 +45,7 @@ class PortfoliosController extends \BaseController {
      *
      * @return Response
      */
-    public function adminIndex($portfolio = NULL)
-    {
+    public function adminIndex($portfolio = NULL) {
         parent::show();
         $portfolios = Portfolio::OrderByOrder()->get();
 
@@ -60,9 +57,9 @@ class PortfoliosController extends \BaseController {
      *
      * @return Response
      */
-    public function create()
-    {
+    public function create() {
         parent::show();
+
         return View::make('portfolios.create');
     }
 
@@ -71,14 +68,12 @@ class PortfoliosController extends \BaseController {
      *
      * @return Response
      */
-    public function store()
-    {
-        $all = Input::all();
-        $rules = Portfolio::$rules;
+    public function store() {
+        $all       = Input::all();
+        $rules     = Portfolio::$rules;
         $validator = $this->validateSlugOnCreate($all, $rules);
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
@@ -90,34 +85,33 @@ class PortfoliosController extends \BaseController {
     /**
      * Display the specified portfolio.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function show($portfolio = null)
-    {
+    public function show($portfolio = NULL) {
         parent::show();
-        if(is_numeric($portfolio)) {
+        if (is_numeric($portfolio)) {
             $portfolio = Portfolio::find($portfolio);
         }
 
-        if($portfolio == NULL){
+        if ($portfolio == NULL) {
             return View::make('404', compact('settings'));
         }
 
 
-        $seo = $portfolio->seo;
+        $seo    = $portfolio->seo;
         $banner = TRUE;
+
         return View::make('portfolios.show', compact('portfolio', 'banner', 'settings', 'seo'));
     }
 
     /**
      * Show the form for editing the specified portfolio.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function edit($id = NULL)
-    {
+    public function edit($id = NULL) {
         parent::show();
         $portfolio = Portfolio::find($id);
 
@@ -127,62 +121,81 @@ class PortfoliosController extends \BaseController {
     /**
      * Update the specified portfolio in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function update($id)
-    {
+    public function update($id) {
         $portfolio = Portfolio::findOrFail($id);
-        $messages = [];
+        $messages  = [];
         //1. see if the slug is the same as the original
         //2. if it is then we will not validate against right
-        $all = Input::all();
+        $all   = Input::all();
         $rules = Portfolio::$rules;
 
         $validator = $this->validateSlugEdit($all, $portfolio, $rules);
-        $data = $this->checkPublished($all);
-        if ($validator->fails())
-        {
+        $data      = $this->checkPublished($all);
+        if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
 
-      $order = (int)$data['order'];
-      $id = $portfolio->id;
-      $this->updateSortOrders($order, $id);
+        $newOrder = (int) $data['order'];
+        $oldOrder = (int) $portfolio->order;
+        $id       = $portfolio->id;
 
-      $portfolio->update($data);
+        $portfolio->update($data);
 
+
+        if ($newOrder != $oldOrder) {
+            $this->updateSortOrders($newOrder, $oldOrder, $id);
+        }
 
         return Redirect::route('admin_portfolio');
     }
 
-  protected function updateSortOrders($order, $id){
-    Log::debug(sprintf('current order is: %s ', $order));
-    $portfolios = Portfolio::where('order', '>=', $order)->get();
-
-    Log::debug(sprintf('got %s portfolios to update', $portfolios->count()));
-    foreach ($portfolios as $portfolio) {
-      if ($portfolio->id != $id){
-      Log::debug(sprintf('updating portfolio with current order %d', $portfolio->order));
-      $portfolio->order = $portfolio->order +1;
-      Log::debug(sprintf('new order is %d', $portfolio->order));
-      $portfolio->save();
+    protected function updateSortOrders($newOrder, $oldOrder, $id) {
+        // see http://stackoverflow.com/questions/8607998/using-a-sort-order-column-in-a-database-table
+Log::debug(sprintf('old order: %s', $oldOrder));
+Log::debug(sprintf('new order: %s', $newOrder));
+//--Moving down chain
+        if ($newOrder < $oldOrder) {
+            Log::debug('down');
+            $portfolios = Portfolio::whereBetween('order', [$newOrder, $oldOrder - 1])->get();
+            foreach ($portfolios as $portfolio) {
+                if ($portfolio->id != $id) {
+                    Log::debug(sprintf('updating portfolio with current order %d', $portfolio->order));
+                    $portfolio->order = $portfolio->order + 1;
+                    Log::debug(sprintf('new order is %d', $portfolio->order));
+                    $portfolio->save();
+                }
+            }
         }
 
+//--Moving up chain
+        if ($newOrder > $oldOrder) {
+            Log::debug('up');
+            $portfolios = Portfolio::whereBetween('order', [$oldOrder + 1, $newOrder])->get();
+            foreach ($portfolios as $portfolio) {
+                if ($portfolio->id != $id) {
+                    Log::debug(sprintf('updating portfolio with current order %d', $portfolio->order));
+                    $portfolio->order = $portfolio->order - 1;
+                    Log::debug(sprintf('new order is %d', $portfolio->order));
+                    $portfolio->save();
+                }
+            }
+        }
+
+
     }
-
-
-  }
 
     /**
      * Remove the specified portfolio from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public
+    function destroy($id) {
         Portfolio::destroy($id);
 
         return Redirect::route('portfolios.index');
