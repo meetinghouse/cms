@@ -155,17 +155,12 @@ class PortfoliosController extends \BaseController {
 
     protected function updateSortOrders($newOrder, $oldOrder, $id) {
         // see http://stackoverflow.com/questions/8607998/using-a-sort-order-column-in-a-database-table
-Log::debug(sprintf('old order: %s', $oldOrder));
-Log::debug(sprintf('new order: %s', $newOrder));
 //--Moving down chain
         if ($newOrder < $oldOrder) {
-            Log::debug('down');
             $portfolios = Portfolio::whereBetween('order', [$newOrder, $oldOrder - 1])->get();
             foreach ($portfolios as $portfolio) {
                 if ($portfolio->id != $id) {
-                    Log::debug(sprintf('updating portfolio with current order %d', $portfolio->order));
                     $portfolio->order = $portfolio->order + 1;
-                    Log::debug(sprintf('new order is %d', $portfolio->order));
                     $portfolio->save();
                 }
             }
@@ -173,13 +168,10 @@ Log::debug(sprintf('new order: %s', $newOrder));
 
 //--Moving up chain
         if ($newOrder > $oldOrder) {
-            Log::debug('up');
             $portfolios = Portfolio::whereBetween('order', [$oldOrder + 1, $newOrder])->get();
             foreach ($portfolios as $portfolio) {
                 if ($portfolio->id != $id) {
-                    Log::debug(sprintf('updating portfolio with current order %d', $portfolio->order));
                     $portfolio->order = $portfolio->order - 1;
-                    Log::debug(sprintf('new order is %d', $portfolio->order));
                     $portfolio->save();
                 }
             }
