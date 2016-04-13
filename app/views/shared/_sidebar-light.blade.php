@@ -1,8 +1,5 @@
 <?php //$portfolios = Portfolio::published()->orderByOrder()->get(); dd($shared_links)?>
 
-
-
-
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default well sidebar-nav">
 
@@ -22,62 +19,43 @@
             $active = 'not-active';
         }
         ?>
-        <div class="panel-heading" role="tab">
-            <h4 class="panel-title nav-header" >
-                <big> <a href = "/">Home</a></big>
+        @if(isset($top_left_nav))
+          
+        <?php $count = 1; ?>
+        
+        @foreach($top_left_nav as $top)
+        
+          @if($settings->portfolio_menu_postion == $count)
+          <div class="panel-heading" role="tab" id="headingOne">
+            <a href="#"></a>
+            <h4 class="panel-title nav-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <a href="#"><big></big></a><big><a href="#">Portfolios</a></big>
             </h4>
-        </div>
-
-        <div class="panel-heading" role="tab" id="headingOne">
-            <a href="#">
-                <h4 class="panel-title nav-header" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <big>{{$icon}}<a href="#">Portfolios</a></big>
-                </h4>
-            </a>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" style="height: 0px;">
             <div class="panel-body">
-                <ul class="nav nav-list">
+              <ul class="nav nav-list">
                     @foreach($portfolio_links as $key => $portfolio)
-                    <?php
-                    if(Request::server('PATH_INFO') ==  $portfolio) {
-                        $active = 'active';
-                    } else {
-                        $active = 'not-active';
-                    }
-                    ?>
-                    <li class="{{$active}}"> <a href = {{$portfolio}}>{{$key}}</a></li>
+                    <li class="@if(Request::server('PATH_INFO') ==  $portfolio) {{'active'}} @else {{'not-active'}} @endif">
+                      <a href = {{$portfolio}}>{{$key}}</a>
+                    </li>
                     @endforeach
-                </ul>
-            </div>
-        </div>
-
-        <?php
-        if(Request::server('PATH_INFO') ==  '/about') {
-            $active = 'active';
-        } else {
-            $active = 'not-active';
-        }
-        ?>
-        <div class="panel-heading" role="tab">
-            <h4 class="panel-title nav-header" >
-                <big> <a href = "/about">About Page</a></big>
-            </h4>
-        </div>
-
-        <?php
-        if(Request::server('PATH_INFO') ==  '/contact') {
-            $active = 'active';
-        } else {
-            $active = 'not-active';
-        }
-        ?>
-        <div class="panel-heading" role="tab">
-            <h4 class="panel-title nav-header" >
-                <big> <a href = "/contact">Contact Page</a></big>
-            </h4>
-        </div>
-
+              </ul>
+             </div>
+          </div>
+          @else
+          <div class="panel-heading" role="tab">
+              <h4 class="panel-title nav-header" >
+                  <big> <a href = "{{URL::to($top->slug)}}">{{$top->title}}</a></big>
+              </h4>
+          </div>            
+          @endif
+          
+          <?php $count++; ?>
+          
+        @endforeach
+        @endif
+      
     </div>
 </div>
 
