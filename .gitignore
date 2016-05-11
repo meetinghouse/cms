@@ -12,7 +12,6 @@ public/system/*
 public/bower_components
 public/assets/img/projects/
 app/database/local.sqlite
-app/database/*.sqlite
 public/robots.txt
 Envoy.php
 behat.yml
