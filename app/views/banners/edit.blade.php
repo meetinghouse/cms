@@ -14,7 +14,7 @@
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
         <div class="form-group">
-                <label for="email">Reference Name</label>
+                <label for="email">Banner Name (<a href="http://www.restorationtrades.com/help/admin_banners.html" target="_blank">Help</a>)</label>
                 {{ Form::text('name', null, array('class' => 'form-control', 'tabindex' => 1)) }}
                 @if($errors->first('name'))
                 <div class="alert alert-danger">
@@ -23,8 +23,8 @@
                 @endif
         </div>
         <div class="form-group">
-                <label for="email">Upload File</label>
-          <div class="help-block">Banner images must be at least 1600px wide by 196px high.  Aspect ratio should be roughly 8:1.</div>
+                <label for="email">Banner Image Uploader (<a href="http://www.restorationtrades.com/help/admin_banners.html" target="_blank">Help</a>)</label>
+          <div class="help-block">The default logo image is 1600 x 379 pixels, in dimension. Other sizes will upload and display.</div>
           {{ Form::file('banner_name', null, array('class' => 'form-control', 'tabindex' => 1)) }}
                 @if($errors->first('banner_name'))
                 <div class="alert alert-danger">
@@ -57,7 +57,7 @@
         </div>
       <div>
         {{ Form::open(array('class' => 'inline', 'method' => 'DELETE', 'route' => array('banners.destroy', $banner->id))) }}
-        {{ Form::submit('Delete', array('class' => 'btn btn-danger', 'onclick' => 'return confirm("Are you sure you want to delete this?")')) }}
+        {{ Form::submit('Delete', array('class' => 'btn btn-danger delete')) }}
         {{ Form::close() }}
       </div>
     </fieldset>

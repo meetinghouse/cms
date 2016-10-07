@@ -1,7 +1,13 @@
 public/img/projects/
+node_modules/*
+npm-debug.log
+public/img
+public/system/*
+public/img/*
 bower_components
 public/assets/img
 public/bower_compnents
+public/system/*
 .idea/*
 public/bower_components
 public/assets/img/projects/
@@ -18,3 +24,9 @@ composer.phar
 .DS_Store
 Thumbs.db
 .env*
+public/assets/css/customProject.css
+composer.lock
+*.phprj
+app/config/database.php
+.vscode/
+assets/js/custom.js

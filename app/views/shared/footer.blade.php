@@ -4,5 +4,10 @@
         <div class="row">
             {{$settings->footer}}
         </div>
+        <div class="row">
+            @if( ($settings->theme != false) || (!$settings->enable_left_nav) )
+                @include('shared._social')
+            @endif
+        </div>
     </div>   <!--//end container -->
 </footer>

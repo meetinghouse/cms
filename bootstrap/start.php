@@ -24,10 +24,12 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
+
 $env = $app->detectEnvironment(function()
 {
-  if (file_exists(__DIR__ . '/../.env.php')) {
-    return include(__DIR__ . '/../.env.php');
+  if (file_exists(__DIR__ . '/../.env')) {
+      Dotenv::load(__DIR__ .'/../');
+      return getenv('APP_ENV');
   } else {
     return 'production';
   }

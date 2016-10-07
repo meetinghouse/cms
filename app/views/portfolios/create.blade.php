@@ -14,7 +14,8 @@
 
 
   <div class="form-group">
-    <label>Portfolio Name</label>
+    <label>Portfolio Name (<a href="http://restorationtrades.com/help/admin_portfolios.html" target="_blank">Help</a>)
+</label>
     {{ Form::text('title', null, array('class' => 'form-control')) }}
   </div>
   @if($errors->first('title'))
@@ -24,7 +25,7 @@
   @endif
 
   <div class="form-group">
-    <label>Seo Title</label>
+    <label>Portfolio Browser Description (a.k.a. Title Tag) (<a href="http://restorationtrades.com/help/admin_portfolios.html" target="_blank">Help</a>)</label>
     {{ Form::text('seo', null, array('class' => 'form-control')) }}
   </div>
   @if($errors->first('seo'))
@@ -34,7 +35,7 @@
   @endif
 
   <div class="form-group">
-    <label>Header</label>
+    <label>Portfolio Heading (<a href="http://restorationtrades.com/help/admin_portfolios.html" target="_blank">Help</a>)</label>
     {{ Form::text('header', null, array('class' => 'form-control')) }}
   </div>
   @if($errors->first('header'))
@@ -45,7 +46,7 @@
 
 
   <div class="form-group">
-    <label>Description</label>
+    <label>Portfolio Main Body (<a href="http://restorationtrades.com/help/admin_portfolios.html" target="_blank">Help</a>)</label>
     {{ Form::textarea('body', null, array('rows' => 30, 'class' => 'ckeditor form-control')) }}
   </div>
   @if($errors->first('body'))
@@ -55,7 +56,7 @@
   @endif
 
   <div class="form-group">
-    <label>URL</label>
+    <label>Portfolio Web Address (URL) (<a href="http://restorationtrades.com/help/admin_portfolios.html" target="_blank">Help</a>)</label>
     {{ Form::text('slug', null, array('class' => 'form-control')) }}
     <div class="help-block">The url must start with / </div>
   </div>
@@ -74,6 +75,16 @@
       </div>
     </div>
   </div>
+
+    <div class="form-group">
+        <label for="order">Sort Order</label>&nbsp;
+        {{ Form::selectRange('order', 1, 20, array('class' => 'form-control', 'tabindex' => 1)) }}
+        @if($errors->first('order'))
+        <div class="alert alert-danger">
+            {{  $errors->first('order'); }}
+        </div>
+        @endif
+    </div>
 
   <div class="controls">
     {{ Form::submit('Create Portfolio', array('id' => 'submit', 'class' => 'btn btn-success')) }}

@@ -16,8 +16,8 @@ class CreatePagesTable extends Migration {
             $table->increments('id');
 			$table->string('title');
 			$table->text('body');
-			$table->boolean('published');
-			$table->string('slug');
+			$table->string('slug')->nullable();
+			$table->boolean('published')->default(0);
 			$table->timestamps();
         });
 	}

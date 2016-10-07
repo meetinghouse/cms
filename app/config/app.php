@@ -109,7 +109,10 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'CMS\ServiceProviders\MenuServiceProvider',
         'CMS\ServiceProviders\ImagesServiceProvider',
-        'CMS\ServiceProviders\ProjectsServiceProvider'
+        'CMS\ServiceProviders\ProjectsServiceProvider',
+        'Laracasts\Utilities\UtilitiesServiceProvider',
+        'Intervention\Image\ImageServiceProvider',
+        'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider'
     ),
 
     /*
@@ -176,7 +179,8 @@ return array(
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
         'Menu'            => 'CMS\Facades\MenuFacade',
-        'Images'          => 'CMS\Facades\ImagesFacade'
+        'Images'          => 'CMS\Facades\ImagesFacade',
+        'IntImage'           => 'Intervention\Image\Facades\Image'
     ),
 
 );

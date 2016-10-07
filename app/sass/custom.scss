@@ -21,6 +21,7 @@
     }
     img {
       max-height: 180px;
+      max-width: 398px;
       width: auto;
       margin: 0 auto;
       display: block;
@@ -32,7 +33,7 @@
       clear: both;
       text-align: center;
       overflow: hidden;
-      height: 40px
+      max-height: 200px
     }
   }
 }
@@ -64,6 +65,7 @@
 }
 
 
+
 //edit
 ul.edit_images {
   padding-left: 0;
@@ -77,6 +79,7 @@ ul.edit_images {
     }
     input.caption_update {
       width: 84%;
+      color: #555;
     }
     input.order_update {
       max-width: 50px;
@@ -85,6 +88,9 @@ ul.edit_images {
     .spacer {
       margin-bottom: 10px;
       margin-top: 10px;
+    }
+    .img-thumbnail {
+      max-width: 125px;
     }
   }
 }

@@ -8,7 +8,7 @@
 
 <div class="col-md-9 column">
             <legend><i class="glyphicon-cog glyphicon"></i> Edit Profile</legend>
-            <strong>Update your info below eg password, email etc</strong>
+            <strong>Update your info below (e.g., password, email, etc.)</strong>
             <hr>
                 @include('sessions.notice')
             {{ Form::model($user, array('method' => 'PUT', 'route' => array('users.update', $user->id), 'role' => 'form')) }}
@@ -34,7 +34,7 @@
                 </div>
                 @if(Auth::user()->admin == 1 || $user->id == Auth::user()->id)
                 <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email (<a href="http://www.restorationtrades.com/help/profile.html" target="_blank">Help</a>)</label>
                         {{ Form::text('email', $user->email, array('id' => 'email', 'class' => 'form-control', 'tabindex' => 3)) }}
                         @if($errors->first('email'))
                         <div class="alert alert-danger">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">
-                            <label for="password">Password</label>
+                            <label for="password">Password (<a href="http://www.restorationtrades.com/help/profile.html" target="_blank">Help</a>)</label>
                     </label>
                     {{ Form::password('password', array('class' => 'form-control', 'tabindex' => 3)) }}
                     @if($errors->first('password'))
@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password_confirmation">
-                            <label for="password_confirmation">Password Confirmation</label>
+                            <label for="password_confirmation">Password Confirmation (<a href="http://www.restorationtrades.com/help/profile.html" target="_blank">Help</a>)</label>
                     </label>
                     {{ Form::password('password_confirmation', array('class' => 'form-control', 'tabindex' => 4)) }}
                     @if($errors->first('password_confirmation'))
@@ -84,7 +84,7 @@
 
             @if(Auth::user()->admin == 1 && $user->id != 1)
                 {{ Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user->id]]) }}
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger delete">Delete</button>
                 {{ Form::close() }}
             @endif
 </div>

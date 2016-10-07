@@ -22,6 +22,7 @@ class UsersController extends BaseController {
 
   public function login()
   {
+    parent::show();
     return View::make('sessions.login');
   }
 
@@ -129,6 +130,7 @@ class UsersController extends BaseController {
 
   public function authenticate()
   {
+    //Auth::loginUsingId(1);return Redirect::to('/admin')->with('message', 'You are now logged in!');
     if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
       return Redirect::to('/admin')->with('message', 'You are now logged in!');
     } else {
@@ -145,7 +147,7 @@ class UsersController extends BaseController {
       User::destroy($id);
       return Redirect::to('users');
     } else {
-      return Redicect::back()->withMessage("You can not delete an admin user");
+      return Redirect::back()->withMessage("You can not delete an admin user");
     }
   }
 }
