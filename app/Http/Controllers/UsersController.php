@@ -25,7 +25,7 @@ class UsersController extends Controller
     public function login()
     {
         parent::show();
-        return View::make('sessions.login');
+        return view('sessions.login');
     }
 
     public function show($id = null)
@@ -39,13 +39,13 @@ class UsersController extends Controller
     {
         parent::show();
         $user = $this->users->find($id);
-        return View::make('users.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     public function getLogout()
     {
         Auth::logout();
-        return Redirect::to('login')->with('message', 'Your are now logged out!');
+        return redirect('login')->with('message', 'Your are now logged out!');
     }
 
 
@@ -89,7 +89,7 @@ class UsersController extends Controller
             $user = $this->keepUserOneAsAdmin($user);
             $user->password         = ($password) ? $password : $user->password;
             $user->save();
-            return Redirect::to("users")->withMessage("User Updated");
+            return redirect("users")->withMessage("User Updated");
         } else {
             return Redirect::back()->withErrors($validator)->withInput();
         }
@@ -100,7 +100,7 @@ class UsersController extends Controller
     {
         parent::show();
         $user = new User();
-        return View::make('users.create', compact('user'))->withMessage("Create User");
+        return view('users.create', compact('user'))->withMessage("Create User");
     }
 
     public function store()
@@ -116,9 +116,9 @@ class UsersController extends Controller
             $user->active       = (isset($data['active'])) ? 1 : 0;
             $user->password     = Hash::make($data['password']);
             $user->save();
-            return Redirect::to("users")->withMessage("User Created");
+            return redirect("users")->withMessage("User Created");
         } else {
-            return Redirect::to('users/create')->withErrors($validator)
+            return redirect('users/create')->withErrors($validator)
             ->withMessage("Error creating user")
             ->withInput(Input::except('password'));
         }
@@ -134,12 +134,12 @@ class UsersController extends Controller
 
     public function authenticate()
     {
-        //Auth::loginUsingId(1);return Redirect::to('/admin')->with('message', 'You are now logged in!');
+        //Auth::loginUsingId(1);return redirect('/admin')->with('message', 'You are now logged in!');
         if (Auth::attempt(['email'=>Input::get('email'), 'password'=>Input::get('password')])) {
-            return Redirect::to('/admin')->with('message', 'You are now logged in!');
+            return redirect('/admin')->with('message', 'You are now logged in!');
         } else {
             Session::set('type', 'danger');
-            return Redirect::to('login')
+            return redirect('login')
             ->with('message', 'Your username/password combination was incorrect')
             ->withInput();
         }
@@ -149,7 +149,7 @@ class UsersController extends Controller
     {
         if (Auth::user()->admin && $id > 2) {
             User::destroy($id);
-            return Redirect::to('users');
+            return redirect('users');
         } else {
             return Redirect::back()->withMessage("You can not delete an admin user");
         }

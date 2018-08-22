@@ -75,7 +75,7 @@ class SettingsController extends Controller
         $banner = $this->banner;
         $path   = "/img/settings";
         $setting = Setting::find($id);
-        return View::make('settings.edit', compact('setting', 'path', 'banner'));
+        return view('settings.edit', compact('setting', 'path', 'banner'));
     }
 
     /**
@@ -146,7 +146,7 @@ class SettingsController extends Controller
         }
         $setting->save();
 
-        return Redirect::to("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
+        return redirect("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
     }
 
     /**

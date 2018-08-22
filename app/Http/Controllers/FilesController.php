@@ -102,6 +102,6 @@ class FilesController extends Controller
             $count++;
         }
 
-        return View::make('files.index', compact('files', 'script'));
+        return view('files.index', compact('files', 'script'));
     }
 }

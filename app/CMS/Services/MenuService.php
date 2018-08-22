@@ -119,7 +119,7 @@ class MenuService
 
 
         //Else 404
-        return \View::make('404', compact('settings'));
+        return \view('404', compact('settings'));
     }
 
     protected function checkIfPublishedAndUserState($model)

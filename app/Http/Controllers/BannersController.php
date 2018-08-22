@@ -48,7 +48,7 @@ class BannersController extends Controller
     public function create()
     {
         parent::show();
-        return View::make('banners.create');
+        return view('banners.create');
     }
 
   /**
@@ -72,7 +72,7 @@ class BannersController extends Controller
 
         Banner::create($data);
 
-        return Redirect::to('/banners')->withMessage("Created Banner");
+        return redirect('/banners')->withMessage("Created Banner");
     }
 
   /**
@@ -102,7 +102,7 @@ class BannersController extends Controller
         parent::show();
         $banner = Banner::find($id);
         $path = $this->banner_path;
-        return View::make('banners.edit', compact('banner', 'path'));
+        return view('banners.edit', compact('banner', 'path'));
     }
 
   /**
@@ -134,7 +134,7 @@ class BannersController extends Controller
         }
         $banner->update($data);
 
-        return Redirect::to("/banners")->withMessage("Banner Updated");
+        return redirect("/banners")->withMessage("Banner Updated");
     }
 
   /**

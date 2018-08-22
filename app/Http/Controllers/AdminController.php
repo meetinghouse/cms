@@ -11,6 +11,6 @@ class AdminController extends Controller
     public function dash()
     {
         parent::show();
-        return View::make('admins.dash');
+        return view('admins.dash');
     }
 }

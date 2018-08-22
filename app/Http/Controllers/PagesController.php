@@ -41,7 +41,7 @@ class PagesController extends Controller
         // print_r($pages);
         // dd($pages);
         $banner = $this->banner;
-        return View::make('pages.admin_index', compact('pages', 'settings'));
+        return view('pages.admin_index', compact('pages', 'settings'));
     }
 
         /**
@@ -58,7 +58,7 @@ class PagesController extends Controller
         // the 'pages.create' parameter references the pages folder (app/views/pages)
         // and the create.blade.php file (create) in the pages folder
         $subnavparents = Page::getAllSubNavParents();
-        return View::make('pages.create', compact('subnavparents'));
+        return view('pages.create', compact('subnavparents'));
     }
 
         /**
@@ -74,7 +74,7 @@ class PagesController extends Controller
             $page = Page::find($page);
         }
         if ($page == null) {
-            return View::make('404', compact('settings'));
+            return view('404', compact('settings'));
         }
         $projects = Project::orderBy('id', 'asc')->paginate(20);
         $seo = $page->seo;
@@ -84,9 +84,9 @@ class PagesController extends Controller
         $this->settings->menu_name = $page->menu_name;
         $page->id == 1 ? JavaScript::put(['home'=>'home']) : JavaScript::put(['home'=>'notHome']);
         if ($this->settings->theme == true) {
-            return View::make('pages.show_dark', compact('page', 'banner', 'settings', 'seo', 'projects', 'tags'));
+            return view('pages.show_dark', compact('page', 'banner', 'settings', 'seo', 'projects', 'tags'));
         } else {
-            return View::make('pages.show', compact('page', 'banner', 'settings', 'seo', 'projects', 'tags'));
+            return view('pages.show', compact('page', 'banner', 'settings', 'seo', 'projects', 'tags'));
         }
     }
 
@@ -140,8 +140,8 @@ class PagesController extends Controller
             
             $page = Page::create($input);
             $banner = $this->bannerSet($page);
-         //  return Redirect::to('pages.admin_index'->withMessage("Created Page");
-            return Redirect::to('pages/' . $page->id)->withMessage("Page Created ");
+         //  return redirect('pages.admin_index'->withMessage("Created Page");
+            return redirect('pages/' . $page->id)->withMessage("Page Created ");
         } else {
             return Redirect::back()->withErrors($validator)->withInput();
         }
@@ -159,7 +159,7 @@ class PagesController extends Controller
         $page = Page::findOrFail($id);
         parent::checkForSlideshow($page->id);
         $subnavparents = Page::getAllSubNavParents();
-        return View::make('pages.edit', compact('page', 'settings', 'slideshow', 'subnavparents'));
+        return view('pages.edit', compact('page', 'settings', 'slideshow', 'subnavparents'));
     }
 
 
@@ -202,9 +202,9 @@ class PagesController extends Controller
                 $page->published = (isset($page_update['published'])) ? true : false;
                 $page->save();
                 $banner = $this->bannerSet($page);
-                return Redirect::to("/pages/")->withMessage("Page Updated");
+                return redirect("/pages/")->withMessage("Page Updated");
             } else {
-                return Redirect::to('pages/' . $page->id . '/edit')->withErrors($validator)
+                return redirect('pages/' . $page->id . '/edit')->withErrors($validator)
                     ->withMessage("Error ");
             }
         } else {
@@ -234,9 +234,9 @@ class PagesController extends Controller
                 $page->published = (isset($page_update['published'])) ? true : false;
                 $page->save();
                 $banner = $this->bannerSet($page);
-                return Redirect::to("/pages/")->withMessage("Page Updated");
+                return redirect("/pages/")->withMessage("Page Updated");
             } else {
-                return Redirect::to('pages/' . $page->id . '/edit')->withErrors($validator)
+                return redirect('pages/' . $page->id . '/edit')->withErrors($validator)
                     ->withMessage("Error ");
             }
         }

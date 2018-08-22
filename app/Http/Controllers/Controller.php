@@ -114,7 +114,7 @@ abstract class Controller extends BaseController
     protected function setupLayout()
     {
         if (!is_null($this->layout)) {
-            $this->layout = View::make($this->layout);
+            $this->layout = view($this->layout);
         }
     }
 
@@ -127,10 +127,10 @@ abstract class Controller extends BaseController
     {
         if (Request::format() == 'html') {
             if (!$results) {
-                return View::make('404');
+                return view('404');
             }
 
-            return View::make($view, $view_options);
+            return view($view, $view_options);
         } else {
             if (!$results) {
                 return Response::json(null, 404);

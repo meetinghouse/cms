@@ -36,9 +36,9 @@ class PostsController extends Controller
         
         $seo = $this->settings->blog_title;
         if ($this->settings->theme == true) {
-            return View::make('posts.index_dark', compact('posts', 'tags', 'settings', 'seo'));
+            return view('posts.index_dark', compact('posts', 'tags', 'settings', 'seo'));
         } else {
-            return View::make('posts.index', compact('posts', 'tags', 'settings', 'seo'));
+            return view('posts.index', compact('posts', 'tags', 'settings', 'seo'));
         }
     }
 
@@ -46,7 +46,7 @@ class PostsController extends Controller
     {
         parent::show();
         $posts = Post::orderBy('created_at', 'desc')->get();
-        return View::make('posts.admin_index', compact('posts', 'settings'));
+        return view('posts.admin_index', compact('posts', 'settings'));
     }
 
 
@@ -58,7 +58,7 @@ class PostsController extends Controller
     public function create()
     {
         parent::show();
-        return View::make('posts.create');
+        return view('posts.create');
     }
 
 
@@ -110,11 +110,11 @@ class PostsController extends Controller
             $seo = $post->seo;
         }
         if ($id == null) {
-            return View::make('404', compact('settings'));
+            return view('404', compact('settings'));
         }
         $tags = $this->tags->get_tags_for_type('Post');
         $banner = true;
-        return View::make('posts.show', compact('post', 'banner', 'settings', 'seo', 'tags'));
+        return view('posts.show', compact('post', 'banner', 'settings', 'seo', 'tags'));
     }
 
 
@@ -129,7 +129,7 @@ class PostsController extends Controller
         parent::show();
         $post = Post::find($id);
         $path = $this->post_uri;
-        return View::make('posts.edit', compact('post', 'path'));
+        return view('posts.edit', compact('post', 'path'));
     }
 
 
@@ -210,9 +210,9 @@ class PostsController extends Controller
         $tags = $this->tags->get_tags_for_type('Post');
         $seo = $tag;
         if ($this->settings->theme == true) {
-            return View::make('posts.indexByTag_dark', compact('posts', 'settings', 'tags', 'seo'));
+            return view('posts.indexByTag_dark', compact('posts', 'settings', 'tags', 'seo'));
         } else {
-            return View::make('posts.indexByTag', compact('posts', 'settings', 'tags', 'seo'));
+            return view('posts.indexByTag', compact('posts', 'settings', 'tags', 'seo'));
         }
     }
 }

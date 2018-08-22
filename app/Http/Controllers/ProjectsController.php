@@ -36,7 +36,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $page = Page::find(4);
-        return Redirect::to($page->slug, 301);
+        return redirect($page->slug, 301);
     }
 
     /**
@@ -49,9 +49,9 @@ class ProjectsController extends Controller
         parent::show();
         $projects = Project::all();
         if ($this->settings != false) {
-            return View::make('projects.admin_index_dark', compact('projects'));
+            return view('projects.admin_index_dark', compact('projects'));
         } else {
-            return View::make('projects.admin_index', compact('projects'));
+            return view('projects.admin_index', compact('projects'));
         }
     }
 
@@ -65,7 +65,7 @@ class ProjectsController extends Controller
     {
         parent::show();
         $portfolios = Portfolio::allPortfoliosSelectOptions();
-        return View::make('projects.create', compact('portfolios'));
+        return view('projects.create', compact('portfolios'));
     }
 
     /**
@@ -108,15 +108,15 @@ class ProjectsController extends Controller
             $project = Project::find($project);
         }
         if ($project == null || $project->published == 0) {
-            return View::make('404', compact('settings'));
+            return view('404', compact('settings'));
         }
         $seo = $project->seo;
         $tags = $this->tagsService->get_tags_for_type('Project');
         $banner = true;
         if ($this->settings->theme == true) {
-            return View::make('projects.show_dark', compact('project', 'banner', 'settings', 'seo', 'tags'));
+            return view('projects.show_dark', compact('project', 'banner', 'settings', 'seo', 'tags'));
         } else {
-            return View::make('projects.show', compact('project', 'banner', 'settings', 'seo', 'tags'));
+            return view('projects.show', compact('project', 'banner', 'settings', 'seo', 'tags'));
         }
     }
 
@@ -132,7 +132,7 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $portfolios = Portfolio::allPortfoliosSelectOptions();
         $path = $this->project_uri;
-        return View::make('projects.edit', compact('project', 'portfolios', 'path'));
+        return view('projects.edit', compact('project', 'portfolios', 'path'));
     }
 
     /**
@@ -232,6 +232,6 @@ class ProjectsController extends Controller
             ->orderBy('order')
             ->get();
         $tags = $this->tagsService->get_tags_for_type('Project');
-        return View::make('projects.indexByTag', compact('projects', 'settings', 'tags'));
+        return view('projects.indexByTag', compact('projects', 'settings', 'tags'));
     }
 }

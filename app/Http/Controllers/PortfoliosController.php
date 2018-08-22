@@ -27,7 +27,7 @@ class PortfoliosController extends Controller
         parent::show();
         $portfolios = Portfolio::Published()->OrderByOrder()->get();
 
-        return View::make('portfolios.index', compact('portfolios'));
+        return view('portfolios.index', compact('portfolios'));
     }
 
     /**
@@ -41,9 +41,9 @@ class PortfoliosController extends Controller
         $projects = Project::where('published', '=', 1)->orderBy('order')->get();
         $tags = $this->tags->get_tags_for_type('Project');
         if ($this->settings->theme == true) {
-            return View::make('portfolios.projectsIndex_dark', compact('projects', 'tags'));
+            return view('portfolios.projectsIndex_dark', compact('projects', 'tags'));
         } else {
-            return View::make('portfolios.projectsIndex', compact('projects', 'tags'));
+            return view('portfolios.projectsIndex', compact('projects', 'tags'));
         }
     }
 
@@ -57,7 +57,7 @@ class PortfoliosController extends Controller
         parent::show();
         $portfolios = Portfolio::OrderByOrder()->get();
 
-        return View::make('portfolios.admin_index', compact('portfolios'));
+        return view('portfolios.admin_index', compact('portfolios'));
     }
 
     /**
@@ -68,7 +68,7 @@ class PortfoliosController extends Controller
     public function create()
     {
         parent::show();
-        return View::make('portfolios.create');
+        return view('portfolios.create');
     }
 
     /**
@@ -105,13 +105,13 @@ class PortfoliosController extends Controller
         }
 
         if ($portfolio == null) {
-            return View::make('404', compact('settings'));
+            return view('404', compact('settings'));
         }
 
 
         $seo = $portfolio->seo;
         $banner = true;
-        return View::make('portfolios.show', compact('portfolio', 'banner', 'settings', 'seo'));
+        return view('portfolios.show', compact('portfolio', 'banner', 'settings', 'seo'));
     }
 
     /**
@@ -125,7 +125,7 @@ class PortfoliosController extends Controller
         parent::show();
         $portfolio = Portfolio::find($id);
 
-        return View::make('portfolios.edit', compact('portfolio'));
+        return view('portfolios.edit', compact('portfolio'));
     }
 
     /**
