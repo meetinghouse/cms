@@ -2,13 +2,14 @@
 
 use CMS\Services\TagsService;
 
-class TagsController extends \BaseController {
+class TagsController extends \BaseController
+{
     protected $tagable_id;
     protected $tagable_type;
     protected $tagName;
     protected $type;
 
-    Public function __construct(TagsService $tagsService)
+    public function __construct(TagsService $tagsService)
     {
         $this->tags = $tagsService;
     }
@@ -34,10 +35,12 @@ class TagsController extends \BaseController {
         $type = $this->tags->getType($tagable_type);
         $data =  $this->tags->get_tags_for_type($type);
         $tags = $this->tags->transformTags($data->toArray());
-        return Response::json([
+        return Response::json(
+            [
                 'data' => $tags,
                 'message' => "Tags"],
-            200);
+            200
+        );
     }
 
 
@@ -62,7 +65,7 @@ class TagsController extends \BaseController {
     public function delete_tag_by_name()
     {
         $tags = $this->tags->getInput();
-        DB::table('tags')->where('tagable_id', '=', $tags['tagable_id'])->where('tagable_type','=',$tags['tagable_type'])->where('name','=',$tags['tagName'])->delete();
+        DB::table('tags')->where('tagable_id', '=', $tags['tagable_id'])->where('tagable_type', '=', $tags['tagable_type'])->where('name', '=', $tags['tagName'])->delete();
         return Response::json([
             'data' => $tags['tagName'], 'message' => "deleted"], 200);
     }
@@ -90,16 +93,11 @@ class TagsController extends \BaseController {
         $type = $this->tags->getType($type);
         $data =  $this->tags->get_tags_autocomplete($type, $query);
         $tags = $this->tags->transformCollection($data);
-        return Response::json([
+        return Response::json(
+            [
                 'data' => $tags,
                 'message' => "Tags"],
-            200);
+            200
+        );
     }
-
-
-
-
-
-
-
 }

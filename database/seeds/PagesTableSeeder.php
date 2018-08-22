@@ -3,7 +3,8 @@
 // Composer: "fzaninotto/faker": "v1.3.0"
 use Faker\Factory as Faker;
 
-class PagesTableSeeder extends Seeder {
+class PagesTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -20,7 +21,7 @@ class PagesTableSeeder extends Seeder {
                 'menu_parent' => 0,
                 'menu_name' => 'top',
                 'redirect_url' => '',
-				'hide_title' => 0
+                'hide_title' => 0
             ]
         );
 
@@ -35,7 +36,7 @@ class PagesTableSeeder extends Seeder {
                 'menu_parent' => 1,
                 'menu_name' => 'top',
                 'redirect_url' => '',
-				'hide_title' => 0
+                'hide_title' => 0
             ]
         );
 
@@ -50,7 +51,7 @@ class PagesTableSeeder extends Seeder {
                 'seo'  => 'CONTACT PAGE SEO',
                 'menu_name' => 'top',
                 'redirect_url' => '',
-				'hide_title' => 0
+                'hide_title' => 0
             ]
         );
 
@@ -65,7 +66,7 @@ class PagesTableSeeder extends Seeder {
                 'seo'  => 'ALL PROJECTS SEO',
                 'menu_name' => 'left_side',
                 'redirect_url' => '',
-				'hide_title' => 0
+                'hide_title' => 0
             ]
         );
 
@@ -80,7 +81,7 @@ class PagesTableSeeder extends Seeder {
                 'seo'  => 'Our Process',
                 'menu_name' => 'sub_nav',
                 'redirect_url' => '',
-				'hide_title' => 0
+                'hide_title' => 0
             ]
         );
 
@@ -95,7 +96,7 @@ class PagesTableSeeder extends Seeder {
                 'seo'  => 'Testimonials',
                 'menu_name' => 'sub_nav',
                 'redirect_url' => '',
-				'hide_title' => 0
+                'hide_title' => 0
             ]
         );
 
@@ -110,7 +111,7 @@ class PagesTableSeeder extends Seeder {
                 'seo'  => 'News & Awards',
                 'menu_name' => 'sub_nav',
                 'redirect_url' => '',
-				'hide_title' => 0
+                'hide_title' => 0
             ]
         );
     }

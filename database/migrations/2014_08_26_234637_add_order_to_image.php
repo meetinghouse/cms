@@ -3,32 +3,30 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrderToImage extends Migration {
+class AddOrderToImage extends Migration
+{
 
   /**
    * Run the migrations.
    *
    * @return void
    */
-  public function up()
-  {
-    Schema::table('images', function(Blueprint $table)
+    public function up()
     {
-      $table->integer('order')->nullable();
-    });
-  }
+        Schema::table('images', function (Blueprint $table) {
+            $table->integer('order')->nullable();
+        });
+    }
 
   /**
    * Reverse the migrations.
    *
    * @return void
    */
-  public function down()
-  {
-    Schema::table('images', function(Blueprint $table)
+    public function down()
     {
-      $table->dropColumn('order');
-    });
-  }
-
+        Schema::table('images', function (Blueprint $table) {
+            $table->dropColumn('order');
+        });
+    }
 }

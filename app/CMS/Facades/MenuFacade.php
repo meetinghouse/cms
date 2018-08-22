@@ -10,8 +10,11 @@ namespace CMS\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class MenuFacade extends Facade {
+class MenuFacade extends Facade
+{
 
-    protected static function getFacadeAccessor() { return 'Menu'; }
-
-} 
+    protected static function getFacadeAccessor()
+    {
+        return 'Menu';
+    }
+}

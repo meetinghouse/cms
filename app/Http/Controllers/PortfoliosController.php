@@ -2,7 +2,8 @@
 
 use CMS\Services\TagsService;
 
-class PortfoliosController extends \BaseController {
+class PortfoliosController extends \BaseController
+{
 
     public $portfolio;
     private $tags;
@@ -39,11 +40,11 @@ class PortfoliosController extends \BaseController {
         parent::show();
         $projects = Project::where('published', '=', 1)->orderBy('order')->get();
         $tags = $this->tags->get_tags_for_type('Project');
-        if($this->settings->theme == true) {
-			return View::make('portfolios.projectsIndex_dark', compact('projects', 'tags'));
-		} else {
-			return View::make('portfolios.projectsIndex', compact('projects', 'tags'));
-		}
+        if ($this->settings->theme == true) {
+            return View::make('portfolios.projectsIndex_dark', compact('projects', 'tags'));
+        } else {
+            return View::make('portfolios.projectsIndex', compact('projects', 'tags'));
+        }
     }
 
     /**
@@ -51,7 +52,7 @@ class PortfoliosController extends \BaseController {
      *
      * @return Response
      */
-    public function adminIndex($portfolio = NULL)
+    public function adminIndex($portfolio = null)
     {
         parent::show();
         $portfolios = Portfolio::OrderByOrder()->get();
@@ -81,8 +82,7 @@ class PortfoliosController extends \BaseController {
         $rules = Portfolio::$rules;
         $validator = $this->validateSlugOnCreate($all, $rules);
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
@@ -100,17 +100,17 @@ class PortfoliosController extends \BaseController {
     public function show($portfolio = null)
     {
         parent::show();
-        if(is_numeric($portfolio)) {
+        if (is_numeric($portfolio)) {
             $portfolio = Portfolio::find($portfolio);
         }
 
-        if($portfolio == NULL){
+        if ($portfolio == null) {
             return View::make('404', compact('settings'));
         }
 
 
         $seo = $portfolio->seo;
-        $banner = TRUE;
+        $banner = true;
         return View::make('portfolios.show', compact('portfolio', 'banner', 'settings', 'seo'));
     }
 
@@ -120,7 +120,7 @@ class PortfoliosController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id = NULL)
+    public function edit($id = null)
     {
         parent::show();
         $portfolio = Portfolio::find($id);
@@ -145,8 +145,7 @@ class PortfoliosController extends \BaseController {
 
         $validator = $this->validateSlugEdit($all, $portfolio, $rules);
         $data = $this->checkPublished($all);
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
         $portfolio->update($data);
@@ -166,5 +165,4 @@ class PortfoliosController extends \BaseController {
 
         return Redirect::route('portfolios.index');
     }
-
 }

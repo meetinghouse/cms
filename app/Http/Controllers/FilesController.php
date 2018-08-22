@@ -3,7 +3,8 @@
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
-class FilesController extends BaseController {
+class FilesController extends BaseController
+{
 
     public $finder;
     public $filesystem;
@@ -21,11 +22,10 @@ class FilesController extends BaseController {
         if ($_FILES['upload']['type'] == 'image/png'
             || $_FILES['upload']['type'] == 'image/jpg'
             || $_FILES['upload']['type'] == 'image/gif'
-            || $_FILES['upload']['type'] == 'image/jpeg')
-        {
+            || $_FILES['upload']['type'] == 'image/jpeg') {
             $tmp = $_FILES['upload']['tmp_name'];
             $dest = $dir . '/' . $_FILES['upload']['name'];
-            $this->filesystem->copy($tmp, $dest, $override = TRUE);
+            $this->filesystem->copy($tmp, $dest, $override = true);
             $array = array(
                 'filelink' => '/assets/img/wysiwyg/'.$_FILES['upload']['name']
             );
@@ -46,11 +46,10 @@ class FilesController extends BaseController {
             || $_FILES['upload']['type'] == 'image/jpg'
             || $_FILES['upload']['type'] == 'image/gif'
             || $_FILES['upload']['type'] == 'image/jpeg'
-            || $_FILES['upload']['type'] == 'application/doc')
-        {
+            || $_FILES['upload']['type'] == 'application/doc') {
             $tmp = $_FILES['upload']['tmp_name'];
             $dest = $dir . '/' . $_FILES['upload']['name'];
-            $this->filesystem->copy($tmp, $dest, $override = TRUE);
+            $this->filesystem->copy($tmp, $dest, $override = true);
 
             $file = '/assets/files/wysiwyg/'.$_FILES['upload']['name'];
         }
@@ -67,7 +66,7 @@ class FilesController extends BaseController {
         $iterator = $this->finder->in($dir)->name('*.png')->name('*.jpg');
         $files = [];
         $count = 0;
-        foreach($iterator as $file) {
+        foreach ($iterator as $file) {
             $files[$count]['thumb'] = $rel . '/' . $file->getFilename();
             $files[$count]['image'] = $rel . '/' . $file->getFilename();
             $files[$count]['title'] = $file->getFilename();
@@ -95,7 +94,7 @@ class FilesController extends BaseController {
         $iterator = $this->finder->in($dir)->name('*.pdf')->name('*.doc');
         $files = [];
         $count = 0;
-        foreach($iterator as $file) {
+        foreach ($iterator as $file) {
             $f = $rel . '/' . $file->getFileName();
             $name = $file->getFileName();
             $files[$count]['name'] = "<a href='" . $f . "' onclick='sendLink(event, \"$f\")'>{$name}</a>";

@@ -3,23 +3,23 @@
 return array(
 
 
-	'fetch' => PDO::FETCH_CLASS,
+    'fetch' => PDO::FETCH_CLASS,
 
 
-	'default' => 'sqlite',
+    'default' => 'sqlite',
 
 
-	'connections' => array(
+    'connections' => array(
 
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
+        'sqlite' => array(
+            'driver'   => 'sqlite',
+            'database' => __DIR__.'/../database/production.sqlite',
+            'prefix'   => '',
+        ),
 
-	),
+    ),
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Migration Repository Table
 	|--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ return array(
 	|
 	*/
 
-	'migrations' => 'migrations',
+    'migrations' => 'migrations',
 
 
 );

@@ -1,7 +1,8 @@
 <?php
 
 
-class AdminController extends BaseController {
+class AdminController extends BaseController
+{
 
     public function __construct()
     {
@@ -9,7 +10,7 @@ class AdminController extends BaseController {
     }
     public function dash()
     {
-      parent::show();
+        parent::show();
         return View::make('admins.dash');
     }
 }

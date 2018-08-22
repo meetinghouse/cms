@@ -6,7 +6,8 @@
  * Time: 5:55 AM
  */
 
-class BaseModel extends \Eloquent {
+class BaseModel extends \Eloquent
+{
 
     public function scopePublished($query)
     {
@@ -17,4 +18,4 @@ class BaseModel extends \Eloquent {
     {
         return $query->orderBy('order');
     }
-} 
+}

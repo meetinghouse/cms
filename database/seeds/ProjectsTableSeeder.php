@@ -1,9 +1,10 @@
 <?php
 
-class ProjectsTableSeeder extends Seeder {
+class ProjectsTableSeeder extends Seeder
+{
 
-	public function run()
-	{
+    public function run()
+    {
         DB::table('projects')->truncate();
         $dateTime = new DateTime('now');
         $dateTime = $dateTime->format('Y-m-d H:i:s');
@@ -71,7 +72,5 @@ class ProjectsTableSeeder extends Seeder {
                 'updated_at' => $dateTime,
             ]
         );
-
-	}
-
+    }
 }

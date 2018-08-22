@@ -2,7 +2,7 @@
 
 return [
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| S3 Client Config
 	|--------------------------------------------------------------------------
@@ -12,14 +12,14 @@ return [
 	| the s3ClientFactory when creating an S3 client instance.
 	|
 	*/
-	's3_client_config' => [
-		'key' => '',
-		'secret' => '',
-		'region' => '',
-		'scheme' => 'http'
-	],
-	
-	/*
+    's3_client_config' => [
+        'key' => '',
+        'secret' => '',
+        'region' => '',
+        'scheme' => 'http'
+    ],
+    
+    /*
 	|--------------------------------------------------------------------------
 	| S3 Object Config
 	|--------------------------------------------------------------------------
@@ -30,12 +30,12 @@ return [
 	| http://docs.aws.amazon.com/aws-sdk-php/latest/class-Aws.S3.S3Client.html#_putObject
 	|
 	*/
-	's3_object_config' => [
-		'Bucket' => '',
-		'ACL' => 'public-read'
-	],
+    's3_object_config' => [
+        'Bucket' => '',
+        'ACL' => 'public-read'
+    ],
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| S3 Path
 	|--------------------------------------------------------------------------
@@ -48,6 +48,6 @@ return [
 	|
 	*/
 
-	'path' => ':attachment/:id/:style/:filename',
+    'path' => ':attachment/:id/:style/:filename',
 
 ];

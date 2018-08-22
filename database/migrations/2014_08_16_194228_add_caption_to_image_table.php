@@ -3,32 +3,30 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCaptionToImageTable extends Migration {
+class AddCaptionToImageTable extends Migration
+{
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-    Schema::table('images', function(Blueprint $table)
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
     {
-      $table->text('image_caption')->nullable();
-    });
-	}
+        Schema::table('images', function (Blueprint $table) {
+              $table->text('image_caption')->nullable();
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-    Schema::table('images', function(Blueprint $table)
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
     {
-      $table->dropColumn('image_caption');
-    });
-	}
-
+        Schema::table('images', function (Blueprint $table) {
+              $table->dropColumn('image_caption');
+        });
+    }
 }

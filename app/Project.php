@@ -4,7 +4,8 @@
 use Codesleeve\Stapler\ORM\EloquentTrait;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
 
-class Project extends BaseModel implements StaplerableInterface {
+class Project extends BaseModel implements StaplerableInterface
+{
     use EloquentTrait;
 
     // Add your validation rules here
@@ -30,9 +31,10 @@ class Project extends BaseModel implements StaplerableInterface {
         'state_country',
         'city_county',
         'thumbs'
-   ];
+    ];
 
-    public function __construct(array $attributes = array()) {
+    public function __construct(array $attributes = array())
+    {
         $this->hasAttachedFile('thumbs', [
             'styles' => [
                 'project_top' => '850x650',
@@ -58,7 +60,4 @@ class Project extends BaseModel implements StaplerableInterface {
     {
         return $this->morphMany('Tag', 'tagable');
     }
-
-
-
 }

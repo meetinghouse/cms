@@ -1,6 +1,7 @@
 <?php
 
-class Post extends BaseModel {
+class Post extends BaseModel
+{
 
     // Add your validation rules here
     public static $rules = [
@@ -30,5 +31,4 @@ class Post extends BaseModel {
     {
         return $this->morphMany('Tag', 'tagable');
     }
-
 }

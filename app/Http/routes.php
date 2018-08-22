@@ -3,11 +3,10 @@ use CMS\Facades\MenuFacade as Menu;
 
 try {
     $settings = Setting::first();
-    if ($settings->theme == TRUE) {
+    if ($settings->theme == true) {
         Route::get('portfolio', 'PortfoliosController@projectsIndex');
     }
-}
-catch (\Exception $e) {
+} catch (\Exception $e) {
 //   do nothing, it just means there's no settings table yet because migrations need to be run
 //
 }
@@ -62,7 +61,7 @@ Route::get('/admin/posts', array(
 Route::get('/admin', array('before' => 'auth', 'uses' => 'AdminController@dash'));
 
 
-Route::get('/{id?}', function ($id = NULL) {
+Route::get('/{id?}', function ($id = null) {
     return Menu::show($id);
 });
 
@@ -123,5 +122,4 @@ Route::group(array('before' => 'auth'), function () {
 
         return $images->getImageswysiwyg();
     });
-
 });

@@ -11,7 +11,8 @@ use Flow\Request;
  *
  * Class ImagesController
  */
-class ImagesController extends BaseController{
+class ImagesController extends BaseController
+{
 
 
     protected $tempDir;
@@ -47,10 +48,8 @@ class ImagesController extends BaseController{
     public function transformImages($images)
     {
         $img_array = [];
-        foreach($images as $key => $image)
-        {
+        foreach ($images as $key => $image) {
             $img_array[$key]['file_name'] = $image->file_name;
-
         }
         return $img_array;
     }
@@ -58,25 +57,23 @@ class ImagesController extends BaseController{
     public function uploadImage($model)
     {
         $this->setTemp();
-		if(! \File::exists(public_path() . '/assets/img/')){
-			\File::makeDirectory(public_path() . '/assets/img/', 0777, true, true);
-		}
+        if (! \File::exists(public_path() . '/assets/img/')) {
+            \File::makeDirectory(public_path() . '/assets/img/', 0777, true, true);
+        }
         $this->setDestinationDir(public_path() . '/assets/img/' . $model);
         $this->checkDestination();
         $this->request = new Request();
         \File::makeDirectory($this->chunkDir, 0777, true, true);
         $this->filename = isset($_FILES['file']) ? $_FILES['file']['name'] : $_GET['flowFilename'];
 
-        if(\Flow\Basic::save($this->getDestinationDir(). '/' . $this->request->getFileName(), $this->config, $this->request)) {
+        if (\Flow\Basic::save($this->getDestinationDir(). '/' . $this->request->getFileName(), $this->config, $this->request)) {
             $storage = $this->getDestinationDir();
             Log::debug($storage);
-            if($model == 'projects')
-            {
+            if ($model == 'projects') {
                 $this->imageservice->cropAndSaveForPages($this->request->getFileName(), $storage);
             }
 
-            if($model == 'pages')
-            {
+            if ($model == 'pages') {
                 $this->imageservice->cropAndSaveForPagesTopSlides($this->request->getFileName(), $storage);
             }
 
@@ -98,18 +95,15 @@ class ImagesController extends BaseController{
 
         $info = [];
 
-        if($project->count() > 0)
-        {
+        if ($project->count() > 0) {
             $info['type'] = 'Project';
             $info['id'] = $project->get()[0]->id;
         }
-        if($post->count() > 0)
-        {
+        if ($post->count() > 0) {
             $info['type'] = 'Post';
             $info['id'] = $post->get()[0]->id;
         }
-        if($page->count() > 0)
-        {
+        if ($page->count() > 0) {
             $info['type'] = 'Page';
             $info['id'] = $page->get()[0]->id;
         }
@@ -130,7 +124,7 @@ class ImagesController extends BaseController{
 
     protected function flowSave()
     {
-        if(\Flow\Basic::save($this->getDestinationDir(). '/' . $this->request->getFileName(), $this->config, $this->request)) {
+        if (\Flow\Basic::save($this->getDestinationDir(). '/' . $this->request->getFileName(), $this->config, $this->request)) {
             $storage = $this->getDestinationDir();
             return Response::json(['data' => $this->filename, 'message' => "File Uploaded $storage/$this->filename"], 200);
         } else {
@@ -177,7 +171,7 @@ class ImagesController extends BaseController{
 
     public function checkDestination()
     {
-        if(!File::exists($this->getDestinationDir())) {
+        if (!File::exists($this->getDestinationDir())) {
               \File::makeDirectory($this->getDestinationDir(), $mode = 0777, true, true);
         }
     }
@@ -197,25 +191,20 @@ class ImagesController extends BaseController{
 
     protected function getPathForType($type)
     {
-        if($type == 'posts')
-        {
+        if ($type == 'posts') {
             $type = 'Post';
             return $type;
         }
-        if($type == 'projects')
-        {
+        if ($type == 'projects') {
             $type = 'Project';
             return $type;
         }
-        if($type == 'pages')
-        {
+        if ($type == 'pages') {
             $type = 'Page';
             return $type;
-        }
-        elseif($type == 'projects') {
+        } elseif ($type == 'projects') {
             $type = 'Project';
             return $type;
         }
     }
-
 }

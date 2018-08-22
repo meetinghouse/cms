@@ -1,6 +1,7 @@
 <?php
 
-class Tag extends \Eloquent {
+class Tag extends \Eloquent
+{
 
     protected $fillable = [
         'name',
@@ -23,5 +24,4 @@ class Tag extends \Eloquent {
         'tagable_id' => 'required',
         'tagable_type'  => 'required',
     ];
-
 }

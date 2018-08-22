@@ -1,11 +1,11 @@
 <?php
 
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\ClosuredContextInterface;
+use Behat\Behat\Context\TranslatedContextInterface;
+use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Exception\PendingException;
+use Behat\Gherkin\Node\PyStringNode;
+use Behat\Gherkin\Node\TableNode;
 
 use Behat\MinkExtension\Context\MinkContext;
 
@@ -91,7 +91,7 @@ class FeatureContext extends MinkContext
     public function iPressTheXpath($arg)
     {
         $node = $this->getSession()->getPage()->find('xpath', $arg);
-        if($node) {
+        if ($node) {
             $this->getSession()->getPage()->find('xpath', $arg)->press();
         } else {
             throw new Exception('Element not found');
@@ -105,7 +105,7 @@ class FeatureContext extends MinkContext
     public function iClickTheXpath($arg)
     {
         $node = $this->getSession()->getPage()->find('xpath', $arg);
-        if($node) {
+        if ($node) {
             $this->getSession()->getPage()->find('xpath', $arg)->click();
         } else {
             throw new Exception('Element not found');
@@ -121,7 +121,7 @@ class FeatureContext extends MinkContext
     public function iPressTheElement($arg)
     {
         $node = $this->getSession()->getPage()->find('css', $arg);
-        if($node) {
+        if ($node) {
             $this->getSession()->getPage()->find('css', $arg)->press();
         } else {
             throw new Exception('Element not found');
@@ -131,7 +131,8 @@ class FeatureContext extends MinkContext
     /**
      * @Given /^I reset the session$/
      */
-    public function iResetTheSession() {
+    public function iResetTheSession()
+    {
         $this->getSession()->reset();
     }
 

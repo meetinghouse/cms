@@ -11,18 +11,16 @@
 |
 */
 
-App::before(function($request)
-{
-	$settings = Setting::find(1);
-    if($settings !== null && $settings->maintenance_mode && Auth::guest() && Request::path() != 'login') {
+App::before(function ($request) {
+    $settings = Setting::find(1);
+    if ($settings !== null && $settings->maintenance_mode && Auth::guest() && Request::path() != 'login') {
         return View::make('layouts.maintenance', compact('settings'));
     }
 });
 
 
-App::after(function($request, $response)
-{
-	//
+App::after(function ($request, $response) {
+    //
 });
 
 /*
@@ -36,18 +34,16 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
-{
-	if (Auth::guest()) {
-        if(!Request::isJson()) {
+Route::filter('auth', function () {
+    if (Auth::guest()) {
+        if (!Request::isJson()) {
             return Redirect::guest('login');
         }
         return Response::json(null, 403);
     };
 });
 
-Route::filter('admin', function()
-{
+Route::filter('admin', function () {
     if (Auth::guest()) {
         return Redirect::guest('login')->with('message', 'You need to login');
     }
@@ -57,9 +53,8 @@ Route::filter('admin', function()
 });
 
 
-Route::filter('auth.basic', function()
-{
-	return Auth::basic();
+Route::filter('auth.basic', function () {
+    return Auth::basic();
 });
 
 /*
@@ -73,9 +68,10 @@ Route::filter('auth.basic', function()
 |
 */
 
-Route::filter('guest', function()
-{
-	if (Auth::check()) return Redirect::to('/');
+Route::filter('guest', function () {
+    if (Auth::check()) {
+        return Redirect::to('/');
+    }
 });
 
 /*
@@ -97,17 +93,14 @@ Route::filter('guest', function()
 //	}
 //});
 
-Route::filter('csrf', function($route, $request)
-{
-    if (strtoupper($request->getMethod()) === 'GET')
-    {
+Route::filter('csrf', function ($route, $request) {
+    if (strtoupper($request->getMethod()) === 'GET') {
         return; // get requests are not CSRF protected
     }
 
     $token = $request->ajax() ? $request->header('X-CSRF-Token') : Input::get('_token');
 
-    if (Session::token() != $token)
-    {
+    if (Session::token() != $token) {
         throw new Illuminate\Session\TokenMismatchException;
     }
 });

@@ -10,22 +10,22 @@ namespace CMS\Services;
 
 use CMS\Services\ImagesService;
 
-class ProjectsService {
+class ProjectsService
+{
 
 
   /**
    * @var ImagesService
    */
-  private $imagesService;
+    private $imagesService;
 
-  public function __construct(ImagesService $imagesService)
-  {
-    $this->imagesService = $imagesService;
-  }
+    public function __construct(ImagesService $imagesService)
+    {
+        $this->imagesService = $imagesService;
+    }
 
-  public function addImages($model_id, array $images, $class_name) {
-    return $this->imagesService->addImages($model_id, $images, $class_name);
-  }
-
-
+    public function addImages($model_id, array $images, $class_name)
+    {
+        return $this->imagesService->addImages($model_id, $images, $class_name);
+    }
 }

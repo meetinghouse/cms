@@ -2,7 +2,7 @@
 
 return [
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Stapler File Url
 	|--------------------------------------------------------------------------
@@ -14,9 +14,9 @@ return [
 	|
 	*/
 
-	'url' => '/system/:class/:attachment/:id_partition/:style/:filename',
+    'url' => '/system/:class/:attachment/:id_partition/:style/:filename',
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Stapler File Path
 	|--------------------------------------------------------------------------
@@ -28,9 +28,9 @@ return [
 	|
 	*/
 
-	'path' => ':app_root/public:url',
+    'path' => ':app_root/public:url',
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Override File Permissions Flag
 	|--------------------------------------------------------------------------
@@ -43,6 +43,6 @@ return [
 	|
 	*/
 
-	'override_file_permissions' => null,
+    'override_file_permissions' => null,
 
 ];

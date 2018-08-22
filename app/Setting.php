@@ -1,5 +1,6 @@
 <?php
 
-class Setting extends \Eloquent {
-	protected $fillable = [];
+class Setting extends \Eloquent
+{
+    protected $fillable = [];
 }

@@ -1,9 +1,10 @@
 <?php
 
-class UsersTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder
+{
 
-	public function run()
-	{
+    public function run()
+    {
         DB::table('users')->truncate();
 
 
@@ -22,7 +23,7 @@ class UsersTableSeeder extends Seeder {
                 'updated_at' => $dateTime,
             )
         );
-        DB::table('users')->insert( $users );
+        DB::table('users')->insert($users);
 
         $users = array(
             array(
@@ -46,7 +47,6 @@ class UsersTableSeeder extends Seeder {
                 'updated_at' => $dateTime,
             )
         );
-        DB::table('users')->insert( $users );
-	}
-
+        DB::table('users')->insert($users);
+    }
 }

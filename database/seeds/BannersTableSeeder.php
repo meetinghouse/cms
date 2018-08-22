@@ -3,10 +3,11 @@
 // Composer: "fzaninotto/faker": "v1.3.0"
 use Faker\Factory as Faker;
 
-class BannersTableSeeder extends Seeder {
+class BannersTableSeeder extends Seeder
+{
 
-	public function run()
-	{
+    public function run()
+    {
         $dateTime = new DateTime('now');
         $dateTime = $dateTime->format('Y-m-d H:i:s');
 
@@ -36,7 +37,6 @@ class BannersTableSeeder extends Seeder {
                 'updated_at' => $dateTime,
             ),
         );
-        DB::table('banners')->insert( $banners );
-	}
-
+        DB::table('banners')->insert($banners);
+    }
 }

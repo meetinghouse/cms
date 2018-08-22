@@ -3,10 +3,11 @@
 // Composer: "fzaninotto/faker": "v1.3.0"
 use Faker\Factory as Faker;
 
-class SettingsTableSeeder extends Seeder {
+class SettingsTableSeeder extends Seeder
+{
 
-	public function run()
-	{
+    public function run()
+    {
         $dateTime = new DateTime('now');
         $dateTime = $dateTime->format('Y-m-d H:i:s');
 
@@ -28,7 +29,6 @@ class SettingsTableSeeder extends Seeder {
                 'updated_at' => $dateTime,
             ),
         );
-        DB::table('settings')->insert( $settings );
-	}
-
+        DB::table('settings')->insert($settings);
+    }
 }

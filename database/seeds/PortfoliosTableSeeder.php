@@ -1,9 +1,10 @@
 <?php
 
-class PortfoliosTableSeeder extends Seeder {
+class PortfoliosTableSeeder extends Seeder
+{
 
-	public function run()
-	{
+    public function run()
+    {
         DB::table('portfolios')->truncate();
 
         Portfolio::create(
@@ -27,6 +28,5 @@ class PortfoliosTableSeeder extends Seeder {
                 'slug' => '/portfolio2'
             ]
         );
-	}
-
+    }
 }
