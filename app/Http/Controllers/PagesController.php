@@ -1,8 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Page;
+use App\Project;
 use CMS\Services\ImagesService;
 use CMS\Services\TagsService;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Laracasts\Utilities\JavaScript\Facades\JavaScript;
+
+
 
 class PagesController extends Controller
 {

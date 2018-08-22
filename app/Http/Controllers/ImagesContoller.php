@@ -1,10 +1,21 @@
 <?php
 
+namespace App\Http\Controllers;
 
+use App\Http\Requests\Request;
+use App\Image;
 use Carbon\Carbon;
 use CMS\Services\ImagesService;
 use Flow\Config;
 use Flow\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
+
+
+
 
 /**
  * @TODO DRY up the code

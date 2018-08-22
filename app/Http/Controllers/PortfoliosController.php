@@ -1,6 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Portfolio;
+use App\Project;
 use CMS\Services\TagsService;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 class PortfoliosController extends Controller
 {

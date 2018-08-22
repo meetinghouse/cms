@@ -1,5 +1,9 @@
 <?php
+
+namespace App;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class Page extends Model
 {
@@ -25,12 +29,12 @@ class Page extends Model
     ];
     public function parent()
     {
-        return $this->hasOne('page', 'id', 'menu_parent');
+        return $this->hasOne('App\page', 'id', 'menu_parent');
     }
 
     public function children()
     {
-        return $this->hasMany('page', 'menu_parent', 'id');
+        return $this->hasMany('App\page', 'menu_parent', 'id');
     }
     public static function tree()
     {
@@ -49,7 +53,7 @@ class Page extends Model
 
     public function images()
     {
-        return $this->morphMany('Image', 'imageable')->orderBy('asc');
+        return $this->morphMany('App\Image', 'imageable')->orderBy('asc');
     }
     
     public static function getAllSubNavParents()

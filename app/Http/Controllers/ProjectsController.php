@@ -1,8 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Page;
+use App\Portfolio;
+use App\Project;
 use CMS\Services\ImagesService;
 use CMS\Services\ProjectsService;
 use CMS\Services\TagsService;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 class ProjectsController extends Controller
 {

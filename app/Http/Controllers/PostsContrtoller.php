@@ -1,8 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Post;
+use App\Tag;
 use CMS\Services\ImagesService;
 use CMS\Services\TagsService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+
+
 
 class PostsController extends Controller
 {

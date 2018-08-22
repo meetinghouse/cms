@@ -1,5 +1,13 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Banner;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class BannersController extends Controller
 {

@@ -1,8 +1,12 @@
 <?php
 
+namespace App;
 
 use Codesleeve\Stapler\ORM\EloquentTrait;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
+
+
+
 
 class Project extends BaseModel implements StaplerableInterface
 {
@@ -48,16 +52,16 @@ class Project extends BaseModel implements StaplerableInterface
 
     public function portfolio()
     {
-        return $this->belongsTo('Portfolio');
+        return $this->belongsTo('App\Portfolio');
     }
 
     public function images()
     {
-        return $this->morphMany('Image', 'imageable')->orderBy('order', 'asc');
+        return $this->morphMany('App\Image', 'imageable')->orderBy('order', 'asc');
     }
 
     public function tags()
     {
-        return $this->morphMany('Tag', 'tagable');
+        return $this->morphMany('App\Tag', 'tagable');
     }
 }

@@ -1,6 +1,15 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Setting;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Filesystem\Filesystem;
+
+
 
 class SettingsController extends Controller
 {

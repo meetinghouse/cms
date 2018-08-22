@@ -1,6 +1,12 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Page;
 use CMS\Services\MenuService;
+use Illuminate\Support\Facades\Input;
+
+
 
 class MenusController extends Controller
 {

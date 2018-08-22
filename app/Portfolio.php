@@ -1,5 +1,8 @@
 <?php
 
+namespace App;
+
+
 class Portfolio extends BaseModel
 {
 
@@ -14,7 +17,7 @@ class Portfolio extends BaseModel
 
     public function projects()
     {
-        return $this->hasMany('Project')->Published()->OrderByOrder();
+        return $this->hasMany('App\Project')->Published()->OrderByOrder();
     }
 
     public static function allPortfoliosSelectOptions()

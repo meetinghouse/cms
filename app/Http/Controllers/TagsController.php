@@ -1,6 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Post;
+use App\Tag;
 use CMS\Services\TagsService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
+
+
 
 class TagsController extends Controller
 {
