@@ -32,33 +32,33 @@ Route::get('/login', 'UsersController@login');
 #done
 Route::put('/login', 'UsersController@authenticate');
 #done
-Route::get('/logout', ['before' => 'auth', 'uses' => 'UsersController@getLogout']);
+Route::get('/logout', ['middleware' => 'auth', 'uses' => 'UsersController@getLogout']);
 
 Route::get('/admin/pages', [
-  'before' => 'auth',
+  'middleware' => 'auth',
   'as'     => 'admin_pages',
   'uses'   => 'PagesController@adminIndex'
 ]);
 
 Route::get('/admin/portfolios', [
-    'before' => 'auth',
+    'middleware' => 'auth',
     'as'     => 'admin_portfolio',
     'uses'   => 'PortfoliosController@adminIndex'
 ]);
 
 Route::get('/admin/projects', [
-    'before' => 'auth',
+    'middleware' => 'auth',
     'as'     => 'admin_projects',
     'uses'   => 'ProjectsController@adminIndex'
 ]);
 
 Route::get('/admin/posts', [
-  'before' => 'auth',
+  'middleware' => 'auth',
   'as'     => 'admin_posts',
   'uses'   => 'PostsController@adminIndex'
 ]);
 
-Route::get('/admin', ['before' => 'auth', 'uses' => 'AdminController@dash']);
+Route::get('/admin', ['middleware' => 'auth', 'uses' => 'AdminController@dash']);
 
 
 Route::get('/{id?}', function ($id = null) {
@@ -72,7 +72,7 @@ Route::get('/auth/token', function () {
 Route::get('/api/v1/getImageFromImageableItem/{imageable_type}/{imageable_id}', 'ImagesController@getImageFromImageableItem');
 Route::get('/api/v1/getImageForSlug/{slug}', 'ImagesController@getImageForSlug');
 
-Route::group(['before' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
 
     /**
