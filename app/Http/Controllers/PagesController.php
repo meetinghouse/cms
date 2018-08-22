@@ -4,7 +4,7 @@ use CMS\Services\ImagesService;
 use CMS\Services\TagsService;
 use Laracasts\Utilities\JavaScript\Facades\JavaScript;
 
-class PagesController extends \BaseController
+class PagesController extends Controller
 {
 
     public $pages;

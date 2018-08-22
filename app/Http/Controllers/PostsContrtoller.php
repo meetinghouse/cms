@@ -4,7 +4,7 @@ use CMS\Services\ImagesService;
 use CMS\Services\TagsService;
 use Intervention\Image\Facades\Image;
 
-class PostsController extends \BaseController
+class PostsController extends Controller
 {
 
     protected $post_dest;

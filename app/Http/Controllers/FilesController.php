@@ -3,7 +3,7 @@
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
-class FilesController extends BaseController
+class FilesController extends Controller
 {
 
     public $finder;

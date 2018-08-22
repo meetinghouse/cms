@@ -1,7 +1,7 @@
 <?php
 
 
-class BannersController extends \BaseController
+class BannersController extends Controller
 {
 
     protected $banner_model;

@@ -2,7 +2,7 @@
 
 use CMS\Services\TagsService;
 
-class PortfoliosController extends \BaseController
+class PortfoliosController extends Controller
 {
 
     public $portfolio;

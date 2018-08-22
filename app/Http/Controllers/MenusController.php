@@ -2,7 +2,7 @@
 
 use CMS\Services\MenuService;
 
-class MenusController extends \BaseController
+class MenusController extends Controller
 {
 
     public $pages;

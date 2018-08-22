@@ -2,7 +2,7 @@
 
 use Symfony\Component\Filesystem\Filesystem;
 
-class SettingsController extends \BaseController
+class SettingsController extends Controller
 {
 
     protected $filesystem;

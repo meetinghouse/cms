@@ -11,7 +11,7 @@ use Flow\Request;
  *
  * Class ImagesController
  */
-class ImagesController extends BaseController
+class ImagesController extends Controller
 {
 
 

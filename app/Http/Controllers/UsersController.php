@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends BaseController
+class UsersController extends Controller
 {
 
     public $users;

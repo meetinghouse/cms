@@ -2,7 +2,7 @@
 
 use CMS\Services\TagsService;
 
-class TagsController extends \BaseController
+class TagsController extends Controller
 {
     protected $tagable_id;
     protected $tagable_type;

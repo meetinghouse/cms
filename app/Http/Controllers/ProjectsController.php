@@ -4,7 +4,7 @@ use CMS\Services\ImagesService;
 use CMS\Services\ProjectsService;
 use CMS\Services\TagsService;
 
-class ProjectsController extends \BaseController
+class ProjectsController extends Controller
 {
 
     protected $project_dest;
