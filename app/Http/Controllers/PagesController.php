@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Laracasts\Utilities\JavaScript\Facades\JavaScript;
 
-
-
 class PagesController extends Controller
 {
 

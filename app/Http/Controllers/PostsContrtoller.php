@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
-
-
 class PostsController extends Controller
 {
 

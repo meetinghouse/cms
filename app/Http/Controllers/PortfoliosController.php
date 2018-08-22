@@ -8,8 +8,6 @@ use CMS\Services\TagsService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
-
 class PortfoliosController extends Controller
 {
 

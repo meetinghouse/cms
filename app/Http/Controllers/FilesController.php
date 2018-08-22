@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Response;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-
-
 class FilesController extends Controller
 {
 

@@ -11,8 +11,6 @@ use CMS\Services\TagsService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
-
 class ProjectsController extends Controller
 {
 

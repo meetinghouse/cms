@@ -8,8 +8,6 @@ use CMS\Services\TagsService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
-
-
 class TagsController extends Controller
 {
     protected $tagable_id;

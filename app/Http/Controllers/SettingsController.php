@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Filesystem\Filesystem;
 
-
-
 class SettingsController extends Controller
 {
 

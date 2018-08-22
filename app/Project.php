@@ -5,9 +5,6 @@ namespace App;
 use Codesleeve\Stapler\ORM\EloquentTrait;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
 
-
-
-
 class Project extends BaseModel implements StaplerableInterface
 {
     use EloquentTrait;

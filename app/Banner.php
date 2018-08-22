@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Banner extends Model
 {
     protected $fillable = ['name', 'active', 'order', 'banner_name'];

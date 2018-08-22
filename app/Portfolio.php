@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 class Portfolio extends BaseModel
 {
 

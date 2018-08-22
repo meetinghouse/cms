@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 
-
-
-
 /**
  * @TODO DRY up the code
  *
