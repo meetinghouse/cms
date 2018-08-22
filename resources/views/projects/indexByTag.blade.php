@@ -21,16 +21,16 @@
                         </div>
                     @elseif ($p->image)
 						@if(file_exists(public_path().'/img/projects/tile/'.$p->tile_image))
-							<img src="/img/projects/tile/{{$p->tile_image}}" alt="{{$p->title}}" class="img-responsive">
+							<img src="/img/projects/tile/{!!$p->tile_image!!}" alt="{!!$p->title!!}" class="img-responsive">
 						@else
-							<img src="/img/projects/{{$p->tile_image}}" alt="{{$p->title}}" class="img-responsive">
+							<img src="/img/projects/{!!$p->tile_image!!}" alt="{!!$p->title!!}" class="img-responsive">
 						@endif
 					@endif
                 </div>
                 <div class="project_img col-md-9">
-                    <h2 class="project-title">{{$p->title}}</h2>
-                    {{str_limit($p->body, $limit = 500)}}
-                    <a class="read-more" href="{{$p->slug}}">Read More...</a>
+                    <h2 class="project-title">{!!$p->title!!}</h2>
+                    {!!str_limit($p->body, $limit = 500)!!}
+                    <a class="read-more" href="{!!$p->slug!!}">Read More...</a>
                 </div>
         </div>
         @endforeach

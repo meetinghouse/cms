@@ -16,7 +16,7 @@
 		<tbody>
 			@foreach($posts as $post)
 				<tr>
-					<td><a href="{{$post->slug}}">{{{$post->title}}}</a></td>
+					<td><a href="{!!$post->slug!!}">{{ $post->title }}</a></td>
 					<td class="published">
 						@if($post->published)
 						Published
@@ -25,8 +25,8 @@
 						@endif
 					</td>
 					<td>
-						<a id="post-id-{{$post->id}}"
-						   href="/posts/{{$post->id}}/edit">
+						<a id="post-id-{!!$post->id!!}"
+						   href="/posts/{!!$post->id!!}/edit">
 							edit
 						</a>
 					</td>

@@ -2,7 +2,7 @@
     <div ng-controller="UploadImagesController">
         <ul ng-if="images.length > 0" class="edit_images sortable">
             <li ng-repeat="image in images">
-                <img class ="img-thumbnail" src="/assets/img/{{$model}}/[[image.file_name]]">&nbsp;[[image.file_name]]&nbsp;<i class="glyphicon glyphicon-trash" ng-click="deleteImage(image.id)">&nbsp;</i>
+                <img class ="img-thumbnail" src="/assets/img/{!!$model!!}/[[image.file_name]]">&nbsp;[[image.file_name]]&nbsp;<i class="glyphicon glyphicon-trash" ng-click="deleteImage(image.id)">&nbsp;</i>
                 <br>
                 @if($model != 'pages')
                 <label>Edit image caption (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html"target="_blank">Help</a>):</label>
@@ -15,7 +15,7 @@
             </li>
         </ul>
         <div class="form-group">
-            <div flow-init="{target: '/images/upload/{{$model}}', singleFile: false, testChunks:false}"
+            <div flow-init="{target: '/images/upload/{!!$model!!}', singleFile: false, testChunks:false}"
                  flow-files-submitted="$flow.upload()"
                  flow-file-success="$file.msg = $message">
 

@@ -22,20 +22,20 @@
         <tbody>
             @foreach($projects as $project)
                 <tr>
-                    <td><a href="/projects/{{$project->id}}">{{{$project->title}}}</a></td>
+                    <td><a href="/projects/{!!$project->id!!}">{{ $project->title }}</a></td>
                     <td>
 
                     @if($project->portfolio)
-                    <a href="{{$project->portfolio->slug}}">{{{$project->portfolio->title}}}</a>
+                    <a href="{!!$project->portfolio->slug!!}">{{ $project->portfolio->title }}</a>
                     @else
                     No Related Portfolio
                     @endif
                     </td>
-                    <td>{{$project->order}}</td>
-                    <td>{{$project->published}}</td>
+                    <td>{!!$project->order!!}</td>
+                    <td>{!!$project->published!!}</td>
                     <td>
-                        <a id="project-id-{{$project->id}}"
-                           href="/projects/{{$project->id}}/edit">
+                        <a id="project-id-{!!$project->id!!}"
+                           href="/projects/{!!$project->id!!}/edit">
                             edit
                         </a>
                     </td>

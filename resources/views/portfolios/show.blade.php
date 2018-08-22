@@ -10,7 +10,7 @@
 
   <div class="well">
         Edit this page <br>
-        <a href="/portfolios/{{$portfolio->id}}/edit" class="btn btn-success">Edit</a>
+        <a href="/portfolios/{!!$portfolio->id!!}/edit" class="btn btn-success">Edit</a>
     </div>
     @endif
 </div>
@@ -21,8 +21,8 @@
 @else
 <div class="col-md-12 column">
 @endif
-    <h1>{{{ $portfolio->header }}}</h1>
-    <p> {{ $portfolio->body }} </p>
+    <h1>{{ $portfolio->header }}</h1>
+    <p> {!! $portfolio->body !!} </p>
     <hr>
     @if($portfolio->projects->count())
     <h3>Related Projects</h3>

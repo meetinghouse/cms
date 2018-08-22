@@ -9,9 +9,9 @@
 <div class="col-md-9 column">
     <legend><i class="glyphicon-cog glyphicon"></i> Update Settings</legend>
     @include('sessions.notice')
-    {{ Form::model($setting, array('method' => 'PUT', 'route' => array('settings.update',
-        $setting->id), 'files' => 'true', 'role' => 'form')) }}
-    <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+    {!! Form::model($setting, array('method' => 'PUT', 'route' => array('settings.update',
+        $setting->id), 'files' => 'true', 'role' => 'form')) !!}
+    <input type="hidden" name="_token" value="{{ Session::getToken() }}">
     <fieldset>
         <div class="form-group">
             <label for="email">Company Name
@@ -22,10 +22,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-            {{ Form::text('name', null, array('class' => 'form-control', 'tabindex' => 1)) }}
+            {!! Form::text('name', null, array('class' => 'form-control', 'tabindex' => 1)) !!}
             @if($errors->first('name'))
             <div class="alert alert-danger">
-                {{  $errors->first('name'); }}
+                {!!  $errors->first('name'); !!}
             </div>
             @endif
         </div>
@@ -39,19 +39,19 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-                {{ Form::file('logo', null, array('class' => 'form-control', 'tabindex' => 2)) }}
+                {!! Form::file('logo', null, array('class' => 'form-control', 'tabindex' => 2)) !!}
                 @if($errors->first('logo'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('logo'); }}
+                    {!!  $errors->first('logo'); !!}
                 </div>
                 @endif
-                @if($setting->logo) <img src="{{$path}}/{{$setting->logo}}" class="banner-show"> @endif
+                @if($setting->logo) <img src="{!!$path!!}/{!!$setting->logo!!}" class="banner-show"> @endif
         </div>
         @if($setting->logo)
             <div class="form-group">
                 <div class="controls">
                     <div class="checkbox">
-                        <label class="checkbox">{{ Form::checkbox('remove_logo', null) }} Remove Logo</label>
+                        <label class="checkbox">{!! Form::checkbox('remove_logo', null) !!} Remove Logo</label>
                     </div>
                     <div class="help-block">If you want no logo (Company Name will show).</div>
                 </div>
@@ -67,10 +67,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>&nbsp;
-                {{ Form::select('color', ['bw' => 'black & white', 'orange' => 'orange', 'green' => 'green', 'blue' => 'blue'], $setting->color, array('class' => 'form-control', 'tabindex' => 4)) }}
+                {!! Form::select('color', ['bw' => 'black & white', 'orange' => 'orange', 'green' => 'green', 'blue' => 'blue'], $setting->color, array('class' => 'form-control', 'tabindex' => 4)) !!}
                 @if($errors->first('color'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('color'); }}
+                    {!!  $errors->first('color'); !!}
                 </div>
                 @endif
         </div>
@@ -99,10 +99,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-                {{ Form::text('facebook', null, array('class' => 'form-control', 'tabindex' => 6)) }}
+                {!! Form::text('facebook', null, array('class' => 'form-control', 'tabindex' => 6)) !!}
                 @if($errors->first('facebook'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('facebook'); }}
+                    {!!  $errors->first('facebook'); !!}
                 </div>
                 @endif
         </div>
@@ -116,10 +116,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-                {{ Form::text('linkedin', null, array('class' => 'form-control', 'tabindex' => 8)) }}
+                {!! Form::text('linkedin', null, array('class' => 'form-control', 'tabindex' => 8)) !!}
                 @if($errors->first('linkedin'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('linkedin'); }}
+                    {!!  $errors->first('linkedin'); !!}
                 </div>
                 @endif
         </div>
@@ -133,10 +133,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-                {{ Form::text('twitter', null, array('class' => 'form-control', 'tabindex' => 10)) }}
+                {!! Form::text('twitter', null, array('class' => 'form-control', 'tabindex' => 10)) !!}
                 @if($errors->first('twitter'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('twitter'); }}
+                    {!!  $errors->first('twitter'); !!}
                 </div>
                 @endif
         </div>
@@ -150,10 +150,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-                {{ Form::text('pinterest', null, array('class' => 'form-control', 'tabindex' => 12)) }}
+                {!! Form::text('pinterest', null, array('class' => 'form-control', 'tabindex' => 12)) !!}
                 @if($errors->first('pinterest'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('pinterest'); }}
+                    {!!  $errors->first('pinterest'); !!}
                 </div>
                 @endif
         </div>
@@ -166,10 +166,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-            {{ Form::text('gplus', null, array('class' => 'form-control', 'tabindex' => 14)) }}
+            {!! Form::text('gplus', null, array('class' => 'form-control', 'tabindex' => 14)) !!}
             @if($errors->first('gplus'))
             <div class="alert alert-danger">
-                {{  $errors->first('gplus'); }}
+                {!!  $errors->first('gplus'); !!}
             </div>
             @endif
         </div>
@@ -182,10 +182,10 @@
                 @if($settings->theme == false)
                     (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
                 @endif</label>
-            {{ Form::text('houzz', null, array('class' => 'form-control', 'tabindex' => 16)) }}
+            {!! Form::text('houzz', null, array('class' => 'form-control', 'tabindex' => 16)) !!}
             @if($errors->first('gplus'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('houzz'); }}
+                    {!!  $errors->first('houzz'); !!}
                 </div>
             @endif
         </div>
@@ -198,10 +198,10 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-                {{ Form::text('instagram', null, array('class' => 'form-control', 'tabindex' => 6)) }}
+                {!! Form::text('instagram', null, array('class' => 'form-control', 'tabindex' => 6)) !!}
                 @if($errors->first('instagram'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('instagram'); }}
+                    {!!  $errors->first('instagram'); !!}
                 </div>
                 @endif
         </div>
@@ -214,19 +214,19 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
             @endif</label>
-            {{ Form::textarea('footer', $setting->footer, array('rows' => 30, 'class' => 'ckeditor form-control')) }}
+            {!! Form::textarea('footer', $setting->footer, array('rows' => 30, 'class' => 'ckeditor form-control')) !!}
             <div class="help-block">Add your contact, copyright and other info needed.</div>
         </div>
         @if($errors->first('body'))
             <div class="alert alert-danger">
-                {{  $errors->first('footer'); }}
+                {!!  $errors->first('footer'); !!}
             </div>
         @endif
 
         <div class="form-group">
             <div class="controls">
                 <div class="checkbox">
-                    <label class="checkbox">{{ Form::checkbox('maintenance_mode', null) }} Maintenance Mode
+                    <label class="checkbox">{!! Form::checkbox('maintenance_mode', null) !!} Maintenance Mode
 						@if($settings->theme == true)
 							(<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
 						@endif
@@ -243,7 +243,7 @@
         <div class="form-group">
             <div class="controls">
                 <div class="checkbox">
-                    <label class="checkbox">{{ Form::checkbox('enable_left_nav', (int)$settings->enable_left_nav) }} Check to enable left navigation </label>
+                    <label class="checkbox">{!! Form::checkbox('enable_left_nav', (int)$settings->enable_left_nav) !!} Check to enable left navigation </label>
                 </div>
                 <div class="help-block">Use this to enable or disable left navigation.</div>
             </div>
@@ -253,7 +253,7 @@
         <div class="form-group">
             <div class="controls">
                 <div class="checkbox">
-                    <label class="checkbox">{{ Form::checkbox('theme', null) }} Check to use the dark theme </label>
+                    <label class="checkbox">{!! Form::checkbox('theme', null) !!} Check to use the dark theme </label>
                 </div>
                 <div class="help-block">Use this turn set your site to use an alternate theme.</div>
             </div>
@@ -261,7 +261,7 @@
 		<div class="form-group">
             <div class="controls">
                 <div class="checkbox">
-                    <label class="checkbox">{{ Form::checkbox('enable_blog', null) }} Check to enable blog </label>
+                    <label class="checkbox">{!! Form::checkbox('enable_blog', null) !!} Check to enable blog </label>
                 </div>
                 <div class="help-block">Use this turn set your site to blog.</div>
             </div>
@@ -269,7 +269,7 @@
 		<div class="form-group">
 			<div class="controls">
 				<div class="checkbox">
-					<label class="checkbox">{{ Form::checkbox('enable_portfolio', null) }} Check to enable portfolio </label>
+					<label class="checkbox">{!! Form::checkbox('enable_portfolio', null) !!} Check to enable portfolio </label>
 				</div>
 				<div class="help-block">Use this turn set your site to portfolio.</div>
 			</div>
@@ -277,33 +277,33 @@
 		<div class="form-group">
 			<div class="controls">
 				<div class="checkbox">
-					<label class="checkbox">{{ Form::checkbox('enable_noindex', null) }} Check to make site not searchable(noindex) </label>
+					<label class="checkbox">{!! Form::checkbox('enable_noindex', null) !!} Check to make site not searchable(noindex) </label>
 				</div>
 				<div class="help-block">Use this turn set your site to not searchable.</div>
 			</div>
 		</div>
 		<div class="form-group">
             <label for="blog_title">Blog Name</label>
-                {{ Form::text('blog_title', null, array('class' => 'form-control', 'tabindex' => 1,'placeholder' => "Builder's Notebook")) }}
+                {!! Form::text('blog_title', null, array('class' => 'form-control', 'tabindex' => 1,'placeholder' => "Builder's Notebook")) !!}
                 @if($errors->first('blog_title'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('blog_title'); }}
+                    {!!  $errors->first('blog_title'); !!}
                 </div>
                 @endif
 			<div class="help-block">Enter your blog name here e.g. Builder's Notebook</div>
         </div>
 		<div class="form-group">
             <label for="portfolio_title">Portfolio Name</label>
-                {{ Form::text('portfolio_title', null, array('class' => 'form-control', 'tabindex' => 1,'placeholder' => "Portfolios")) }}
+                {!! Form::text('portfolio_title', null, array('class' => 'form-control', 'tabindex' => 1,'placeholder' => "Portfolios")) !!}
                 @if($errors->first('portfolio_title'))
                 <div class="alert alert-danger">
-                    {{  $errors->first('portfolio_title'); }}
+                    {!!  $errors->first('portfolio_title'); !!}
                 </div>
                 @endif
 			<div class="help-block">Enter your blog name here e.g. Builder's Notebook</div>
         </div>
 		<div class="form-group">
-          <label for="">{{$setting->blog_title}} Menu Position</label>
+          <label for="">{!!$setting->blog_title!!} Menu Position</label>
           <select name="blog_menu_position" class="form-control">
             <option value="1" @if ($setting->blog_menu_position == 1) selected @endif>1</option>
             <option value="2" @if ($setting->blog_menu_position == 2) selected @endif>2</option>
@@ -319,23 +319,23 @@
         </div>
         <div class="form-group">
             <label for="google_analytics">Google Analytics Code
-            {{ Form::text('google_analytics', null, array('class' => 'form-control', 'tabindex' => 1)) }}
+            {!! Form::text('google_analytics', null, array('class' => 'form-control', 'tabindex' => 1)) !!}
             @if($errors->first('google_analytics'))
 			<div class="help-block">Enter your google analytics UA number here in the format UA-XXXXX-X</div>
             <div class="alert alert-danger">
-                {{  $errors->first('google_analytics'); }}
+                {!!  $errors->first('google_analytics'); !!}
             </div>
             @endif
         </div>
 		@else
-            {{ Form::hidden('theme', null) }}
+            {!! Form::hidden('theme', null) !!}
 
         @endif
 
         <div class="form-group">
-            {{ Form::submit('Update', array('class' => 'btn btn-success')) }}
+            {!! Form::submit('Update', array('class' => 'btn btn-success')) !!}
         </div>
     </fieldset>
-    {{ Form::close() }}
+    {!! Form::close() !!}
 </div>
 @stop

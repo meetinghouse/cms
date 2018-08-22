@@ -8,41 +8,41 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon2.png">
 
-    <title>Page not found - {{$settings->name}}</title>
+    <title>Page not found - {!!$settings->name!!}</title>
 
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('assets/css/bootstrap.css') }}
+    {!! HTML::style('assets/css/bootstrap.css') !!}
 
-    {{ HTML::style('assets/css/font-awesome.css') }}
+    {!! HTML::style('assets/css/font-awesome.css') !!}
     <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-    {{ HTML::style('assets/css/prettify.css') }}
-    {{ HTML::style('assets/css/main.css') }}
-    {{ HTML::style('assets/css/custom.css') }}
-    {{ HTML::style('assets/css/customProject.css') }}
-    {{ HTML::style('assets/css/houzz/css/houzz-icon-font.css') }}
+    {!! HTML::style('assets/css/prettify.css') !!}
+    {!! HTML::style('assets/css/main.css') !!}
+    {!! HTML::style('assets/css/custom.css') !!}
+    {!! HTML::style('assets/css/customProject.css') !!}
+    {!! HTML::style('assets/css/houzz/css/houzz-icon-font.css') !!}
 
-    {{ HTML::style('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') }}
-    {{ HTML::style('/bower_components/ng-tags-input/ng-tags-input.min.css') }}
-    {{ HTML::style('/bower_components/jquery-colorbox/example4/colorbox.css') }}
+    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}
+    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.min.css') !!}
+    {!! HTML::style('/bower_components/jquery-colorbox/example4/colorbox.css') !!}
 
     @if($settings->theme == false)
-    {{ HTML::style('assets/css/colorfrog.css') }}
-    {{ HTML::style('assets/css/originalTheme.css') }}
+    {!! HTML::style('assets/css/colorfrog.css') !!}
+    {!! HTML::style('assets/css/originalTheme.css') !!}
     @endif
     @if($settings->theme == true)
-    {{ HTML::style('assets/css/dark.css') }}
-    {{ HTML::style('/bower_components/flexslider/flexslider.css') }}
+    {!! HTML::style('assets/css/dark.css') !!}
+    {!! HTML::style('/bower_components/flexslider/flexslider.css') !!}
 
     @endif
-    {{ HTML::style('assets/css/customProject.css') }}
+    {!! HTML::style('assets/css/customProject.css') !!}
 
 
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    {{ HTML::script('assets/js/html5shiv.js') }}
-    {{ HTML::script('assets/js/respond.min.js') }}
+    {!! HTML::script('assets/js/html5shiv.js') !!}
+    {!! HTML::script('assets/js/respond.min.js') !!}
 
     <![endif]-->
 
@@ -50,7 +50,7 @@
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '{{$settings->google_analytics}}']);
+        _gaq.push(['_setAccount', '{!!$settings->google_analytics!!}']);
         _gaq.push(['_trackPageview']);
 
         (function() {
@@ -64,7 +64,7 @@
 
 </head>
 
-<body class="{{$settings->color}}">
+<body class="{!!$settings->color!!}">
 @if(Auth::user())
 @include('shared.nav')
 @endif
@@ -72,7 +72,7 @@
 <div class="container">
     <header>
         @if($settings->logo && $settings->theme == false)
-			<a href="/" id="logo">{{ HTML::image("/img/settings/{$settings->logo}", $settings->name)}}</a>
+			<a href="/" id="logo">{!! HTML::image("/img/settings/{$settings->logo}", $settings->name)!!}</a>
         @endif
 		@if($settings->theme == false)
 			<?php 
@@ -125,8 +125,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-{{ HTML::script('/assets/js/jquery-1.11.js') }}
-{{ HTML::script('/assets/js/custom.js') }}
+{!! HTML::script('/assets/js/jquery-1.11.js') !!}
+{!! HTML::script('/assets/js/custom.js') !!}
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {

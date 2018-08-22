@@ -19,13 +19,13 @@
     }
     ?>
     <div class="media">
-        <img class="media-object col-lg-4" src="/img/projects/{{$image}}" alt="{{$p->title}}">
+        <img class="media-object col-lg-4" src="/img/projects/{!!$image!!}" alt="{!!$p->title!!}">
         <div class="media-body">
-            <h4 class="media-heading">{{{$p->title}}}</h4>
-            <p>{{$p->body}}</p>
+            <h4 class="media-heading">{{ $p->title }}</h4>
+            <p>{!!$p->body!!}</p>
             <br>
-            <a id="portfolio-id-{{$p->id}}"
-               href="/portfolios/{{$p->id}}">view all projects</a>
+            <a id="portfolio-id-{!!$p->id!!}"
+               href="/portfolios/{!!$p->id!!}">view all projects</a>
         </div>
     </div>
     @endforeach

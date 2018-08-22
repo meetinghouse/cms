@@ -13,45 +13,45 @@
 
     <title>
         @if(isset($seo))
-        {{$seo}}
+        {!!$seo!!}
         @else
-        {{$settings->name}}
+        {!!$settings->name!!}
         @endif
     </title>
 
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('assets/css/bootstrap.css') }}
+    {!! HTML::style('assets/css/bootstrap.css') !!}
 
-    {{ HTML::style('assets/css/font-awesome.css') }}
+    {!! HTML::style('assets/css/font-awesome.css') !!}
     <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-    {{ HTML::style('assets/css/prettify.css') }}
-    {{ HTML::style('assets/css/main.css') }}
-    {{ HTML::style('assets/css/custom.css') }}
-    {{ HTML::style('assets/css/customProject.css') }}
-    {{ HTML::style('assets/css/houzz/css/houzz-icon-font.css') }}
+    {!! HTML::style('assets/css/prettify.css') !!}
+    {!! HTML::style('assets/css/main.css') !!}
+    {!! HTML::style('assets/css/custom.css') !!}
+    {!! HTML::style('assets/css/customProject.css') !!}
+    {!! HTML::style('assets/css/houzz/css/houzz-icon-font.css') !!}
 
-    {{ HTML::style('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') }}
-    {{ HTML::style('/bower_components/ng-tags-input/ng-tags-input.min.css') }}
-    {{ HTML::style('/bower_components/jquery-colorbox/example4/colorbox.css') }}
+    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}
+    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.min.css') !!}
+    {!! HTML::style('/bower_components/jquery-colorbox/example4/colorbox.css') !!}
 
     @if($settings->theme == false)
-    {{ HTML::style('assets/css/colorfrog.css') }}
-    {{ HTML::style('assets/css/originalTheme.css') }}
+    {!! HTML::style('assets/css/colorfrog.css') !!}
+    {!! HTML::style('assets/css/originalTheme.css') !!}
     @endif
     @if($settings->theme == true)
-    {{ HTML::style('assets/css/dark.css') }}
-    {{ HTML::style('/bower_components/flexslider/flexslider.css') }}
+    {!! HTML::style('assets/css/dark.css') !!}
+    {!! HTML::style('/bower_components/flexslider/flexslider.css') !!}
 
     @endif
-    {{ HTML::style('assets/css/customProject.css') }}
+    {!! HTML::style('assets/css/customProject.css') !!}
 
 
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    {{ HTML::script('assets/js/html5shiv.js') }}
-    {{ HTML::script('assets/js/respond.min.js') }}
+    {!! HTML::script('assets/js/html5shiv.js') !!}
+    {!! HTML::script('assets/js/respond.min.js') !!}
 
     <![endif]-->
 
@@ -59,7 +59,7 @@
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '{{$settings->google_analytics}}']);
+        _gaq.push(['_setAccount', '{!!$settings->google_analytics!!}']);
         _gaq.push(['_trackPageview']);
 
         (function() {
@@ -73,7 +73,7 @@
 
 </head>
 
-<body class="{{$settings->color}}">
+<body class="{!!$settings->color!!}">
 <!--
 Use the corresponding body tag for your chosen theme
 <body class="blue">
@@ -89,7 +89,7 @@ Use the corresponding body tag for your chosen theme
 <div class="container">
     <header>
         @if($settings->logo && $settings->theme == false)
-        <a href="/" id="logo">{{ HTML::image("/img/settings/{$settings->logo}", $settings->name)}}</a>
+        <a href="/" id="logo">{!! HTML::image("/img/settings/{$settings->logo}", $settings->name)!!}</a>
         @endif
     
 		@if($settings->theme == false)
@@ -134,7 +134,7 @@ Use the corresponding body tag for your chosen theme
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h2 class="title aligncenter">{{$settings->name}}</h2>
+					<h2 class="title aligncenter">{!!$settings->name!!}</h2>
 				</div>
 				<div class="modal-body aligncenter">
 					<p>Are you sure you want to delete this?</p>
@@ -157,39 +157,39 @@ Use the corresponding body tag for your chosen theme
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script>
-window.theme = {{$settings->theme}};
+window.theme = {!!$settings->theme!!};
 </script>
-{{ HTML::script('/assets/js/jquery-1.11.js') }}
-{{ HTML::script('/assets/js/noty-2.2.2/js/noty/packaged/jquery.noty.packaged.min.js') }}
-{{ HTML::script('/assets/js/jquery-sortable.js') }}
-{{ HTML::script('/assets/js/bootstrap/bootstrap.min.js') }}
-{{ HTML::script('/assets/js/jquery.fitvids.js') }}
-{{ HTML::script('/assets/js/colorfrog.js') }}
-{{ HTML::script('/assets/js/lib/ckeditor-full/ckeditor.js') }}
-{{ HTML::script('/bower_components/angular/angular.js') }}
-{{ HTML::script('/bower_components/lodash/dist/lodash.js') }}
-{{ HTML::script('/bower_components/restangular/dist/restangular.js') }}
-{{ HTML::script('/bower_components/jquery-colorbox/jquery.colorbox-min.js') }}
-{{ HTML::script('/bower_components/readmore/readmore.min.js') }}
-<!--{{ HTML::script('/bower_components/jquery-ui/jquery-ui.min.js') }}-->
-<!--{{ HTML::script('/bower_components/jquery-ui/ui/minified/sortable.min.js') }}-->
-<!--{{ HTML::script('/bower_components/flow.js/dist/flow.js') }}-->
-{{ HTML::script('/bower_components/ng-flow/dist/ng-flow-standalone.js') }}
-{{ HTML::script('/assets/js/app.js') }}
-<!--{{ HTML::script('/assets/js/cms_flow.js') }}-->
-{{ HTML::script('/assets/js/angular_app.js') }}
-{{ HTML::script('/assets/js/alertServices.js') }}
-{{ HTML::script('/assets/js/uploadImagesCtrl.js') }}
-{{ HTML::script('/assets/js/tagsCtrl.js') }}
-{{ HTML::script('/bower_components/ng-tags-input/ng-tags-input.min.js') }}
+{!! HTML::script('/assets/js/jquery-1.11.js') !!}
+{!! HTML::script('/assets/js/noty-2.2.2/js/noty/packaged/jquery.noty.packaged.min.js') !!}
+{!! HTML::script('/assets/js/jquery-sortable.js') !!}
+{!! HTML::script('/assets/js/bootstrap/bootstrap.min.js') !!}
+{!! HTML::script('/assets/js/jquery.fitvids.js') !!}
+{!! HTML::script('/assets/js/colorfrog.js') !!}
+{!! HTML::script('/assets/js/lib/ckeditor-full/ckeditor.js') !!}
+{!! HTML::script('/bower_components/angular/angular.js') !!}
+{!! HTML::script('/bower_components/lodash/dist/lodash.js') !!}
+{!! HTML::script('/bower_components/restangular/dist/restangular.js') !!}
+{!! HTML::script('/bower_components/jquery-colorbox/jquery.colorbox-min.js') !!}
+{!! HTML::script('/bower_components/readmore/readmore.min.js') !!}
+<!--{!! HTML::script('/bower_components/jquery-ui/jquery-ui.min.js') !!}-->
+<!--{!! HTML::script('/bower_components/jquery-ui/ui/minified/sortable.min.js') !!}-->
+<!--{!! HTML::script('/bower_components/flow.js/dist/flow.js') !!}-->
+{!! HTML::script('/bower_components/ng-flow/dist/ng-flow-standalone.js') !!}
+{!! HTML::script('/assets/js/app.js') !!}
+<!--{!! HTML::script('/assets/js/cms_flow.js') !!}-->
+{!! HTML::script('/assets/js/angular_app.js') !!}
+{!! HTML::script('/assets/js/alertServices.js') !!}
+{!! HTML::script('/assets/js/uploadImagesCtrl.js') !!}
+{!! HTML::script('/assets/js/tagsCtrl.js') !!}
+{!! HTML::script('/bower_components/ng-tags-input/ng-tags-input.min.js') !!}
 @if($settings->theme == true)
-{{ HTML::script('http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js') }}
+{!! HTML::script('http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js') !!}
 @endif
 
-{{ HTML::script('/bower_components/flexslider/jquery.flexslider.js') }}
-{{ HTML::script('/bower_components/angular-flexslider/angular-flexslider.js') }}
-{{ HTML::script('/assets/js/naturalSortVersionDates.min.js') }}
-{{ HTML::script('/assets/js/custom.js') }}
+{!! HTML::script('/bower_components/flexslider/jquery.flexslider.js') !!}
+{!! HTML::script('/bower_components/angular-flexslider/angular-flexslider.js') !!}
+{!! HTML::script('/assets/js/naturalSortVersionDates.min.js') !!}
+{!! HTML::script('/assets/js/custom.js') !!}
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {

@@ -17,10 +17,10 @@ $banners_active = Banner::slideShow();
         @foreach($banners_active as $key => $banner_active)
         @if($key && $key == 0)
         <!--active class on li needed below-->
-        <li class="active" data-slide-to="{{$key}}" data-target="#banner-header"></li>
+        <li class="active" data-slide-to="{!!$key!!}" data-target="#banner-header"></li>
         @else
         <!--active class on li needed below-->
-        <li data-slide-to="{{$key}}" data-target="#banner-header"></li>
+        <li data-slide-to="{!!$key!!}" data-target="#banner-header"></li>
         @endif
         @endforeach
     </ol>
@@ -30,11 +30,11 @@ $banners_active = Banner::slideShow();
 
         @if($key == 0)
         <div class="item active"> <!--active on div needed on the one-->
-            <img alt="" src="/img/banners/{{$banner_active->banner_name}}"/>
+            <img alt="" src="/img/banners/{!!$banner_active->banner_name!!}"/>
         </div>
         @else
         <div class="item"> <!--active on div needed on the one-->
-            <img alt="" src="/img/banners/{{$banner_active->banner_name}}"/>
+            <img alt="" src="/img/banners/{!!$banner_active->banner_name!!}"/>
         </div>
         @endif
         @endforeach
@@ -54,7 +54,7 @@ $banners_active = Banner::slideShow();
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column home-banner-wrapper">
-            <img class="home-banner" src="/img/banners/{{$banners_active[0]->banner_name}}"/>
+            <img class="home-banner" src="/img/banners/{!!$banners_active[0]->banner_name!!}"/>
         </div>
     </div>
 </div>

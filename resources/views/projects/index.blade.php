@@ -9,8 +9,8 @@
     <ul class="list-unstyled">
         @foreach($projects as $project)
             <li>
-                {{$project->title}}
-                <a id="project-id-{{$project->id}}" href="{{$project->slug}}">
+                {!!$project->title!!}
+                <a id="project-id-{!!$project->id!!}" href="{!!$project->slug!!}">
                     view
                 </a>
             </li>

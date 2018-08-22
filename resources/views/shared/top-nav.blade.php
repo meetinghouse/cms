@@ -30,26 +30,26 @@
 	@foreach($top_left_nav as $top)
         @if(isset($top['is_portfolio']))
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$settings->portfolio_title}}</a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">{!!$settings->portfolio_title!!}</a>
           <ul class="dropdown-menu">
             @foreach($portfolio_links as $key => $portfolio)
-            <li class="{{Request::url() ==  URL::to($portfolio) ? 'active' : 'not-active' }}">
-              <a href= {{$portfolio}}>{{$key}}</a>
+            <li class="{!!Request::url() ==  URL::to($portfolio) ? 'active' : 'not-active' !!}">
+              <a href= {!!$portfolio!!}>{!!$key!!}</a>
             </li>
             @endforeach
           </ul>
         </li>
 		@elseif(isset($top['is_blog']) && isset($post_tags))
 		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$top['title']}}</a>
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">{!!$top['title']!!}</a>
 			<ul class="dropdown-menu">
-				<li class="{{Request::url() ==  URL::to($top['slug']) ? 'active' : 'not-active' }}">
-					<a href="{{URL::to($top['slug'])}}">{{$top['title']}}</a>
+				<li class="{!!Request::url() ==  URL::to($top['slug']) ? 'active' : 'not-active' !!}">
+					<a href="{!!URL::to($top['slug'])!!}">{!!$top['title']!!}</a>
 				</li>
 				@foreach($post_tags as $tag)
 				<?php $current_url = $tag['tagable_type'].'/tags/'.$tag['tag'];?>
-				<li class="{{urldecode(Request::url()) ==  URL::to($current_url) ? 'active' : 'not-active' }}">
-					<a href="/{{$tag['tagable_type']}}/tags/{{$tag['tag']}}">{{$tag['tag']}}</a>
+				<li class="{!!urldecode(Request::url()) ==  URL::to($current_url) ? 'active' : 'not-active' !!}">
+					<a href="/{!!$tag['tagable_type']!!}/tags/{!!$tag['tag']!!}">{!!$tag['tag']!!}</a>
 				</li>
 				@endforeach
 			</ul>
@@ -57,10 +57,10 @@
 		@else
 		<li class="dropdown">
 			@if(isset($top['children']) && !empty($top['children']))
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$top['title']}}</a>
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">{!!$top['title']!!}</a>
 				@if(isset($top['children']) && !empty($top['children']))
 					<ul class="dropdown-menu">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="{{URL::to($top['slug'])}}">{{$top['title']}}</a>
+						<a class="dropdown-toggle" data-toggle="dropdown" href="{!!URL::to($top['slug'])!!}">{!!$top['title']!!}</a>
 						 <?php 
 							usort($top['children'], function ($item1, $item2) {
 								return $item1['menu_sort_order'] >= $item2['menu_sort_order'];
@@ -70,7 +70,7 @@
 					</ul>
 				@endif
 			@else
-				<a href="{{URL::to($top['slug'])}}">{{$top['title']}}</a>
+				<a href="{!!URL::to($top['slug'])!!}">{!!$top['title']!!}</a>
 			@endif
           </li>
         @endif
@@ -85,7 +85,7 @@ function sub_nav_menus($sub_menu)
 	 foreach($sub_menu as $child)
 	 { ?>
 		<li class="dropdown-submenu">
-		<a tabindex="-1" href="{{URL::to($child['slug'])}}"/><?php echo $child['title'];?></a><?php
+		<a tabindex="-1" href="{!!URL::to($child['slug'])!!}"/><?php echo $child['title'];?></a><?php
 		if(count($child['children'])>0)
 		{
 			echo "<ul class='dropdown-menu'>";

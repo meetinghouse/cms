@@ -17,12 +17,12 @@
         <tbody>
             @foreach($portfolios as $portfolio)
                 <tr>
-                    <td><a href="{{$portfolio->slug}}">{{{$portfolio->title}}}</a></td>
-                    <td>{{$portfolio->order}}</td>
-                    <td>{{$portfolio->published}}</td>
+                    <td><a href="{!!$portfolio->slug!!}">{{ $portfolio->title }}</a></td>
+                    <td>{!!$portfolio->order!!}</td>
+                    <td>{!!$portfolio->published!!}</td>
                     <td>
-                        <a id="portfolio-id-{{$portfolio->id}}"
-                           href="/portfolios/{{$portfolio->id}}/edit">
+                        <a id="portfolio-id-{!!$portfolio->id!!}"
+                           href="/portfolios/{!!$portfolio->id!!}/edit">
                             edit
                         </a>
                     </td>

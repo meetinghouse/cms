@@ -2,7 +2,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            {{$settings->footer}}
+            {!!$settings->footer!!}
         </div>
         <div class="row">
             @if( ($settings->theme != false) || (!$settings->enable_left_nav) )

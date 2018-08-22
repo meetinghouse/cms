@@ -9,7 +9,7 @@
         @endif
         @foreach($portfolio->projects as $p)
             <li>
-                <a href="/projects/{{$p->id}}/edit">{{$p->title}}</a>
+                <a href="/projects/{!!$p->id!!}/edit">{!!$p->title!!}</a>
             </li>
         @endforeach
     </ul>

@@ -37,7 +37,7 @@
                 <li class=<?php if(Request::path() == 'menu') { echo 'active'; }?>><a href="/menus">Admin Menu</a></li>
                 @endif
                 @if(Auth::check())
-                <li class=<?php if(Request::path() == 'users/' . Auth::user()->id .  '/edit') { echo 'active'; }?>>{{ HTML::link('users/' . Auth::user()->id .  '/edit', 'Profile') }}</li>
+                <li class=<?php if(Request::path() == 'users/' . Auth::user()->id .  '/edit') { echo 'active'; }?>>{!! HTML::link('users/' . Auth::user()->id .  '/edit', 'Profile') !!}</li>
                 <li><a href="/logout"><i class="glyphicon glyphicon-log-out"></i></a></li>
                 @endif
             </ul>

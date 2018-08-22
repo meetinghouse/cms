@@ -9,9 +9,9 @@
 
 <div class="col-md-9 column">
 
-    <h2>Edit Page: {{$page->title}}</h2>
+    <h2>Edit Page: {!!$page->title!!}</h2>
 
-    {{ Form::model($page, array('method' => 'PUT', 'route' => array('pages.update', $page->id), 'files' => 'true', 'role' => 'form')) }}
+    {!! Form::model($page, array('method' => 'PUT', 'route' => array('pages.update', $page->id), 'files' => 'true', 'role' => 'form')) !!}
 
     {{-- @if(($settings->theme == true && $page->id != 1) || $settings->theme == false) --}}
     <div class="form-group">
@@ -23,11 +23,11 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_pages_light.html" target="_blank">Help</a>)
             @endif</label>
-        {{ Form::text('title', null, array('class' => 'form-control')) }}
+        {!! Form::text('title', null, array('class' => 'form-control')) !!}
 
 			@if($errors->first('title'))
 			<div class="alert alert-danger">
-				{{  $errors->first('title'); }}
+				{!!  $errors->first('title'); !!}
 			</div>
 			@endif
         {{-- @endif --}}
@@ -41,11 +41,11 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_pages_light.html" target="_blank">Help</a>)
             @endif</label>
-            {{ Form::text('seo', null, array('class' => 'form-control')) }}
+            {!! Form::text('seo', null, array('class' => 'form-control')) !!}
         </div>
         @if($errors->first('seo'))
         <div class="alert alert-danger">
-            {{  $errors->first('seo'); }}
+            {!!  $errors->first('seo'); !!}
         </div>
         @endif
        {{-- @if(($settings->theme == true && $page->id != 1) || $settings->theme == false) --}}
@@ -58,11 +58,11 @@
             @if($settings->theme == false)
             (<a href="http://www.restorationtrades.com/help/admin_pages_light.html" target="_blank">Help</a>)
             @endif</label>
-            {{ Form::textarea('body', null, array('rows' => 30, 'class' => 'ckeditor form-control')) }}
+            {!! Form::textarea('body', null, array('rows' => 30, 'class' => 'ckeditor form-control')) !!}
         </div>
         @if($errors->first('body'))
         <div class="alert alert-danger">
-            {{  $errors->first('body'); }}
+            {!!  $errors->first('body'); !!}
         </div>
         @endif
         {{--@endif --}}
@@ -94,13 +94,13 @@
             @if($settings->theme == false)
 				(<a href="http://www.restorationtrades.com/help/admin_pages_light.html" target="_blank">Help</a>)
             @endif</label>
-				{{ Form::text('slug', null, array('class' => 'form-control')) }}
+				{!! Form::text('slug', null, array('class' => 'form-control')) !!}
             <div class="help-block">The url must start with / </div>
 		</div>
 			@if($errors->first('slug'))
 				<div class="alert alert-danger">
 					@if($errors->first('slug'))
-					{{ $errors->first('slug') }}
+					{!! $errors->first('slug') !!}
 					@endif
 				</div>
 		<div class="form-group">
@@ -109,12 +109,12 @@
         {{-- Added checkbox for publish -JB 3-4-2016 --}}
 			<div class="controls">
 			  <div class="checkbox">
-				<label class="checkbox">{{ Form::checkbox('published', 1) }} Published</label>
+				<label class="checkbox">{!! Form::checkbox('published', 1) !!} Published</label>
 			  </div>
 			</div>
 			<div class="controls">
 			  <div class="checkbox">
-				<label class="checkbox">{{ Form::checkbox('hide_title', '1', $page->hide_title , array('id' => 'hide_title')); }} Hide title from page</label>
+				<label class="checkbox">{!! Form::checkbox('hide_title', '1', $page->hide_title , array('id' => 'hide_title')); !!} Hide title from page</label>
 			  </div>
 			</div>
 
@@ -122,15 +122,15 @@
           <div class="form-group col-md-12">
             <div class="checkbox">
               <label class="checkbox">
-                {{ Form::checkbox('enable_menu', '1', $page->menu_name , array('id' => 'enable_menu')); }} Make this page a menu item
+                {!! Form::checkbox('enable_menu', '1', $page->menu_name , array('id' => 'enable_menu')); !!} Make this page a menu item
               </label>
             </div>
           </div>
           
-          <div id='menu-section' class=" @if ($page->menu_name == "") {{ 'hide'}} @endif">
+          <div id='menu-section' class=" @if ($page->menu_name == "") {!! 'hide'!!} @endif">
             <div class="form-group col-md-2">
               <label for="menu_sort_order">Sort Order</label>
-              {{Form::select('menu_sort_order', range(0,10), $page->menu_sort_order, array('class'=>'form-control'));}}
+              {!!Form::select('menu_sort_order', range(0,10), $page->menu_sort_order, array('class'=>'form-control'));!!}
               </select>
             </div>          
             <div class="form-group col-md-4">
@@ -140,13 +140,13 @@
                 <option value="sub_nav" @if($page->menu_name == 'sub_nav') selected @endif>Sub-menu</option>
               </select>
             </div>            
-            <div class="form-group col-md-6 @if($page->menu_name != 'sub_nav') {{ 'hide' }} @endif" id='menu-parent-wrapper'>
+            <div class="form-group col-md-6 @if($page->menu_name != 'sub_nav') {!! 'hide' !!} @endif" id='menu-parent-wrapper'>
               <label for="menu_parent">Parent menu item</label>
               <select id="menu_parent" name="menu_parent" class="form-control">
                 @if(!empty($subnavparents))
                   @foreach ($subnavparents as $i)
                     @if(isset($i['id']))
-                    <option value="{{$i['id']}}" @if($page->menu_parent == $i['id']) {{ $i['title'] }} selected @endif>{{$i['title']}}</option>
+                    <option value="{!!$i['id']!!}" @if($page->menu_parent == $i['id']) {!! $i['title'] !!} selected @endif>{!!$i['title']!!}</option>
                     @endif                
                   @endforeach
                 @endif
@@ -158,16 +158,16 @@
         </div>
 <br><br>
 			<div class="controls">
-				{{ Form::submit('Update Page', array('id' => 'submit', 'class' => 'btn btn-success')) }}
+				{!! Form::submit('Update Page', array('id' => 'submit', 'class' => 'btn btn-success')) !!}
 				<br>
 			</div>
 		</div>
-        {{ Form::close() }}
+        {!! Form::close() !!}
 
         @if($page->id >= 5)
-        {{ Form::open(['method' => 'DELETE', 'action' => ['PagesController@destroy', $page->id]]) }}
+        {!! Form::open(['method' => 'DELETE', 'action' => ['PagesController@destroy', $page->id]]) !!}
         <button type="submit" class="btn btn-danger delete">Delete</button>
-        {{ Form::close() }}
+        {!! Form::close() !!}
         @endif
     </div>
     @stop
