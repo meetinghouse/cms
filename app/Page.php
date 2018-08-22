@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Page extends \Eloquent
+class Page extends Model
 {
    
     // Added by John B 2-5-2016 - missing rules array

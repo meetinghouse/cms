@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Banner extends \Eloquent
+class Banner extends Model
 {
     protected $fillable = ['name', 'active', 'order', 'banner_name'];
     public static $rules = ['banner_name' => ['required'], 'name' => ['required']];

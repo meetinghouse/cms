@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 /**
  * Created by PhpStorm.
  * User: alfrednutile
@@ -6,7 +7,7 @@
  * Time: 5:55 AM
  */
 
-class BaseModel extends \Eloquent
+class BaseModel extends Model
 {
 
     public function scopePublished($query)

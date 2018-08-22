@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Image extends \Eloquent
+class Image extends Model
 {
     protected $fillable = [
     'file_name',

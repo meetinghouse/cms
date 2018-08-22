@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Tag extends \Eloquent
+class Tag extends Model
 {
 
     protected $fillable = [
