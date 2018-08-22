@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
 
     'fetch' => PDO::FETCH_CLASS,
@@ -9,15 +9,15 @@ return array(
     'default' => 'sqlite',
 
 
-    'connections' => array(
+    'connections' => [
 
-        'sqlite' => array(
+        'sqlite' => [
             'driver'   => 'sqlite',
             'database' => __DIR__.'/../database/production.sqlite',
             'prefix'   => '',
-        ),
+        ],
 
-    ),
+    ],
 
     /*
 	|--------------------------------------------------------------------------
@@ -33,4 +33,4 @@ return array(
     'migrations' => 'migrations',
 
 
-);
+];

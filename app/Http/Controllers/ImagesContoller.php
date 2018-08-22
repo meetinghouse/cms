@@ -117,9 +117,9 @@ class ImagesController extends BaseController
         $this->setTempDir(storage_path());
         $this->rand = Carbon::now()->timestamp;
         $this->chunkDir = $this->getTempDir() . DIRECTORY_SEPARATOR . $this->rand;
-        $this->config = new Config(array(
+        $this->config = new Config([
             'tempDir' => $this->chunkDir
-        ));
+        ]);
     }
 
     protected function flowSave()

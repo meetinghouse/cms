@@ -26,7 +26,7 @@ class EnablePortfolioNaming extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->dropColumn(array('portfolio_title'));
+            $table->dropColumn(['portfolio_title']);
         });
     }
 }

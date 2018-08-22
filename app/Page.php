@@ -4,12 +4,12 @@ class Page extends \Eloquent
 {
    
     // Added by John B 2-5-2016 - missing rules array
-    public static $rules = array(
+    public static $rules = [
         'title' => 'required',
         'seo'   => 'required',
         //'image' => 'mimes:jpg,jpeg,bmp,png,gif',
         'slug'  => 'required'
-    );
+    ];
     // Moved this section down to match Posts model
     protected $fillable = [
         'title',
@@ -54,7 +54,7 @@ class Page extends \Eloquent
     public static function getAllSubNavParents()
     {
         $settings = Setting::first();
-        $pages =  Page::where("published", '1')->whereIn('menu_name', array('top','left_side','top,left_side'))->orderBy('menu_sort_order', 'ASC')->get()->toArray();
+        $pages =  Page::where("published", '1')->whereIn('menu_name', ['top','left_side','top,left_side'])->orderBy('menu_sort_order', 'ASC')->get()->toArray();
         
         if ($settings && is_numeric($settings->portfolio_menu_position)) {
             // Array position starts from 0 so decrement the value

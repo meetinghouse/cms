@@ -12,7 +12,7 @@ class SettingsController extends \BaseController
     {
         parent::__construct();
         $this->filesystem = ($filesystem == null) ? new Filesystem() : $filesystem;
-        $this->beforeFilter("auth", array('only' => ['index', 'create', 'delete', 'edit', 'update', 'store']));
+        $this->beforeFilter("auth", ['only' => ['index', 'create', 'delete', 'edit', 'update', 'store']]);
         $this->settings_path = public_path() . "/img/settings";
     }
     /**

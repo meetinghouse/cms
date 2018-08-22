@@ -25,6 +25,6 @@ class AddInstagramOption extends Migration
      */
     public function down()
     {
-        $table->dropColumn(array('instagram'));
+        $table->dropColumn(['instagram']);
     }
 }

@@ -26,9 +26,9 @@ class FilesController extends BaseController
             $tmp = $_FILES['upload']['tmp_name'];
             $dest = $dir . '/' . $_FILES['upload']['name'];
             $this->filesystem->copy($tmp, $dest, $override = true);
-            $array = array(
+            $array = [
                 'filelink' => '/assets/img/wysiwyg/'.$_FILES['upload']['name']
-            );
+            ];
             $image = '/assets/img/wysiwyg/'.$_FILES['upload']['name'];
         }
         $funcNum = $_GET['CKEditorFuncNum'] ;

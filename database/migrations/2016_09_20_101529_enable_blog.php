@@ -27,7 +27,7 @@ class EnableBlog extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->dropColumn(array('blog_title', 'enable_blog'));
+            $table->dropColumn(['blog_title', 'enable_blog']);
         });
     }
 }

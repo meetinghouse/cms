@@ -11,8 +11,8 @@ class SettingsTableSeeder extends Seeder
         $dateTime = new DateTime('now');
         $dateTime = $dateTime->format('Y-m-d H:i:s');
 
-        $settings = array(
-            array(
+        $settings = [
+            [
                 'name'              => "My Company Name",
                 'logo'              => 'logo-blue.png',
                 'color'             => 'blue',
@@ -27,8 +27,8 @@ class SettingsTableSeeder extends Seeder
                 'theme'  => 0,
                 'created_at' => $dateTime,
                 'updated_at' => $dateTime,
-            ),
-        );
+            ],
+        ];
         DB::table('settings')->insert($settings);
     }
 }

@@ -10,7 +10,7 @@ class UsersController extends BaseController
         parent::__construct();
         $this->users    = ($users) ? $users : new User();
         $this->beforeFilter("auth", ['except' => ['login', 'getLogout', 'authenticate']]);
-        $this->beforeFilter('csrf', array('on'=>'post'));
+        $this->beforeFilter('csrf', ['on'=>'post']);
     }
 
 
@@ -52,7 +52,7 @@ class UsersController extends BaseController
     public function updatePassword()
     {
 
-        $validator = Validator::make(Input::all(), array('password' => 'required|confirmed', 'email' => 'required', 'password_confirmation' => 'required'));
+        $validator = Validator::make(Input::all(), ['password' => 'required|confirmed', 'email' => 'required', 'password_confirmation' => 'required']);
 
         if ($validator->passes()) {
             $user = User::find(Auth::user()->id);
@@ -69,10 +69,10 @@ class UsersController extends BaseController
         $user = User::find($id);
 
         if (isset($user_update['reset']) && $user_update['reset'] == 'on') {
-            $validator = Validator::make(Input::all(), array('email' => 'required|email', 'password' => 'confirmed|min:8'));
+            $validator = Validator::make(Input::all(), ['email' => 'required|email', 'password' => 'confirmed|min:8']);
             $password  = Hash::make($user_update['password']);
         } else {
-            $validator = Validator::make(Input::all(), array('email' => 'required|email'));
+            $validator = Validator::make(Input::all(), ['email' => 'required|email']);
         }
         $banner = $this->banner;
         if ($validator->passes()) {
@@ -135,7 +135,7 @@ class UsersController extends BaseController
     public function authenticate()
     {
         //Auth::loginUsingId(1);return Redirect::to('/admin')->with('message', 'You are now logged in!');
-        if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
+        if (Auth::attempt(['email'=>Input::get('email'), 'password'=>Input::get('password')])) {
             return Redirect::to('/admin')->with('message', 'You are now logged in!');
         } else {
             Session::set('type', 'danger');

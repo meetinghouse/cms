@@ -26,7 +26,7 @@ class ProjectsController extends \BaseController
         $this->save_to = public_path() . "/img/projects";
         $this->projectsService = $projectsService;
         $this->tagsService = $tagsService;
-        $this->beforeFilter("auth", array('only' => ['index', 'create', 'delete', 'edit', 'update', 'store', 'adminIndex']));
+        $this->beforeFilter("auth", ['only' => ['index', 'create', 'delete', 'edit', 'update', 'store', 'adminIndex']]);
     }
     /**
      * Display a listing of projects

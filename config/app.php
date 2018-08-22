@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
     |
     */
 
-    'providers' => array(
+    'providers' => [
 
         'Illuminate\Foundation\Providers\ArtisanServiceProvider',
         'Illuminate\Auth\AuthServiceProvider',
@@ -113,7 +113,7 @@ return array(
         'Laracasts\Utilities\UtilitiesServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider'
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -139,7 +139,7 @@ return array(
     |
     */
 
-    'aliases' => array(
+    'aliases' => [
 
         'App'             => 'Illuminate\Support\Facades\App',
         'Artisan'         => 'Illuminate\Support\Facades\Artisan',
@@ -181,6 +181,6 @@ return array(
         'Menu'            => 'CMS\Facades\MenuFacade',
         'Images'          => 'CMS\Facades\ImagesFacade',
         'IntImage'           => 'Intervention\Image\Facades\Image'
-    ),
+    ],
 
-);
+];

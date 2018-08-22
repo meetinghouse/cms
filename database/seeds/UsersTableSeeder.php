@@ -11,8 +11,8 @@ class UsersTableSeeder extends Seeder
         $dateTime = new DateTime('now');
         $dateTime = $dateTime->format('Y-m-d H:i:s');
 
-        $users = array(
-            array(
+        $users = [
+            [
                 'firstname'  => 'Alfred',
                 'lastname'  => 'Nutile',
                 'admin'     => 1,
@@ -21,12 +21,12 @@ class UsersTableSeeder extends Seeder
                 'password'   => Hash::make('admin'),
                 'created_at' => $dateTime,
                 'updated_at' => $dateTime,
-            )
-        );
+            ]
+        ];
         DB::table('users')->insert($users);
 
-        $users = array(
-            array(
+        $users = [
+            [
                 'firstname'  => 'Test',
                 'lastname'  => 'Two',
                 'admin'     => 1,
@@ -35,8 +35,8 @@ class UsersTableSeeder extends Seeder
                 'password'   => Hash::make('admin'),
                 'created_at' => $dateTime,
                 'updated_at' => $dateTime,
-            ),
-            array(
+            ],
+            [
                 'firstname'  => 'Test',
                 'lastname'  => 'Three',
                 'admin'     => 0,
@@ -45,8 +45,8 @@ class UsersTableSeeder extends Seeder
                 'password'   => Hash::make('password'),
                 'created_at' => $dateTime,
                 'updated_at' => $dateTime,
-            )
-        );
+            ]
+        ];
         DB::table('users')->insert($users);
     }
 }

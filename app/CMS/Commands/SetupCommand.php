@@ -43,11 +43,11 @@ class SetupCommand extends Command
 
     protected function migrateDb()
     {
-        $this->call('migrate', array());
+        $this->call('migrate', []);
     }
 
     protected function seedDb()
     {
-        $this->call('db:seed', array());
+        $this->call('db:seed', []);
     }
 }

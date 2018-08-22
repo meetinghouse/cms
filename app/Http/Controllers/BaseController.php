@@ -50,7 +50,7 @@ class BaseController extends Controller
     public function show($array = null)
     {
         $portfolios      = Portfolio::published()->orderByOrder()->get();
-        $portfolio_links = array();
+        $portfolio_links = [];
         if ($this->settings->theme == false) {
             if ($portfolios) {
                 foreach ($portfolios as $key => $portfolio) {
@@ -58,26 +58,26 @@ class BaseController extends Controller
                 }
             }
             if ($this->settings->enable_blog == true) {
-                $default_menu_items = array();
+                $default_menu_items = [];
                 foreach ($this->top_left_nav as $nav) {
                     $default_menu_items[$nav['title']] = $nav['slug'];
                 }
                 $default_menu_items[$this->settings->blog_title] = '/posts';
             } else {
-                $default_menu_items = array();
+                $default_menu_items = [];
                 foreach ($this->top_left_nav as $nav) {
                     $default_menu_items[$nav['title']] = $nav['slug'];
                 }
             }
         } else {
             if ($this->settings->enable_blog == true) {
-                $default_menu_items = array();
+                $default_menu_items = [];
                 foreach ($this->top_left_nav as $nav) {
                     $default_menu_items[$nav['title']] = $nav['slug'];
                 }
                 $default_menu_items[$this->settings->blog_title] = '/posts';
             } else {
-                $default_menu_items = array();
+                $default_menu_items = [];
                 foreach ($this->top_left_nav as $nav) {
                     $default_menu_items[$nav['title']] = $nav['slug'];
                 }
@@ -89,12 +89,12 @@ class BaseController extends Controller
         View::share('portfolio_links', $portfolio_links);
         
         //links for the top nav
-        $top_menu_items = array(
+        $top_menu_items = [
           'Home' => '/',
           'Portfolios' => '/about#',
           'About Page' => '/about',
           'Contact Page' => '/contact',
-        );
+        ];
         View::share('top_links', $top_menu_items);
         /* Share post tags for light theme */
         if ($this->settings->theme == false) {
@@ -134,7 +134,7 @@ class BaseController extends Controller
                 return Response::json(null, 404);
             }
 
-            return Response::json(array('data' => $results->toArray(), 'status' => 'success', 'message' => "Success"), 200);
+            return Response::json(['data' => $results->toArray(), 'status' => 'success', 'message' => "Success"], 200);
         }
     }
 
@@ -186,10 +186,10 @@ class BaseController extends Controller
     {
         $messages = [];
         if (isset($all['slug']) && $all['slug'] != $model->slug) {
-            $messages = array(
+            $messages = [
                 'slug.unique' => 'The url is not unique.',
                 'slug.regex'  => 'The url must start with a slash and contain only letters and numbers, no spaces.'
-            );
+            ];
         } else {
             unset($rules['slug']);
         }
@@ -200,10 +200,10 @@ class BaseController extends Controller
 
     public function validateSlugOnCreate($all, $rules)
     {
-        $messages  = array(
+        $messages  = [
             'slug.unique' => 'The url is not unique .',
             'slug.regex'  => 'The url must start with a slash and contain only letters and numbers, no spaces.'
-        );
+        ];
         $validator = Validator::make($data = Input::all(), $rules, $messages);
 
         return $validator;
@@ -254,7 +254,7 @@ class BaseController extends Controller
                 $caption = $image_caption[0];
             }
             if ($caption != null) {
-                $new_data = array("image_caption" => $caption);
+                $new_data = ["image_caption" => $caption];
                 Image::where("id", "=", $image_id)->update($new_data);
             }
         }
@@ -267,7 +267,7 @@ class BaseController extends Controller
             $image_id = intval($key);
             $order    = $image_order[0];
             if ($order != null) {
-                $new_data = array("order" => $order);
+                $new_data = ["order" => $order];
                 Image::where("id", "=", $image_id)->update($new_data);
             }
         }

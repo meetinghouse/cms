@@ -18,7 +18,7 @@ class ArrayHelper
         } elseif (($pos > 0) && ($pos <= $maxIndex)) {
             $firstHalf = array_slice($array, 0, $pos);
             $secondHalf = array_slice($array, $pos);
-            $array = array_merge($firstHalf, array($value), $secondHalf);
+            $array = array_merge($firstHalf, [$value], $secondHalf);
         } else {
             // Invalid positon, push to end of the array.
             array_push($array, $value);

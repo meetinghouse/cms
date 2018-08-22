@@ -11,7 +11,7 @@ class PortfoliosController extends \BaseController
     public function __construct(Portfolio $portfolio = null, TagsService $tagsService = null)
     {
         parent::__construct();
-        $this->beforeFilter("auth", array('only' => ['adminIndex', 'create', 'delete', 'edit', 'update', 'store']));
+        $this->beforeFilter("auth", ['only' => ['adminIndex', 'create', 'delete', 'edit', 'update', 'store']]);
         $this->portfolio = ($portfolio == null) ? new Portfolio : $portfolio;
         $this->tags = $tagsService;
     }

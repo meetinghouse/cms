@@ -6,11 +6,11 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface
 {
 
-    public static $rules = array(
+    public static $rules = [
         'email'=>'required|email|unique:users',
         'password'=>'required|alpha_num|between:6,32|confirmed',
         'password_confirmation'=>'required|alpha_num|between:6,12'
-    );
+    ];
 
     protected $fillable = ['firstname', 'lastname', 'password', 'email', 'admin', 'active'];
     /**
@@ -25,7 +25,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      *
      * @var array
      */
-    protected $hidden = array('password');
+    protected $hidden = ['password'];
 
     /**
      * Get the unique identifier for the user.

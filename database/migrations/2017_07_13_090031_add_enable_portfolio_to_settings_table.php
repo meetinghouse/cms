@@ -26,7 +26,7 @@ class AddEnablePortfolioToSettingsTable extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->dropColumn(array('enable_portfolio'));
+            $table->dropColumn(['enable_portfolio']);
         });
     }
 }

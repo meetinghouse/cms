@@ -12,7 +12,7 @@ class BannersController extends \BaseController
     public function __construct(Banner $banner_model = null)
     {
         parent::__construct();
-        $this->beforeFilter("auth", array('only' => ['index', 'create', 'delete', 'edit', 'update', 'store']));
+        $this->beforeFilter("auth", ['only' => ['index', 'create', 'delete', 'edit', 'update', 'store']]);
         $this->banner_model = ($banner_model == null) ? new Banner : $banner_model;
         $this->banner_path = "/img/banners";
         $this->banner_dest = public_path() . "/img/banners";

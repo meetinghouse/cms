@@ -10,7 +10,7 @@ class MenuService
     public $project;
     public $portfolio;
     public $post;
-    private $navigations_menu = array();
+    private $navigations_menu = [];
     public function __construct(Page $pageModel = null, Setting $settings = null, Portfolio $portfolio = null, Project $project = null, Post $post = null)
     {
         $this->pageModel = ($pageModel == null) ? new \Page : $pageModel;

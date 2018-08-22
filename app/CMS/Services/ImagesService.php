@@ -68,7 +68,7 @@ class ImagesService
         return $this->rules;
     }
 
-    public function setRules($rules = array())
+    public function setRules($rules = [])
     {
         if (null === $rules) {
             $rules = \Image::$rules;

@@ -33,7 +33,7 @@ class Project extends BaseModel implements StaplerableInterface
         'thumbs'
     ];
 
-    public function __construct(array $attributes = array())
+    public function __construct(array $attributes = [])
     {
         $this->hasAttachedFile('thumbs', [
             'styles' => [

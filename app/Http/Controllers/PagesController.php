@@ -12,7 +12,7 @@ class PagesController extends \BaseController
     public function __construct(Page $pages = null, TagsService $tagsService = null, ImagesService $imagesService = null)
     {
         parent::__construct();
-        $this->beforeFilter("auth", array('only' => ['index', 'create', 'delete', 'edit', 'update', 'store']));
+        $this->beforeFilter("auth", ['only' => ['index', 'create', 'delete', 'edit', 'update', 'store']]);
         $this->pages = ($pages == null) ? new Page : $pages;
         $this->tags = $tagsService;
         $this->imagesService = $imagesService;
@@ -119,7 +119,7 @@ class PagesController extends \BaseController
         $rules = Page::$rules;
         // print_r($rules);
                    
-        $validator = Validator::make($input, array('slug' => 'regex:/^\/[A-Za-z0-9_\-]+$/'));
+        $validator = Validator::make($input, ['slug' => 'regex:/^\/[A-Za-z0-9_\-]+$/']);
                                                  
         if ($validator->passes()) {
          // print_r(array_values($input));
@@ -174,7 +174,7 @@ class PagesController extends \BaseController
         $page_update = Input::all();
 //        dd($page_update);
         if ($this->settings->theme != true) {
-            $validator = Validator::make($page_update, array('title' => 'required', 'slug' => 'regex:/^\/[A-Za-z0-9_\-]+$/'));
+            $validator = Validator::make($page_update, ['title' => 'required', 'slug' => 'regex:/^\/[A-Za-z0-9_\-]+$/']);
             $page = Page::find($id);
             if ($validator->passes()) {
                 $page->title = $page_update['title'];
@@ -208,7 +208,7 @@ class PagesController extends \BaseController
                     ->withMessage("Error ");
             }
         } else {
-            $validator = Validator::make($page_update, array('slug' => 'regex:/^\/[A-Za-z0-9_\-]+$/'));
+            $validator = Validator::make($page_update, ['slug' => 'regex:/^\/[A-Za-z0-9_\-]+$/']);
             $page = Page::find($id);
             if ($validator->passes()) {
                 $page->seo = $page_update['seo'];
