@@ -8,22 +8,21 @@
 
 namespace CMS\ServiceProviders;
 
-
 use CMS\Services\ImagesService;
 use CMS\Services\ProjectsService;
 use Illuminate\Support\ServiceProvider;
 
-class ProjectsServiceProvider extends ServiceProvider {
+class ProjectsServiceProvider extends ServiceProvider
+{
 
-  public function register()
-  {
-    $this->app->bind('ProjectsService', function()
+    public function register()
     {
-      return new ProjectsService(
-        new ImagesService(
-          new \Image()
-        )
-      );
-    });
-  }
-} 
+        $this->app->bind('ProjectsService', function () {
+            return new ProjectsService(
+                new ImagesService(
+                    new \Image()
+                )
+            );
+        });
+    }
+}

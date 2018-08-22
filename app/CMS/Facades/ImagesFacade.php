@@ -10,8 +10,11 @@ namespace CMS\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class ImagesFacade extends Facade {
+class ImagesFacade extends Facade
+{
 
-    protected static function getFacadeAccessor() { return 'Images'; }
-
-} 
+    protected static function getFacadeAccessor()
+    {
+        return 'Images';
+    }
+}
