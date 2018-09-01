@@ -1,6 +1,14 @@
 <?php namespace CMS\Services;
 
 use CMS\Services\TagsService as TagsService;
+use App\Menu;
+use App\Page;
+use App\Setting;
+use App\Project;
+use App\Portfolio;
+use App\Post;
+use App\Image;
+use App\Http\Controllers\PagesController;
 
 class MenuService
 {
@@ -13,13 +21,13 @@ class MenuService
     private $navigations_menu = [];
     public function __construct(Page $pageModel = null, Setting $settings = null, Portfolio $portfolio = null, Project $project = null, Post $post = null)
     {
-        $this->pageModel = ($pageModel == null) ? new \Page : $pageModel;
-        $this->settings = ($settings == null) ? new \Setting : $settings;
-        $this->project = ($project == null) ? new \Project : $project;
-        $this->portfolio = ($portfolio == null) ? new \Portfolio : $portfolio;
-        $this->post = ($post == null) ? new \Post : $post;
+        $this->pageModel = ($pageModel == null) ? new Page : $pageModel;
+        $this->settings = ($settings == null) ? new Setting : $settings;
+        $this->project = ($project == null) ? new Project : $project;
+        $this->portfolio = ($portfolio == null) ? new Portfolio : $portfolio;
+        $this->post = ($post == null) ? new Post : $post;
         $this->tags = new \CMS\Services\TagsService;
-        $this->images = new \CMS\Services\ImagesService(new \Image());
+        $this->images = new \CMS\Services\ImagesService(new Image());
         $this->projects = new \CMS\Services\ProjectsService($this->images);
     }
     public function saveMenus()
@@ -87,7 +95,7 @@ class MenuService
 
         if ($id == null) {
             $page = $this->pageModel->first();
-            $pageCtrl = new \PagesController();
+            $pageCtrl = new PagesController();
             return $pageCtrl->show($page);
         }
 
@@ -95,7 +103,7 @@ class MenuService
         $page = $this->pageModel->where("slug", 'LIKE', '/' . $id)->first();
         if ($this->checkIfPublishedAndUserState($page)) {
             ($page->slug === '/home') ? $banner = true : $banner = false;
-            $pageCtrl = new \PagesController();
+            $pageCtrl = new PagesController();
             return $pageCtrl->show($page);
         }
         //Try Project

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'debug' => false,
+    'debug' => true,
 
     'log' => 'daily',
 
@@ -100,13 +100,12 @@ return [
         'Illuminate\Translation\TranslationServiceProvider',
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
-        'Way\Generators\GeneratorsServiceProvider',
+        'Laracasts\Generators\GeneratorsServiceProvider',
         'CMS\ServiceProviders\MenuServiceProvider',
         'CMS\ServiceProviders\ImagesServiceProvider',
         'CMS\ServiceProviders\ProjectsServiceProvider',
-        'Laracasts\Utilities\UtilitiesServiceProvider',
         'Intervention\Image\ImageServiceProvider',
-        'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider'
+        'Codesleeve\LaravelStapler\Providers\L5ServiceProvider',
         'Illuminate\Bus\BusServiceProvider',
         'Illuminate\Foundation\Providers\FoundationServiceProvider',
         'Illuminate\Pipeline\PipelineServiceProvider',
@@ -116,7 +115,8 @@ return [
         'App\Providers\BusServiceProvider',
         'App\Providers\ConfigServiceProvider',
         'App\Providers\EventServiceProvider',
-        'App\Providers\RouteServiceProvider'
+        'App\Providers\RouteServiceProvider',
+		'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
     ],
 
     /*
@@ -176,7 +176,7 @@ return [
         'View'            => 'Illuminate\Support\Facades\View',
         'Menu'            => 'CMS\Facades\MenuFacade',
         'Images'          => 'CMS\Facades\ImagesFacade',
-        'IntImage'           => 'Intervention\Image\Facades\Image'
+        'IntImage'           => 'Intervention\Image\Facades\Image',
         'Bus' => 'Illuminate\Support\Facades\Bus',
         'Inspiring' => 'Illuminate\Foundation\Inspiring',
         'Storage' => 'Illuminate\Support\Facades\Storage',

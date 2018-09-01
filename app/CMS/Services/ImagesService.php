@@ -9,7 +9,7 @@
 namespace CMS\Services;
 
 use Illuminate\Support\Facades\Log;
-use \Image;
+use App\Image;
 use File;
 
 class ImagesService

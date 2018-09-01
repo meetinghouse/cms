@@ -1,5 +1,6 @@
 <?php
 use CMS\Facades\MenuFacade as Menu;
+use App\Setting;
 
 try {
     $settings = Setting::first();

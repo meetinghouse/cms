@@ -9,10 +9,10 @@
 namespace CMS\Services;
 
 use Illuminate\Support\Facades\DB;
-use Post;
-use Project;
-use Request;
-use Tag;
+use App\Post;
+use App\Project;
+use App\Request;
+use App\Tag;
 
 class TagsService
 {

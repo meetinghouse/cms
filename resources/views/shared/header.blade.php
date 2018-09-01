@@ -1,6 +1,6 @@
 <!-- shared.header -->
 <?php
-$banners_active = Banner::slideShow();
+$banners_active = \App\Banner::slideShow();
 ?>
 @if($settings->theme == false)
 

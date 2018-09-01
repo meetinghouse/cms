@@ -3,6 +3,11 @@
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Setting;
+use App\Portfolio;
+use App\Page;
+use Symfony\Component\Filesystem\Filesystem;
+use Request, View, File, JavaScript;
 
 abstract class Controller extends BaseController
 {

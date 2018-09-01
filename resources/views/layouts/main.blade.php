@@ -18,41 +18,35 @@
         {!!$settings->name!!}
         @endif
     </title>
-
-    <!-- Bootstrap core CSS -->
-    {!! HTML::style('assets/css/bootstrap.css') !!}
-
-    {!! HTML::style('assets/css/font-awesome.css') !!}
-    <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-    {!! HTML::style('assets/css/prettify.css') !!}
-    {!! HTML::style('assets/css/main.css') !!}
-    {!! HTML::style('assets/css/custom.css') !!}
-    {!! HTML::style('assets/css/customProject.css') !!}
-    {!! HTML::style('assets/css/houzz/css/houzz-icon-font.css') !!}
-
-    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}
-    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.min.css') !!}
-    {!! HTML::style('/bower_components/jquery-colorbox/example4/colorbox.css') !!}
-
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.css') }}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('assets/css/prettify.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('assets/css/main.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('assets/css/custom.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('assets/css/customProject.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('assets/css/houzz/css/houzz-icon-font.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.min.css') }}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('/bower_components/jquery-colorbox/example4/colorbox.css') }}" crossorigin="anonymous">
+   
     @if($settings->theme == false)
-    {!! HTML::style('assets/css/colorfrog.css') !!}
-    {!! HTML::style('assets/css/originalTheme.css') !!}
+		<link rel="stylesheet" href="{{asset('assets/css/colorfrog.css') }}" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{asset('assets/css/originalTheme.css') }}" crossorigin="anonymous">
     @endif
     @if($settings->theme == true)
-    {!! HTML::style('assets/css/dark.css') !!}
-    {!! HTML::style('/bower_components/flexslider/flexslider.css') !!}
-
+    <link rel="stylesheet" href="{{asset('assets/css/dark.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{asset('assets/css/flexslider.css') }}" crossorigin="anonymous">
     @endif
-    {!! HTML::style('assets/css/customProject.css') !!}
+    
 
 
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    {!! HTML::script('assets/js/html5shiv.js') !!}
-    {!! HTML::script('assets/js/respond.min.js') !!}
-
+	<script src="{{asset('assets/js/html5shiv.js') }}"></script>
+    <script src="{{asset('assets/js/respond.js') }}"></script>
     <![endif]-->
 
 
@@ -159,37 +153,40 @@ Use the corresponding body tag for your chosen theme
 <script>
 window.theme = {!!$settings->theme!!};
 </script>
-{!! HTML::script('/assets/js/jquery-1.11.js') !!}
-{!! HTML::script('/assets/js/noty-2.2.2/js/noty/packaged/jquery.noty.packaged.min.js') !!}
-{!! HTML::script('/assets/js/jquery-sortable.js') !!}
-{!! HTML::script('/assets/js/bootstrap/bootstrap.min.js') !!}
-{!! HTML::script('/assets/js/jquery.fitvids.js') !!}
-{!! HTML::script('/assets/js/colorfrog.js') !!}
-{!! HTML::script('/assets/js/lib/ckeditor-full/ckeditor.js') !!}
-{!! HTML::script('/bower_components/angular/angular.js') !!}
-{!! HTML::script('/bower_components/lodash/dist/lodash.js') !!}
-{!! HTML::script('/bower_components/restangular/dist/restangular.js') !!}
-{!! HTML::script('/bower_components/jquery-colorbox/jquery.colorbox-min.js') !!}
-{!! HTML::script('/bower_components/readmore/readmore.min.js') !!}
-<!--{!! HTML::script('/bower_components/jquery-ui/jquery-ui.min.js') !!}-->
-<!--{!! HTML::script('/bower_components/jquery-ui/ui/minified/sortable.min.js') !!}-->
-<!--{!! HTML::script('/bower_components/flow.js/dist/flow.js') !!}-->
-{!! HTML::script('/bower_components/ng-flow/dist/ng-flow-standalone.js') !!}
-{!! HTML::script('/assets/js/app.js') !!}
-<!--{!! HTML::script('/assets/js/cms_flow.js') !!}-->
-{!! HTML::script('/assets/js/angular_app.js') !!}
-{!! HTML::script('/assets/js/alertServices.js') !!}
-{!! HTML::script('/assets/js/uploadImagesCtrl.js') !!}
-{!! HTML::script('/assets/js/tagsCtrl.js') !!}
-{!! HTML::script('/bower_components/ng-tags-input/ng-tags-input.min.js') !!}
+<script src="{{asset('assets/js/jquery-1.11.js') }}"></script>
+<script src="{{asset('assets/js/respond.js') }}"></script>
+	
+
+<script src="{{asset('/assets/js/noty-2.2.2/js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
+<script src="{{asset('/assets/js/jquery-sortable.js') }}"></script>
+<script src="{{asset('/assets/js/bootstrap/bootstrap.min.js') }}"></script>
+<script src="{{asset('/assets/js/jquery.fitvids.js') }}"></script>
+<script src="{{asset('/assets/js/colorfrog.js') }}"></script>
+<script src="{{asset('/assets/js/lib/ckeditor-full/ckeditor.js') }}"></script>
+<script src="{{asset('/bower_components/angular/angular.js') }}"></script>
+<script src="{{asset('/bower_components/lodash/dist/lodash.js') }}"></script>
+<script src="{{asset('/bower_components/restangular/dist/restangular.js') }}"></script>
+<script src="{{asset('/bower_components/jquery-colorbox/jquery.colorbox-min.js') }}"></script>
+<script src="{{asset('/bower_components/readmore/readmore.min.js') }}"></script>
+<!--<script src="{{asset('/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>-->
+<!--<script src="{{asset('/bower_components/jquery-ui/ui/minified/sortable.min.js') }}"></script>-->
+<!--<script src="{{asset('/bower_components/flow.js/dist/flow.js') }}"></script>-->
+<script src="{{asset('/bower_components/ng-flow/dist/ng-flow-standalone.js') }}"></script>
+<script src="{{asset('/assets/js/app.js') }}"></script>
+<!--<script src="{{asset('/assets/js/cms_flow.js') }}"></script>-->
+<script src="{{asset('/assets/js/angular_app.js') }}"></script>
+<script src="{{asset('/assets/js/alertServices.js') }}"></script>
+<script src="{{asset('/assets/js/uploadImagesCtrl.js') }}"></script>
+<script src="{{asset('/assets/js/tagsCtrl.js') }}"></script>
+<script src="{{asset('/bower_components/ng-tags-input/ng-tags-input.min.js') }}"></script>
 @if($settings->theme == true)
-{!! HTML::script('http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js') !!}
+<script src="{{asset('http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js') }}"></script>
 @endif
 
-{!! HTML::script('/bower_components/flexslider/jquery.flexslider.js') !!}
-{!! HTML::script('/bower_components/angular-flexslider/angular-flexslider.js') !!}
-{!! HTML::script('/assets/js/naturalSortVersionDates.min.js') !!}
-{!! HTML::script('/assets/js/custom.js') !!}
+<script src="{{asset('/bower_components/flexslider/jquery.flexslider.js') }}"></script>
+<script src="{{asset('/bower_components/angular-flexslider/angular-flexslider.js') }}"></script>
+<script src="{{asset('/assets/js/naturalSortVersionDates.min.js') }}"></script>
+<script src="{{asset('/assets/js/custom.js') }}"></script>
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {

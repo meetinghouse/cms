@@ -13,7 +13,9 @@ return [
 	|
 	*/
 
-    'paths' => [__DIR__.'/../views'],
+	'paths' => [
+		realpath(base_path('resources/views'))
+	],
 
     /*
 	|--------------------------------------------------------------------------
@@ -25,7 +27,7 @@ return [
 	| compatible with Twitter's Bootstrap is given to you by default.
 	|
 	*/
-
+	'compiled' => realpath(storage_path().'/framework/views'),
     'pagination' => 'pagination::slider-3',
 
 ];

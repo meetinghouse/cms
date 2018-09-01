@@ -9,7 +9,7 @@ use CMS\Services\TagsService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Laracasts\Utilities\JavaScript\Facades\JavaScript;
+use JavaScript;
 
 class PagesController extends Controller
 {
@@ -108,7 +108,7 @@ class PagesController extends Controller
 
     private function setTags()
     {
-        return new CMS\Services\TagsService;
+        return new TagsService;
     }
 
 
