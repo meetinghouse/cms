@@ -7,21 +7,21 @@
 <?php 
 	if($settings->theme == false)
 	{
-			$top_left_nav = Page::tree();
+			$top_left_nav = App\Page::tree();
 			if($settings && is_numeric($settings->portfolio_menu_position))
 			{
 				if($settings && $settings->enable_portfolio){
 					$pos = $settings->portfolio_menu_position - 1;
 					$portfolio = ['title' => 'Portfolio', 'slug'=>'/portfolio', 'is_portfolio'=>1];
 
-					Helpers\ArrayHelper::insertAt($top_left_nav, $pos, $portfolio);
+					app(App\Lib\Helpers\ArrayHelper::class)->insertAt($top_left_nav, $pos, $portfolio);
 				}
 			}
 			if($settings && $settings->enable_blog)
 			{
 				$pos = $settings->blog_menu_position - 1;
 				$blog = ['id'=> -1,'title' => $settings->blog_title, 'slug'=>'/posts', 'is_blog' =>1];
-				Helpers\ArrayHelper::insertAt($top_left_nav, $pos, $blog);    
+				app(App\Lib\Helpers\ArrayHelper::class)->insertAt($top_left_nav, $pos, $blog);    
 			}
 	}
 ?>

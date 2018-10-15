@@ -10,10 +10,15 @@
 @endif
 
 <div class="media row">
-    @if($image)
-    <a href="{!!$project->slug!!}" alt="{!!$project->title!!}">
-  <img class="media-object col-md-4 col-xs-12" src="{!!$image!!}" alt="{{ $project->title }}">
-    </a>
+    @if($image)		
+		<div class="col-xs-12 col-md-4 project_block">
+			<a href="{{$project->slug}}" alt="{{$project->title}}">
+				<div class="proj_img">
+					<img class="img-responsive" src="{{$image}}" alt="{{{$project->title}}}">
+					<div class="project_grid_title" >{{{$project->title}}} </div>
+				</div>
+			</a>
+		</div>	
     <div class="clearfix-sm"></div>
     @endif
   <br>

@@ -1,5 +1,5 @@
 @if($settings->logo && $settings->theme == true)
-<a class = "side_logo" href="/">{!! HTML::image("/img/settings/{$settings->logo}", $settings->name)!!}</a>
+<a class = "side_logo" href="/">{!! asset("img/settings/{$settings->logo}", $settings->name)!!}</a>
 @endif
 <ul class="nav nav-list">
 @if(isset($top_left_nav))

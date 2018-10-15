@@ -1,4 +1,6 @@
-<?php namespace CMS\Services;
+<?php 
+namespace CMS\Services;
+// namespace App\Http\Controllers;
 
 use CMS\Services\TagsService as TagsService;
 use App\Menu;
@@ -7,9 +9,10 @@ use App\Setting;
 use App\Project;
 use App\Portfolio;
 use App\Post;
+use App\Http\Controllers\PostsController;
 use App\Image;
 use App\Http\Controllers\PagesController;
-
+use App\Http\Controllers\ProjectsController as ProjectsController;
 class MenuService
 {
 
@@ -109,20 +112,20 @@ class MenuService
         //Try Project
         $project = $this->project->where("slug", 'LIKE', '/' . $id)->first();
         if ($this->checkIfPublishedAndUserState($project)) {
-            $projCtrl = new \ProjectsController($this->projects, $this->tags, $this->images);
+            $projCtrl = new ProjectsController($this->projects, $this->tags, $this->images);
             return $projCtrl->show($project);
         }
 
         //Try Portfolio
         $portfolio = $this->portfolio->where("slug", 'LIKE', '/' . $id)->first();
         if ($this->checkIfPublishedAndUserState($portfolio)) {
-            $portfolioCtrl = new \PortfoliosController();
+            $portfolioCtrl = new PortfoliosController();
             return $portfolioCtrl->show($portfolio);
         }
 
         //Try Post
         $post = $this->post->where("slug", 'LIKE', '/' . $id)->first();
-        $postCtrl = new \PostsController($this->images, $this->tags);
+        $postCtrl = new PostsController($this->images, $this->tags);
         return $postCtrl->show($post->id);
 
 

@@ -44,7 +44,7 @@
     @foreach($projects as $project)
     @include('shared.projects_teasers')
     @endforeach
-    {!! $projects->links() !!}
+    {!! $projects->render() !!}
     @endif
 
     @endif

@@ -18,8 +18,8 @@
     </div>
 
     <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 column">
-        @if
-            ($settings->theme != TRUE)  <h1>{{ $project->title }}</h1>
+        @if($settings->theme != TRUE)  
+			<h1>{{ $project->title }}</h1>
         @endif
         <div class="row">
 
@@ -52,14 +52,25 @@
         @if($settings->theme == TRUE)
             <div class="row">
                 <div class="col-lg-4 body">
-                    <h1>{{ $project->title }}</h1>
-
-                    {{ $project->city_county }}
-                    <br>
-                    Architect: {{ $project->architect }}
-                </div>
+                    <h1>{{{$project->title}}}</h1>
+                    {{{$project->city_county}}}				
+					<br>
+					@if($project->participant1 || $project->participant2 || $project->participant3)
+						Project Participants:
+						<br>
+						@if($project->participant1) 
+							<h3 class="participant">{{$project->participant1}}</h3>
+						@endif						
+						@if($project->participant2) 
+							<h3 class="participant">{{$project->participant2}}</h3>
+						@endif						
+						@if($project->participant3) 
+							<h3 class="participant">{{$project->participant3}}</h3>
+						@endif
+					@endif
+				</div>
                 <div class="col-lg-8 projectBody">
-                    <article> {!!$project->body!!}</article>
+                    <article> {{$project->body}}</article>
                 </div>
             </div>
         @endif

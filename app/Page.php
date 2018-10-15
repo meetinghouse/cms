@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Lib\Helpers\ArrayHelper as ArrayHelper;
 class Page extends Model
 {
    
@@ -66,7 +66,7 @@ class Page extends Model
                 $pos = $settings->portfolio_menu_position - 1;
                 $portfolio = ['title' => $settings->portfolio_title, 'slug'=>'/portfolio', 'is_portfolio'=>1];
                 
-                Helpers\ArrayHelper::insertAt($pages, $pos, $portfolio);
+               ArrayHelper::insertAt($pages, $pos, $portfolio);
             }
         }
         if ($settings && $settings->enable_blog) {
@@ -75,7 +75,7 @@ class Page extends Model
 
             // Put blog after portfolio in the menu array.
             // In case of invalid position , blog will be pushed at the end of the menu.
-            Helpers\ArrayHelper::insertAt($pages, $pos, $blog);
+			ArrayHelper::insertAt($pages, $pos, $blog);
         }
         return $pages;
     }

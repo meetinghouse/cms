@@ -8,7 +8,7 @@ use App\Portfolio;
 use App\Page;
 use Symfony\Component\Filesystem\Filesystem;
 use Request, View, File, JavaScript;
-
+use CMS\Services\TagsService;
 abstract class Controller extends BaseController
 {
 

@@ -11,30 +11,30 @@
     <title>Page not found - {!!$settings->name!!}</title>
 
     <!-- Bootstrap core CSS -->
-    {!! HTML::style('assets/css/bootstrap.css') !!}
+    {!! asset('assets/css/bootstrap.css') !!}
 
-    {!! HTML::style('assets/css/font-awesome.css') !!}
+    {!! asset('assets/css/font-awesome.css') !!}
     <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-    {!! HTML::style('assets/css/prettify.css') !!}
-    {!! HTML::style('assets/css/main.css') !!}
-    {!! HTML::style('assets/css/custom.css') !!}
-    {!! HTML::style('assets/css/customProject.css') !!}
-    {!! HTML::style('assets/css/houzz/css/houzz-icon-font.css') !!}
+    {!! asset('assets/css/prettify.css') !!}
+    {!! asset('assets/css/main.css') !!}
+    {!! asset('assets/css/custom.css') !!}
+    {!! asset('assets/css/customProject.css') !!}
+    {!! asset('assets/css/houzz/css/houzz-icon-font.css') !!}
 
-    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}
-    {!! HTML::style('/bower_components/ng-tags-input/ng-tags-input.min.css') !!}
-    {!! HTML::style('/bower_components/jquery-colorbox/example4/colorbox.css') !!}
+    {!! asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}
+    {!! asset('/bower_components/ng-tags-input/ng-tags-input.min.css') !!}
+    {!! asset('/bower_components/jquery-colorbox/example4/colorbox.css') !!}
 
     @if($settings->theme == false)
-    {!! HTML::style('assets/css/colorfrog.css') !!}
-    {!! HTML::style('assets/css/originalTheme.css') !!}
+    {!! asset('assets/css/colorfrog.css') !!}
+    {!! asset('assets/css/originalTheme.css') !!}
     @endif
     @if($settings->theme == true)
-    {!! HTML::style('assets/css/dark.css') !!}
-    {!! HTML::style('/bower_components/flexslider/flexslider.css') !!}
+    {!! asset('assets/css/dark.css') !!}
+    {!! asset('/bower_components/flexslider/flexslider.css') !!}
 
     @endif
-    {!! HTML::style('assets/css/customProject.css') !!}
+    {!! asset('assets/css/customProject.css') !!}
 
 
 

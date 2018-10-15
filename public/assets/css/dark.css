@@ -1,3 +1,59 @@
+/* image css 12/10/2018 */
+.project_grid_title {
+	color: #FFFFFF;
+	background-color: rgba(0,0,0,0.4);	
+	font-size: 0.8em;
+    text-transform: uppercase;
+	line-height: 12px;
+	padding-top: 12px;
+	position: absolute;
+	bottom: 110px;
+	width: 89%;
+	height: 40px;
+	text-align: center;
+}
+.proj_img {
+    overflow: hidden;
+}
+.project_block .proj_img img:hover {
+    opacity: 0.8;
+}
+img.img-responsive {
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+img.img-responsive:hover {
+    -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    transform: scale(1.15);	
+}
+
+
+/* image css 12/10/2018 */
+.img_section {
+	 position: relative;
+}
+.img_section .middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  /* top: 115px; */
+  top: 95px;
+  right: 120px;
+  color:black;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.img_section:hover .media-object {
+  opacity: 0.8;  
+}
+
+.img_section:hover .middle {
+  opacity: 1;
+}
+
 /* line 7, stdin */
 body {
   background-color: #282828;
@@ -180,7 +236,9 @@ footer {
   /* line 214, stdin */
   .project_block .proj_img img {
     width: 275px;
-    height: 335px; }
+    /* height: 335px;  */
+    height: 265px; 
+	}
 
 /* line 221, stdin */
 .slideshow {
@@ -211,7 +269,8 @@ select[name='order'] option {
 
 /* line 249, stdin */
 .project_grid_title {
-  padding-top: 5px;
+  /* padding-top: 5px; */
+   padding-top: 12px;
   color: #d6d6d6;
   font-size: 18px;
   line-height: 18px;
