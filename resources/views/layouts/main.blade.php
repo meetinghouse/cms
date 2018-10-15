@@ -83,7 +83,7 @@ Use the corresponding body tag for your chosen theme
 <div class="container">
     <header>
         @if($settings->logo && $settings->theme == false)
-        <a href="/" id="logo">{!! asset("/img/settings/{$settings->logo}", $settings->name)!!}</a>
+        <a href="/" id="logo"><img src='{{ asset("/img/settings/{$settings->logo}", $settings->name)}}'/></a>
         @endif
     
 		@if($settings->theme == false)
