@@ -78,11 +78,13 @@ class SettingsController extends Controller
      */
     public function edit($id = null)
     {
-        parent::show();
-        $banner = $this->banner;
+		// dd('print here');die;
+        parent::show();		
+        $banner = $this->banner;		
         $path   = "/img/settings";
         $setting = Setting::find($id);
         return view('settings.edit', compact('setting', 'path', 'banner'));
+		
     }
 
     /**
@@ -94,6 +96,7 @@ class SettingsController extends Controller
      */
     public function update($id)
     {
+		
         $data = Input::all();
         
         $setting = Setting::findOrFail($id);
@@ -151,6 +154,7 @@ class SettingsController extends Controller
         if (Auth::user() && Auth::user()->admin == 1) {
             $setting->blog_menu_position = $data['blog_menu_position'];
         }
+		// dd($setting->logo);die;
         $setting->save();
 
         return redirect("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");

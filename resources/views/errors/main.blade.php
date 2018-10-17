@@ -41,8 +41,8 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    {!! HTML::script('assets/js/html5shiv.js') !!}
-    {!! HTML::script('assets/js/respond.min.js') !!}
+    {{asset(('assets/js/html5shiv.js') }}
+    {!! asset('assets/js/respond.min.js') !!}
 
     <![endif]-->
 
@@ -72,7 +72,9 @@
 <div class="container">
     <header>
         @if($settings->logo && $settings->theme == false)
-			<a href="/" id="logo">{!! HTML::image("/img/settings/{$settings->logo}", $settings->name)!!}</a>
+			<a href="/" id="logo">
+		<img src='{{ asset("/img/settings/$settings->logo")}}' alt='{{$settings->name}}' />	
+		</a>
         @endif
 		@if($settings->theme == false)
 			<?php 
@@ -125,8 +127,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-{!! HTML::script('/assets/js/jquery-1.11.js') !!}
-{!! HTML::script('/assets/js/custom.js') !!}
+{!! asset('/assets/js/jquery-1.11.js') !!}
+{!! asset('/assets/js/custom.js') !!}
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {

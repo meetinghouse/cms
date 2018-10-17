@@ -9,6 +9,7 @@ use App\Setting;
 use App\Project;
 use App\Portfolio;
 use App\Post;
+use App\Http\Controllers\PortfoliosController as PortfoliosController;
 use App\Http\Controllers\PostsController;
 use App\Image;
 use App\Http\Controllers\PagesController;
@@ -92,7 +93,7 @@ class MenuService
    */
     public function show($id = null)
     {
-        $banner = false;
+		$banner = false;
         $type = "pages.show";
         $settings = $this->settings->first();
 
@@ -111,12 +112,11 @@ class MenuService
         }
         //Try Project
         $project = $this->project->where("slug", 'LIKE', '/' . $id)->first();
-        if ($this->checkIfPublishedAndUserState($project)) {
-            $projCtrl = new ProjectsController($this->projects, $this->tags, $this->images);
+		if ($this->checkIfPublishedAndUserState($project)) {
+			$projCtrl = new ProjectsController($this->projects, $this->tags, $this->images);
             return $projCtrl->show($project);
         }
-
-        //Try Portfolio
+		//Try Portfolio
         $portfolio = $this->portfolio->where("slug", 'LIKE', '/' . $id)->first();
         if ($this->checkIfPublishedAndUserState($portfolio)) {
             $portfolioCtrl = new PortfoliosController();

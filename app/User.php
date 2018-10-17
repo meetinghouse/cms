@@ -76,4 +76,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return 'remember_token';
     }
+	public function getEmailForPasswordReset(){
+		
+	}
 }

@@ -11,16 +11,16 @@
     <title>{!!$settings->name!!}</title>
 
     <!-- Bootstrap core CSS -->
-    {!! HTML::style('assets/css/bootstrap.css') !!}
-    {!! HTML::style('assets/css/colorfrog.css') !!}
+    {!! asset('assets/css/bootstrap.css') !!}
+    {!! asset('assets/css/colorfrog.css') !!}
     <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-    {!! HTML::style('assets/css/main.css') !!}
-    {!! HTML::style('assets/css/prettify.css') !!}
+    {!! asset('assets/css/main.css') !!}
+    {!! asset('assets/css/prettify.css') !!}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    {!! HTML::script('assets/js/html5shiv.js') !!}
-    {!! HTML::script('assets/js/respond.min.js') !!}
+    {!! asset('assets/js/html5shiv.js') !!}
+    {!! asset('assets/js/respond.min.js') !!}
     <![endif]-->
 
 </head>
@@ -55,14 +55,14 @@ Use the corresponding body tag for your chosen theme
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-{!! HTML::script('/assets/js/jquery-1.11.js') !!}
-{!! HTML::script('/assets/js/noty-2.2.2/js/noty/packaged/jquery.noty.packaged.min.js') !!}
-{!! HTML::script('/assets/js/jquery-sortable.js') !!}
-{!! HTML::script('/assets/js/bootstrap/bootstrap.min.js') !!}
-{!! HTML::script('/assets/js/jquery.fitvids.js') !!}
-{!! HTML::script('/assets/js/colorfrog.js') !!}
-{!! HTML::script('/assets/js/lib/ckeditor-full/ckeditor.js') !!}
-{!! HTML::script('/assets/js/app.js') !!}
+{!! asset('/assets/js/jquery-1.11.js') !!}
+{!! asset('/assets/js/noty-2.2.2/js/noty/packaged/jquery.noty.packaged.min.js') !!}
+{!! asset('/assets/js/jquery-sortable.js') !!}
+{!! asset('/assets/js/bootstrap/bootstrap.min.js') !!}
+{!! asset('/assets/js/jquery.fitvids.js') !!}
+{!! asset('/assets/js/colorfrog.js') !!}
+{!! asset('/assets/js/lib/ckeditor-full/ckeditor.js') !!}
+{!! asset('/assets/js/app.js') !!}
 
 </body>
 </html>

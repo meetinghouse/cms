@@ -9,6 +9,7 @@ use App\Page;
 use Symfony\Component\Filesystem\Filesystem;
 use Request, View, File, JavaScript;
 use CMS\Services\TagsService;
+use Validator,Input, Response;
 abstract class Controller extends BaseController
 {
 
