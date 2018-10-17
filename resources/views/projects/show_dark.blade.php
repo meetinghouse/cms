@@ -56,16 +56,16 @@
                     {{{$project->city_county}}}				
 					<br>
 					@if($project->participant1 || $project->participant2 || $project->participant3)
-						Project Participants:
-						<br>
+						<h3> Project Participants: </h3>
+						
 						@if($project->participant1) 
-							<h3 class="participant">{{$project->participant1}}</h3>
+							<p class="participant">{{$project->participant1}}</p>
 						@endif						
 						@if($project->participant2) 
-							<h3 class="participant">{{$project->participant2}}</h3>
+							<p class="participant">{{$project->participant2}}</p>
 						@endif						
-						@if($project->participant3) 
-							<h3 class="participant">{{$project->participant3}}</h3>
+						@if($project->participant3)
+							<p class="participant">{{$project->participant3}}</p>
 						@endif
 					@endif
 				</div>

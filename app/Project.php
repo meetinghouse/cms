@@ -22,8 +22,7 @@ class Project extends BaseModel implements StaplerableInterface
         'published',
         'body',
         'image',
-        'tile_image',
-        'architect',
+        'tile_image',        
         'order',
         'intro',
         'portfolio_id',
@@ -31,7 +30,10 @@ class Project extends BaseModel implements StaplerableInterface
         'slug',
         'state_country',
         'city_county',
-        'thumbs'
+        'thumbs',
+		'participant3',
+		'participant1',
+		'participant2'
     ];
 
     public function __construct(array $attributes = [])
