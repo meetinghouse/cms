@@ -16,11 +16,11 @@
         <div class="form-group">
             <label for="email">Company Name
            @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
             {{ Form::text('name', null, array('class' => 'form-control', 'tabindex' => 1)) }}
             @if($errors->first('name'))
@@ -33,11 +33,11 @@
         <div class="form-group">
                 <label for="logo">Company Logo Image Uploader 
                 @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
                 {{ Form::file('logo', null, array('class' => 'form-control', 'tabindex' => 2)) }}
                 @if($errors->first('logo'))
@@ -61,11 +61,11 @@
         @if($settings->theme != true)
         <div class="form-group">
                 <label for="email">Colors @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>&nbsp;
                 {{ Form::select('color', ['bw' => 'black & white', 'orange' => 'orange', 'green' => 'green', 'blue' => 'blue'], $setting->color, array('class' => 'form-control', 'tabindex' => 4)) }}
                 @if($errors->first('color'))
@@ -93,11 +93,11 @@
 		<div class="form-group">
                 <label for="email">Facebook
 			@if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
                 {{ Form::text('facebook', null, array('class' => 'form-control', 'tabindex' => 6)) }}
                 @if($errors->first('facebook'))
@@ -110,11 +110,11 @@
         <div class="form-group">
                 <label for="email">Linkedin
                 @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
                 {{ Form::text('linkedin', null, array('class' => 'form-control', 'tabindex' => 8)) }}
                 @if($errors->first('linkedin'))
@@ -127,11 +127,11 @@
         <div class="form-group">
                 <label for="email">Twitter
                 @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
                 {{ Form::text('twitter', null, array('class' => 'form-control', 'tabindex' => 10)) }}
                 @if($errors->first('twitter'))
@@ -144,11 +144,11 @@
         <div class="form-group">
                 <label for="email">Pinterest
                 @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
                 {{ Form::text('pinterest', null, array('class' => 'form-control', 'tabindex' => 12)) }}
                 @if($errors->first('pinterest'))
@@ -160,11 +160,11 @@
         <div class="form-group">
             <label for="email">Google Plus
             @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
             {{ Form::text('gplus', null, array('class' => 'form-control', 'tabindex' => 14)) }}
             @if($errors->first('gplus'))
@@ -176,11 +176,11 @@
         <div class="form-group">
             <label for="houzz">Houzz
                 @if($settings->theme == true)
-                    (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
                 @endif
 
                 @if($settings->theme == false)
-                    (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
                 @endif</label>
             {{ Form::text('houzz', null, array('class' => 'form-control', 'tabindex' => 16)) }}
             @if($errors->first('gplus'))
@@ -192,11 +192,11 @@
 		<div class="form-group">
                 <label for="instagram">Instagram
 			@if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
                 {{ Form::text('instagram', null, array('class' => 'form-control', 'tabindex' => 6)) }}
                 @if($errors->first('instagram'))
@@ -208,11 +208,11 @@
         <div class="form-group">
             <label>Page Footer
             @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
             @endif
 
             @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
+            (<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
             @endif</label>
             {{ Form::textarea('footer', $setting->footer, array('rows' => 30, 'class' => 'ckeditor form-control')) }}
             <div class="help-block">Add your contact, copyright and other info needed.</div>
@@ -222,18 +222,34 @@
                 {{  $errors->first('footer'); }}
             </div>
         @endif
+		<div class="form-group">
+            <div class="controls">
+                <div class="checkbox">
+                    <label class="checkbox">
+						{{ Form::checkbox('view_readmore_status', null) }} Check to disable read more links on projects under dark theme.
+						@if($settings->theme == TRUE)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
+                        @endif
 
+                        @if($settings->theme == FALSE)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
+                        @endif
+					</label>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <div class="controls">
                 <div class="checkbox">
                     <label class="checkbox">{{ Form::checkbox('maintenance_mode', null) }} Maintenance Mode
-                    @if($settings->theme == true)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_dark.html" target="_blank">Help</a>)
-            @endif
+						@if($settings->theme == true)
+							(<a href="http://corbettresearchgroupinc.com/admin_settings_dark" target="_blank">Help</a>)
+						@endif
 
-            @if($settings->theme == false)
-            (<a href="http://www.restorationtrades.com/help/admin_settings_light.html" target="_blank">Help</a>)
-            @endif</label>
+						@if($settings->theme == false)
+						(<a href="http://corbettresearchgroupinc.com/admin_settings_light" target="_blank">Help</a>)
+						@endif
+					</label>
                 </div>
                 <div class="help-block">If you want the website hidden from the Visitor AND the search engines, until you are ready to publish.</div>
             </div>
@@ -265,7 +281,22 @@
                 <div class="help-block">Use this turn set your site to blog.</div>
             </div>
         </div>
-		
+		<div class="form-group">
+			<div class="controls">
+				<div class="checkbox">
+					<label class="checkbox">{{ Form::checkbox('enable_portfolio', null) }} Check to enable portfolio </label>
+				</div>
+				<div class="help-block">Use this turn set your site to portfolio.</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="controls">
+				<div class="checkbox">
+					<label class="checkbox">{{ Form::checkbox('enable_noindex', null) }} Check to make site not searchable(noindex) </label>
+				</div>
+				<div class="help-block">Use this turn set your site to not searchable.</div>
+			</div>
+		</div>
 		<div class="form-group">
             <label for="blog_title">Blog Name</label>
                 {{ Form::text('blog_title', null, array('class' => 'form-control', 'tabindex' => 1,'placeholder' => "Builder's Notebook")) }}
@@ -284,7 +315,7 @@
                     {{  $errors->first('portfolio_title'); }}
                 </div>
                 @endif
-			<div class="help-block">Enter your blog name here e.g. Builder's Notebook</div>
+			<div class="help-block">Enter your portfolio name here e.g. Builder's Notebook</div>
         </div>
 		<div class="form-group">
           <label for="">{{$setting->blog_title}} Menu Position</label>

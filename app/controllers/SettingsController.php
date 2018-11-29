@@ -69,7 +69,7 @@ class SettingsController extends \BaseController {
      * @return Response
      */
     public function edit($id = NULL)
-    {
+    {		
         parent::show();
         $banner = $this->banner;
         $path   = "/img/settings";
@@ -87,8 +87,7 @@ class SettingsController extends \BaseController {
     public function update($id)
     {
         $data = Input::all();
-        
-        $setting = Setting::findOrFail($id);
+		$setting = Setting::findOrFail($id);
 
         if($setting->theme == false)
         {
@@ -139,8 +138,12 @@ class SettingsController extends \BaseController {
         $setting->portfolio_menu_position = $data['portfolio_position'];
         $setting->enable_left_nav = (isset($data['enable_left_nav'])) ? 1 : 0;
 		$setting->blog_title = (isset($data['blog_title'])) ? $data['blog_title'] : '';
-		$setting->portfolio_title = (isset($data['portfolio_title'])) ? $data['portfolio_title'] : '';
+		$setting->portfolio_title = (isset($data['portfolio_title']) && !empty($data['portfolio_title'])) ? $data['portfolio_title'] : 'Portfolio';
 		$setting->enable_blog = (isset($data['enable_blog'])) ? true : false;
+		$setting->enable_portfolio = (isset($data['enable_portfolio'])) ? true : false;
+		$setting->enable_noindex = (isset($data['enable_noindex'])) ? true : false;
+		// echo '$data of view_readmore_status = '.$data['view_readmore_status'];die;
+		$setting->view_readmore_status = (isset($data['view_readmore_status'])) ? 1 : 0;
 		if(Auth::user() && Auth::user()->admin == 1){
 			$setting->blog_menu_position = $data['blog_menu_position'];
 		}

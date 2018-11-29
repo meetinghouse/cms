@@ -53,13 +53,27 @@
             <div class="row">
                 <div class="col-lg-4 body">
                     <h1>{{{$project->title}}}</h1>
-
-                    {{{$project->city_county}}}
-                    <br>
-                    Architect: {{{$project->architect}}}
-                </div>
-                <div class="col-lg-8 projectBody">
-                    <article> {{$project->body}}</article>
+                    {{{$project->city_county}}}				
+					<br>
+					@if($project->participant1 || $project->participant2 || $project->participant3)
+						<h3 class="pp-title">Project Participants:</h3>
+						@if($project->participant1) 
+							<p class="participants">{{$project->participant1}}</p>
+						@endif						
+						@if($project->participant2) 
+							<p class="participants">{{$project->participant2}}</p>
+						@endif						
+						@if($project->participant3) 
+							<p class="participants">{{$project->participant3}}</p>
+						@endif
+					@endif
+				</div>
+                <div class="col-lg-8 projectBody">				
+					@if($settings->view_readmore_status == 1 && $settings->theme == TRUE)
+						<p>{{$project->body}}</p>
+					@else
+						<article>{{$project->body}}</article>
+					@endif                    
                 </div>
             </div>
         @endif

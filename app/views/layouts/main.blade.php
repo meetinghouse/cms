@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+	@if($settings->enable_noindex)
+		<meta name="robots" content="noindex">
+	@endif
     <link rel="shortcut icon" href="../../assets/ico/favicon2.png">
 
     <title>
@@ -84,13 +87,13 @@ Use the corresponding body tag for your chosen theme
 @endif
 <!-- //start container -->
 <div class="container">
-    <header @if(Auth::user() && $settings->theme == false) style="margin-top:30px;" @endif>
+    <header>
         @if($settings->logo && $settings->theme == false)
-			<a href="/" id="logo">{{ HTML::image("/img/settings/{$settings->logo}", $settings->name)}}</a>
+        <a href="/" id="logo">{{ HTML::image("/img/settings/{$settings->logo}", $settings->name)}}</a>
         @endif
     
 		@if($settings->theme == false)
-			@include('shared.top-nav')
+		@include('shared.top-nav')
 		@endif
 	</header>
 </div>
@@ -104,7 +107,7 @@ Use the corresponding body tag for your chosen theme
 
 <div class="row"><div class="span12"><hr></div></div>
 <!-- //end header -->
-<div class="container content main_content" @if(Auth::user() && $settings->theme) style="margin-top:30px;" @endif>
+<div class="container content main_content">
     <div class="row">
         <!--alerts-->
         @if (Session::has('message'))
@@ -190,9 +193,9 @@ window.theme = {{$settings->theme}};
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {
-		/* if ($('.navbar-fixed-top').length) {
+		if ($('.navbar-fixed-top').length) {
 			$('body').css('padding-top','30px');
-		} */
+		}
 		if ($('.container.login').length) {
 			$('.main_content').css('padding-top','initial');
 		}
@@ -217,7 +220,6 @@ window.theme = {{$settings->theme}};
  			$('ul.nav-list').css('display','block');
  			$('.mobile-menu').css('display','none');
  		}
-		
 	});
 </script>
 <script type="text/javascript">

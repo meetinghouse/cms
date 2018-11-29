@@ -2,13 +2,11 @@
 
 @section('content')
 
-    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
-		<div class="sidebar-nav">
-			@include('shared.sidebar')
-		</div>
+    <div class="col-md-3 ">
+        @include('shared.sidebar')
     </div>
 
-    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 column">
+    <div class="col-md-9 column">
 
         <h2>Create Projects:</h2>
 
@@ -18,11 +16,11 @@
         <div class="form-group">
             <label>Project Name
                 @if($settings->theme == TRUE)
-                    (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                 @endif
 
                 @if($settings->theme == FALSE)
-                    (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                 @endif</label>
             {{ Form::text('title', NULL, array('class' => 'form-control')) }}
         </div>
@@ -36,11 +34,11 @@
         <div class="form-group">
             <label>Project Browser Description (a.k.a. Title Tag)
                 @if($settings->theme == TRUE)
-                    (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                 @endif
 
                 @if($settings->theme == FALSE)
-                    (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                 @endif</label>
             {{ Form::text('seo', NULL, array('class' => 'form-control')) }}
         </div>
@@ -54,11 +52,11 @@
             <div class="form-group">
                 <label>Project City and/or County
                     @if($settings->theme == TRUE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                     @endif
 
                     @if($settings->theme == FALSE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                     @endif</label>
                 {{ Form::text('city_county', NULL, array('class' => 'form-control')) }}
             </div>
@@ -71,11 +69,11 @@
             <div class="form-group">
                 <label>Project State and Country
                     @if($settings->theme == TRUE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                     @endif
 
                     @if($settings->theme == FALSE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                     @endif</label>
                 {{ Form::text('state_country', NULL, array('class' => 'form-control')) }}
             </div>
@@ -90,11 +88,11 @@
             <div class="form-group">
                 <label>Project City and State
                     @if($settings->theme == TRUE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                     @endif
 
                     @if($settings->theme == FALSE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                     @endif</label>
                 {{ Form::text('city_county', NULL, array('class' => 'form-control')) }}
             </div>
@@ -104,32 +102,52 @@
                 </div>
             @endif
 
-            <div class="form-group">
-                <label>Project Architect
+            
+            
+			
+			<div class="form-group">
+                <label>Project Participants 
                     @if($settings->theme == TRUE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                     @endif
 
                     @if($settings->theme == FALSE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                     @endif</label>
-                {{ Form::text('architect', NULL, array('class' => 'form-control')) }}
+					{{ Form::text('participant1', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+					@if($errors->first('participant1'))
+						<div class="alert alert-danger">
+							<br />{{  $errors->first('participant1'); }}<br />
+						</div>
+					@endif
+						<br />
+						{{ Form::text('participant2', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+					@if($errors->first('participant2'))
+						<div class="alert alert-danger">
+							<br />{{  $errors->first('participant2'); }}<br />
+						</div>
+					@endif
+					<br />
+						{{ Form::text('participant3', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+					@if($errors->first('participant3'))
+						<div class="alert alert-danger">
+							<br />{{  $errors->first('participant3'); }}<br />
+						</div>
+					@endif
+					
+					
             </div>
-            @if($errors->first('architect'))
-                <div class="alert alert-danger">
-                    {{  $errors->first('architect'); }}
-                </div>
-            @endif
+            
         @endif
 
         <div class="form-group">
             <label>Project Main Body
                 @if($settings->theme == TRUE)
-                    (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                 @endif
 
                 @if($settings->theme == FALSE)
-                    (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                    (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                 @endif</label>
             {{ Form::textarea('body', NULL, array('rows' => 30, 'class' => 'ckeditor form-control')) }}
         </div>
@@ -144,11 +162,11 @@
                 <div class="checkbox">
                     <label class="checkbox">{{ Form::checkbox('published', 1) }} Project Publish Status
                         @if($settings->theme == TRUE)
-                            (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                         @endif
 
                         @if($settings->theme == FALSE)
-                            (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                         @endif</label>
                 </div>
             </div>
@@ -163,9 +181,7 @@
                     </div>
                 @endif
             </div>
-		@else
-			<input type="hidden" name="portfolio_id" value="0"/>
-		@endif
+            @endif
                     <!--sort order-->
 
             <div class="form-group">
@@ -186,11 +202,11 @@
             <div class="form-group">
                 <label>Project Web Address (URL)
                     @if($settings->theme == TRUE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                     @endif
 
                     @if($settings->theme == FALSE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                     @endif</label>
                 {{ Form::text('slug', NULL, array('class' => 'form-control')) }}
                 <div class="help-block">The url must start with /</div>
@@ -211,11 +227,11 @@
                 <div class="form-group">
                     <label for="email">Project Portfolio ‘Tile’ Image Uploader
                         @if($settings->theme == TRUE)
-                            (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                         @endif
 
                         @if($settings->theme == FALSE)
-                            (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                         @endif</label>
                     {{ Form::file('tile_image', NULL, array('class' => 'form-control', 'tabindex' => 1)) }}
                     @if($errors->first('tile_image'))
@@ -233,11 +249,11 @@
                 <div class="form-group">
                     <label for="thumbs">Project Top Image Uploader
                         @if($settings->theme == TRUE)
-                            (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                         @endif
 
                         @if($settings->theme == FALSE)
-                            (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                            (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                         @endif</label>
                     {{ Form::file('thumbs', NULL, array('class' => 'form-control', 'tabindex' => 1)) }}
                     @if($errors->first('thumbs'))
@@ -253,11 +269,11 @@
                 <!-- images upload -->
                 <label>Project Subsequent Images Uploader
                     @if($settings->theme == TRUE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_dark.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_dark" target="_blank">Help</a>)
                     @endif
 
                     @if($settings->theme == FALSE)
-                        (<a href="http://www.restorationtrades.com/help/admin_projects_light.html" target="_blank">Help</a>)
+                        (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                     @endif</label>
                 @include('shared.images_angular', array('model' => 'projects'))
                 <br>
