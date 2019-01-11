@@ -10,12 +10,14 @@
 @endif
 
 <div class="media row">
-    @if($image)
+    @if($image && file_exists(public_path($image)))
 		<div class="col-xs-12 col-md-4 project_block">
 			<a href="{{$project->slug}}" alt="{{$project->title}}">
 				<div class="proj_img">
 					<img class="img-responsive" src="{{$image}}" alt="{{{$project->title}}}">
-					<div class="project_grid_title" >{{{$project->title}}} </div>
+					@if($settings->theme == true)
+						<div class="project_grid_title" >{{{$project->title}}} </div>
+					@endif
 				</div>
 			</a>
 		</div>	
