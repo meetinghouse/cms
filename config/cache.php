@@ -27,9 +27,7 @@ return [
 	| are free to change it to any other place on disk that you desire.
 	|
 	*/
-
-    'path' => storage_path().'/cache',
-
+	'files' => storage_path().'/framework/cache',
     /*
 	|--------------------------------------------------------------------------
 	| Database Cache Connection
