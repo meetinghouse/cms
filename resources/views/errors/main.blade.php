@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon2.png">
 
-    <title>Page not found - {!!$settings->name!!}</title>
+    <title>Page not found - @if($settings) {!! $settings->name !!} @endif</title>
 
     <!-- Bootstrap core CSS -->
     {!! asset('assets/css/bootstrap.css') !!}
@@ -41,7 +41,7 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    {{asset(('assets/js/html5shiv.js') }}
+    {{asset(('assets/js/html5shiv.js')) }}
     {!! asset('assets/js/respond.min.js') !!}
 
     <![endif]-->

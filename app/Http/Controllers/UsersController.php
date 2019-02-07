@@ -34,7 +34,7 @@ class UsersController extends Controller
 
     public function login()
     {
-        parent::show();
+        parent::show();		
         return view('sessions.login');
     }
 
