@@ -114,21 +114,21 @@
 					{{ Form::text('participant1', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
 					@if($errors->first('participant1'))
 						<div class="alert alert-danger">
-							<br />{{  $errors->first('participant1') }}<br />
+							<br />{{  $errors->first('participant1'); }}<br />
 						</div>
 					@endif
 						<br />
 						{{ Form::text('participant2', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
 					@if($errors->first('participant2'))
 						<div class="alert alert-danger">
-							<br />{{  $errors->first('participant2') }}<br />
+							<br />{{  $errors->first('participant2'); }}<br />
 						</div>
 					@endif
 					<br />
 						{{ Form::text('participant3', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
 					@if($errors->first('participant3'))
 						<div class="alert alert-danger">
-							<br />{{  $errors->first('participant3') }}<br />
+							<br />{{  $errors->first('participant3'); }}<br />
 						</div>
 					@endif
 					

@@ -151,6 +151,7 @@ class SettingsController extends Controller
         $setting->enable_blog = (isset($data['enable_blog'])) ? true : false;
         $setting->enable_portfolio = (isset($data['enable_portfolio'])) ? true : false;
         $setting->enable_noindex = (isset($data['enable_noindex'])) ? true : false;
+		$setting->view_readmore_status = (isset($data['view_readmore_status'])) ? 1 : 0;
         if (Auth::user() && Auth::user()->admin == 1) {
             $setting->blog_menu_position = $data['blog_menu_position'];
         }

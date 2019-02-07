@@ -83,8 +83,7 @@ Use the corresponding body tag for your chosen theme
 <div class="container">
     <header>
         @if($settings->logo && $settings->theme == false)
-        <a href="/" id="logo">
-			<img src='{{ asset("/img/settings/$settings->logo")}}' alt='{{$settings->name}}'/></a>
+        <a href="/" id="logo">{{ HTML::image("/img/settings/{$settings->logo}", $settings->name)}}</a>
         @endif
     
 		@if($settings->theme == false)
@@ -245,6 +244,15 @@ window.theme = {!!$settings->theme!!};
 		$('#delete_confirmation').modal({ backdrop: 'static', keyboard: false })
 			.one('click', '#delete', function() {
 				$form.trigger('submit'); // submit the form
+		});
+	});
+	$(document).ready(function(){
+		$('.nav li').each(function(){
+			if($(this).find('li').hasClass('active')){
+				$(this).addClass('active');
+			}else if($(this).find('a').hasClass('active')){
+				$(this).addClass('active');
+			}
 		});
 	});
 </script>

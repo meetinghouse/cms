@@ -115,13 +115,25 @@ class PostsController extends Controller
         if (is_numeric($id)) {
             $post = Post::find($id);
             $seo = $post->seo;
+			$post_simple_user = Post::where('id',$id)->where('published',1)->get();
         }
         if ($id == null) {
             return view('404', compact('settings'));
         }
         $tags = $this->tags->get_tags_for_type('Post');
         $banner = true;
-        return view('posts.show', compact('post', 'banner', 'settings', 'seo', 'tags'));
+        if( Auth::user() && Auth::user()->admin == 1 )
+		{			
+			return View::make('posts.show', compact('post', 'banner', 'settings', 'seo', 'tags'));
+		}else{			
+			if(count($post_simple_user) > 0){				
+				return View::make('posts.show', compact('post', 'banner', 'settings', 'seo', 'tags'));
+			}else{				
+				// $a=$this->index();
+				// return $a;
+				return abort(404);
+			}			
+		}
     }
 
 
@@ -210,6 +222,7 @@ class PostsController extends Controller
         $posts = DB::table('posts')
             ->leftJoin('tags', 'tags.tagable_id', '=', 'posts.id')
             ->where('tags.tagable_type', '=', 'Post')
+			->where('published', '=', 1)
             ->where('tags.name', '=', $tag)
             ->orderBy('posts.created_at', 'desc')
             ->groupBy('posts.id')

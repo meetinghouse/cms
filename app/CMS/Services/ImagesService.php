@@ -45,12 +45,11 @@ class ImagesService
             'imageable_id' => $imageable_id,
             'imageable_type' => $imageable_type,
             'image_caption' => $caption,
-            'order' => $order
         ];
 
         $validator = \Validator::make($data, $this->getRules());
         if ($validator->fails()) {
-            throw new \Exception($validator);
+            // throw new \Exception($validator);
         }
         return $this->image->create($data);
     }
