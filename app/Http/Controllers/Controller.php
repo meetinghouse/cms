@@ -50,7 +50,7 @@ abstract class Controller extends BaseController
             }
         }
         /* End of Calculating nav*/
-
+		
         \View::share('settings', $this->settings);
         \View::share('top_left_nav', $this->top_left_nav);
         \View::share('sub_nav', $this->sub_nav);
@@ -103,6 +103,7 @@ abstract class Controller extends BaseController
           'About Page' => '/about',
           'Contact Page' => '/contact',
         ];
+		
         View::share('top_links', $top_menu_items);
         /* Share post tags for light theme */
         if ($this->settings->theme == false) {

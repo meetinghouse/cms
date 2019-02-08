@@ -22,16 +22,15 @@
     @else
     <div class="col-md-12 column">
     @endif
-        @if
-            ($settings->theme != TRUE)  <h1>{{ $project->title }}</h1>
+        @if($settings->theme != TRUE)  <h1>{{ $project->title }}</h1>
         @endif
         <div class="row">
 
-            @if ($project->thumbs->url('project_top') != '/thumbs/project_top/missing.png')
+            @if($project->thumbs->url('project_top') != '/thumbs/project_top/missing.png')
                 <div class="col-lg-12 thumb" id="main_image">
                     <img id="project-top-image" src="<?= $project->thumbs->url('project_top') ?>">
                 </div>
-            @elseif ($project->image)
+            @elseif($project->image)
                 <div class="col-lg-12" id="main_image">
                     <img id="project-top-image" src="/img/projects/{!!$project->image!!}" alt="{!!$project->title!!}">
                 </div>
@@ -76,7 +75,7 @@
             @endif
             <div class="row gallery_row">
 
-                @foreach ($project->images as $image)
+                @foreach($project->images as $image)
                     @if($settings->theme == FALSE)
                         <div class="col-lg-6 gallery_item">
                             <a class="gallery" href="/assets/img/projects/{!!$image->file_name!!}" alt="{!!$image->file_name!!}" title="{!!$image->image_caption!!}">

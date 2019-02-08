@@ -7,34 +7,43 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon2.png">
+	<?php 
+	if(!isset($settings)){
+		$settings = App\Setting::first();
+	}
+	if(!isset($portfolio)){
+		$portfolio  = App\Portfolio::all();
+    }
+	?>
 
-    <title>Page not found - @if($settings) {!! $settings->name !!} @endif</title>
-
+    <title>Page not found -  {!! $settings->name !!} </title>
+	
     <!-- Bootstrap core CSS -->
-    {!! asset('assets/css/bootstrap.css') !!}
-
-    {!! asset('assets/css/font-awesome.css') !!}
+    
+	<link href="{!! asset('assets/css/bootstrap.css') !!}" rel="stylesheet">
+	<link href="{!! asset('assets/css/font-awesome.css') !!}" rel="stylesheet">
+    
     <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-    {!! asset('assets/css/prettify.css') !!}
-    {!! asset('assets/css/main.css') !!}
-    {!! asset('assets/css/custom.css') !!}
-    {!! asset('assets/css/customProject.css') !!}
-    {!! asset('assets/css/houzz/css/houzz-icon-font.css') !!}
+    <link href="{!! asset('assets/css/prettify.css') !!}" rel="stylesheet">
+    <link href="{!! asset('assets/css/main.css') !!}" rel="stylesheet">
+    <link href="{!! asset('assets/css/custom.css') !!}" rel="stylesheet">
+    <link href="{!! asset('assets/css/customProject.css') !!}" rel="stylesheet">
+    <link href="{!! asset('assets/css/houzz/css/houzz-icon-font.css') !!}" rel="stylesheet">
 
-    {!! asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}
-    {!! asset('/bower_components/ng-tags-input/ng-tags-input.min.css') !!}
-    {!! asset('/bower_components/jquery-colorbox/example4/colorbox.css') !!}
+    <link href="{!! asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}" rel="stylesheet">
+    <link href="{!! asset('/bower_components/ng-tags-input/ng-tags-input.min.css') !!}" rel="stylesheet">
+    <link href="{!! asset('/bower_components/jquery-colorbox/example4/colorbox.css') !!}" rel="stylesheet">
 
     @if($settings->theme == false)
-    {!! asset('assets/css/colorfrog.css') !!}
-    {!! asset('assets/css/originalTheme.css') !!}
+    <link href="{!! asset('assets/css/colorfrog.css') !!}" rel="stylesheet">
+    <link href="{!! asset('assets/css/originalTheme.css') !!}" rel="stylesheet">
     @endif
     @if($settings->theme == true)
-    {!! asset('assets/css/dark.css') !!}
-    {!! asset('/bower_components/flexslider/flexslider.css') !!}
+    <link href="{!! asset('assets/css/dark.css') !!}" rel="stylesheet">
+    <link href="{!! asset('/bower_components/flexslider/flexslider.css') !!}" rel="stylesheet">
 
     @endif
-    {!! asset('assets/css/customProject.css') !!}
+    <link href="{!! asset('assets/css/customProject.css') !!}" rel="stylesheet">
 
 
 
@@ -78,13 +87,13 @@
         @endif
 		@if($settings->theme == false)
 			<?php 
-				$portfolios      = Portfolio::published()->orderByOrder()->get();
+				$portfolios      = App\Portfolio::published()->orderByOrder()->get();
 				if ($portfolios) {
 					foreach ($portfolios as $key => $portfolio) {
 						$portfolio_links[$portfolio->title] = $portfolio->slug;
 					}
 				}
-				View::share('portfolio_links', $portfolio_links);
+				\View::share('portfolio_links', $portfolio_links);
 			?>
 			@include('shared.top-nav')
 		@endif
@@ -127,8 +136,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-{!! asset('/assets/js/jquery-1.11.js') !!}
-{!! asset('/assets/js/custom.js') !!}
+<link href="{!! asset('/assets/js/jquery-1.11.js') !!}" rel="stylesheet">
+<link href="{!! asset('/assets/js/custom.js') !!}" rel="stylesheet">
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {
