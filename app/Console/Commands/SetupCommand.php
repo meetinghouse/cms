@@ -27,11 +27,11 @@ class SetupCommand extends Command
 
         try {
             $path = base_path();
-            if (!\File::exists($path . '/app/database/production.sqlite')) {
+            if (!\File::exists($path . '/database/production.sqlite')) {
                 //This is a first run so only here do we trigger a follow up
                 // 1. migrate
                 // 2. seed
-                \File::put($path . '/app/database/production.sqlite', '');
+                \File::put($path . '/database/production.sqlite', '');
                 $this->migrateDb();
                 $this->seedDb();
             }
