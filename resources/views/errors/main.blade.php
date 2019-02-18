@@ -27,7 +27,9 @@
     <link href="{!! asset('assets/css/prettify.css') !!}" rel="stylesheet">
     <link href="{!! asset('assets/css/main.css') !!}" rel="stylesheet">
     <link href="{!! asset('assets/css/custom.css') !!}" rel="stylesheet">
+	@if(file_exists(public_path().'/assets/js/customProject.css'))
     <link href="{!! asset('assets/css/customProject.css') !!}" rel="stylesheet">
+	@endif
     <link href="{!! asset('assets/css/houzz/css/houzz-icon-font.css') !!}" rel="stylesheet">
 
     <link href="{!! asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') !!}" rel="stylesheet">
@@ -43,8 +45,6 @@
     <link href="{!! asset('/bower_components/flexslider/flexslider.css') !!}" rel="stylesheet">
 
     @endif
-    <link href="{!! asset('assets/css/customProject.css') !!}" rel="stylesheet">
-
 
 
 
@@ -137,7 +137,9 @@
 <!-- Placed at the end of the document so the pages load faster -->
 
 <link href="{!! asset('/assets/js/jquery-1.11.js') !!}" rel="stylesheet">
+@if(file_exists(public_path().'/assets/js/custom.js'))
 <link href="{!! asset('/assets/js/custom.js') !!}" rel="stylesheet">
+@endif
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {
