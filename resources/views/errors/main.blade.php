@@ -45,6 +45,8 @@
     <link href="{!! asset('/bower_components/flexslider/flexslider.css') !!}" rel="stylesheet">
 
     @endif
+    <link href="{!! asset('assets/css/customProject.css') !!}" rel="stylesheet">
+
 
 
 
