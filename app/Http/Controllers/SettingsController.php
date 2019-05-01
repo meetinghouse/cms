@@ -162,7 +162,7 @@ class SettingsController extends Controller
 		$setting->view_readmore_status = (isset($data['view_readmore_status'])) ? 1 : 0;
 		
 		$setting->save();
-
+		//return redirect("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
         return Redirect::to("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
     }
 
