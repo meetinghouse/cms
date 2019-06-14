@@ -21,6 +21,9 @@ CKEDITOR.editorConfig = function( config ) {
 	config.contentsCss = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css';
 	config.mj_variables_bootstrap_css_path = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css';
 	config.allowedContent = true;
+	// config.disableNativeTableHandles = false;
+	//config.removeButtons = 'Table';
+	// config.removeAttribute = 'Table';
 	config.bootstrapGrid_container_large_desktop = 1170;
 	config.bootstrapGrid_container_desktop = 970;
 	config.bootstrapGrid_container_tablet = 750;
@@ -42,7 +45,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'styles' },
 		{ name: 'colors' },
 		{ name: 'about' },
-		{ name: 'insert', groups: [ 'BootstrapGrid', 'BootstrapGridAdd', 'BootstrapGridDelete', 'BootstrapGridSettings', 'Source' ] }
+		{ name: 'insert', groups: [ 'BootstrapGrid', 'BootstrapGridAdd', 'BootstrapGridDelete', 'BootstrapGridSettings', 'Source' ] },
 		//{ name: 'tables', groups: [ 'table','tablerow','tablecolumn', 'tablecell','tablecellmergesplit' ] }
 	];
 	/*config.toolbar = [
