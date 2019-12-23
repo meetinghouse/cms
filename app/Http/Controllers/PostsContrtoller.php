@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+use Auth;
+use \View as View;
 
 class PostsController extends Controller
 {

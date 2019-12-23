@@ -96,44 +96,46 @@ class SettingsController extends Controller
      */
     public function update($id)
     {
-		
         $data = Input::all();
-        
-        $setting = Setting::findOrFail($id);
+		$setting = Setting::findOrFail($id);
 
-        if ($setting->theme == false) {
+        if($setting->theme == false)
+        {
             $validator = Validator::make($data, ['color' => 'required']);
-            if ($validator->fails()) {
+            if ($validator->fails())
+            {
                 return Redirect::back()->withErrors($validator)->withInput();
             }
         }
 
-        if (Input::get('remove_logo') != null) {
+        if(Input::get('remove_logo') != NULL) {
             $data['logo'] = '';
-        } elseif (Input::hasFile('logo')) {
+        } elseif(Input::hasFile('logo')) {
             $file = Input::file('logo');
             $filename = $file->getClientOriginalName();
             $destination = $this->settings_path;
 
-            if (!$this->filesystem->exists($destination)) {
+            if(!$this->filesystem->exists($destination)) {
                 $this->filesystem->mkdir($destination);
             }
             try {
                 Input::file('logo')->move($destination, $filename);
-            } catch (Exception $e) {
+            } catch(Exception $e) {
                 dd("Error uploading file " . $e->getMessage());
             }
             $data['logo'] = $filename;
         } else {
             $data['logo'] = $setting->logo;
         }
-        if ($setting->theme == false) {
+        if($setting->theme == false)
+        {
             $setting->color             = $data['color'];
         }
         $setting->logo              = $data['logo'];
         $setting->name              = $data['name'];
-        $setting->maintenance_mode  = (isset($data['maintenance_mode'])) ? 1 : 0;
-        $setting->theme             = (!isset($data['theme']) || $data['theme'] == '0') ? false : true;
+        $setting->maintenance_mode  = (isset($data['maintenance_mode'])) ? 1 : 0;        
+		$setting->add_tag_manager_in_header = (!isset($data['add_tag_manager_in_header']) || $data['add_tag_manager_in_header'] == '0') ? false : true;
+		$setting->tag_manager_content           = (isset($data['tag_manager_content'])) ? $data['tag_manager_content'] : '';
         $this->setRobot($setting->maintenance_mode);
         $setting->facebook          = (isset($data['facebook'])) ? $data['facebook'] : '';
         $setting->linkedin          = (isset($data['linkedin'])) ? $data['linkedin'] : '';
@@ -141,24 +143,27 @@ class SettingsController extends Controller
         $setting->pinterest         = (isset($data['pinterest'])) ? $data['pinterest'] : '';
         $setting->gplus             = (isset($data['gplus'])) ? $data['gplus'] : '';
         $setting->houzz             = (isset($data['houzz'])) ? $data['houzz'] : '';
-        $setting->instagram         = (isset($data['instagram'])) ? $data['instagram'] : '';
-        $setting->footer            = (isset($data['footer'])) ? $data['footer'] : '';
-        $setting->google_analytics            = (isset($data['google_analytics'])) ? $data['google_analytics'] : '';
-        $setting->portfolio_menu_position = $data['portfolio_position'];
-        $setting->enable_left_nav = (isset($data['enable_left_nav'])) ? 1 : 0;
-        $setting->blog_title = (isset($data['blog_title'])) ? $data['blog_title'] : '';
-        $setting->portfolio_title = (isset($data['portfolio_title']) && !empty($data['portfolio_title'])) ? $data['portfolio_title'] : 'Portfolio';
-        $setting->enable_blog = (isset($data['enable_blog'])) ? true : false;
-        $setting->enable_portfolio = (isset($data['enable_portfolio'])) ? true : false;
-        $setting->enable_noindex = (isset($data['enable_noindex'])) ? true : false;
+		$setting->instagram         = (isset($data['instagram'])) ? $data['instagram'] : '';
+        $setting->footer            = (isset($data['footer'])) ? $data['footer'] : '';        
+		$setting->portfolio_menu_position = $data['portfolio_position'];        
+		if(Auth::user() && Auth::user()->admin == 1){
+			$setting->enable_left_nav = (isset($data['enable_left_nav'])) ? 1 : 0;
+			$setting->theme             = (!isset($data['theme']) || $data['theme'] == '0') ? false : true;
+			$setting->enable_blog = (isset($data['enable_blog'])) ? true : false;
+			$setting->enable_portfolio = (isset($data['enable_portfolio'])) ? true : false;
+			$setting->enable_noindex = (isset($data['enable_noindex'])) ? true : false;
+			$setting->blog_title = (isset($data['blog_title'])) ? $data['blog_title'] : '';
+			$setting->portfolio_title = (isset($data['portfolio_title']) && !empty($data['portfolio_title'])) ? $data['portfolio_title'] : 'Portfolio';
+			$setting->blog_menu_position = $data['blog_menu_position'];
+			$setting->google_analytics            = (isset($data['google_analytics'])) ? $data['google_analytics'] : '';        
+		}
+		
+		// echo '$data of view_readmore_status = '.$data['view_readmore_status'];die;
 		$setting->view_readmore_status = (isset($data['view_readmore_status'])) ? 1 : 0;
-        if (Auth::user() && Auth::user()->admin == 1) {
-            $setting->blog_menu_position = $data['blog_menu_position'];
-        }
-		// dd($setting->logo);die;
-        $setting->save();
-
-        return redirect("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
+		
+		$setting->save();
+		//return redirect("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
+        return Redirect::to("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
     }
 
     /**

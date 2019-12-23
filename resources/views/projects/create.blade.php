@@ -26,7 +26,7 @@
         </div>
         @if($errors->first('title'))
             <div class="alert alert-danger">
-                {!!  $errors->first('title'); !!}
+                {!!  $errors->first('title') !!}
             </div>
         @endif
 
@@ -44,7 +44,7 @@
         </div>
         @if($errors->first('seo'))
             <div class="alert alert-danger">
-                {!!  $errors->first('seo'); !!}
+                {!!  $errors->first('seo') !!}
             </div>
         @endif
 
@@ -98,7 +98,7 @@
             </div>
             @if($errors->first('city_county'))
                 <div class="alert alert-danger">
-                    {!!  $errors->first('city_county'); !!}
+                    {!!  $errors->first('city_county') !!}
                 </div>
             @endif
 
@@ -114,21 +114,21 @@
 					{{ Form::text('participant1', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
 					@if($errors->first('participant1'))
 						<div class="alert alert-danger">
-							<br />{{  $errors->first('participant1'); }}<br />
+							<br />{{  $errors->first('participant1') }}<br />
 						</div>
 					@endif
 						<br />
 						{{ Form::text('participant2', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
 					@if($errors->first('participant2'))
 						<div class="alert alert-danger">
-							<br />{{  $errors->first('participant2'); }}<br />
+							<br />{{  $errors->first('participant2') }}<br />
 						</div>
 					@endif
 					<br />
 						{{ Form::text('participant3', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
 					@if($errors->first('participant3'))
 						<div class="alert alert-danger">
-							<br />{{  $errors->first('participant3'); }}<br />
+							<br />{{  $errors->first('participant3') }}<br />
 						</div>
 					@endif
 					
@@ -149,7 +149,7 @@
         </div>
         @if($errors->first('body'))
             <div class="alert alert-danger">
-                {!!  $errors->first('body'); !!}
+                {!!  $errors->first('body') !!}
             </div>
         @endif
 
@@ -173,11 +173,22 @@
                 {!! Form::select('portfolio_id', $portfolios, array('class' => 'form-control', 'tabindex' => 1)) !!}
                 @if($errors->first('order'))
                     <div class="alert alert-danger">
-                        {!!  $errors->first('portfolio_id'); !!}
+                        {!!  $errors->first('portfolio_id') !!}
                     </div>
                 @endif
             </div>
-            @endif
+        @else
+            <div class="form-group hide">
+                <label for="email">Related Portfolios</label>&nbsp;
+                {{ Form::select('portfolio_id', ['0'=>'0'], array('class' => 'form-control', 'tabindex' => 1)) }}
+                @if($errors->first('order'))
+                    <div class="alert alert-danger">
+                        {{  $errors->first('portfolio_id'); }}
+                    </div>
+                @endif
+            </div>
+        @endif
+
                     <!--sort order-->
 
             <div class="form-group">
@@ -185,7 +196,7 @@
                 {!! Form::selectRange('order', 1, 50, array('class' => 'form-control', 'tabindex' => 1)) !!}
                 @if($errors->first('order'))
                     <div class="alert alert-danger">
-                        {!!  $errors->first('order'); !!}
+                        {!!  $errors->first('order') !!}
                     </div>
                 @endif
             </div>
@@ -232,7 +243,7 @@
                     {!! Form::file('tile_image', NULL, array('class' => 'form-control', 'tabindex' => 1)) !!}
                     @if($errors->first('tile_image'))
                         <div class="alert alert-danger">
-                            {!!  $errors->first('tile_image'); !!}
+                            {!!  $errors->first('tile_image') !!}
                         </div>
                     @endif
                 </div>

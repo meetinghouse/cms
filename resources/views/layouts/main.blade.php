@@ -24,7 +24,9 @@
 	<link rel="stylesheet" href="{{asset('assets/css/prettify.css') }}" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{asset('assets/css/main.css') }}" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{asset('assets/css/custom.css') }}" crossorigin="anonymous">
+	 @if(file_exists(public_path().'/assets/css/customProject.css'))
 	<link rel="stylesheet" href="{{asset('assets/css/customProject.css') }}" crossorigin="anonymous">
+	@endif
 	<link rel="stylesheet" href="{{asset('assets/css/houzz/css/houzz-icon-font.css') }}" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') }}" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.min.css') }}" crossorigin="anonymous">
@@ -38,7 +40,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/dark.css') }}" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{asset('assets/css/flexslider.css') }}" crossorigin="anonymous">
     @endif
-    
+   
 
 
 
@@ -63,7 +65,9 @@
         })();
 
     </script>
-
+	@if( $settings->add_tag_manager_in_header != 0 )
+                <?php echo $settings->tag_manager_content; ?>
+    @endif
 
 </head>
 
@@ -83,7 +87,8 @@ Use the corresponding body tag for your chosen theme
 <div class="container">
     <header>
         @if($settings->logo && $settings->theme == false)
-        <a href="/" id="logo">{{ HTML::image("/img/settings/{$settings->logo}", $settings->name)}}</a>
+			
+        <a href="/" id="logo"><img src="{{asset('/img/settings/'.$settings->logo)}}" alt="{{$settings->name}}"  /></a>
         @endif
     
 		@if($settings->theme == false)
@@ -186,7 +191,9 @@ window.theme = {!!$settings->theme!!};
 <script src="{{asset('/bower_components/flexslider/jquery.flexslider.js') }}"></script>
 <script src="{{asset('/bower_components/angular-flexslider/angular-flexslider.js') }}"></script>
 <script src="{{asset('/assets/js/naturalSortVersionDates.min.js') }}"></script>
+@if(file_exists(public_path().'/assets/js/custom.js'))
 <script src="{{asset('/assets/js/custom.js') }}"></script>
+@endif
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {
@@ -250,12 +257,17 @@ window.theme = {!!$settings->theme!!};
 		$('.nav li').each(function(){
 			if($(this).find('li').hasClass('active')){
 				$(this).addClass('active');
+				$(this).removeClass('not-active');
 			}else if($(this).find('a').hasClass('active')){
 				$(this).addClass('active');
+				$(this).removeClass('not-active');
 			}
 		});
 	});
 </script>
 @yield('js')
+@if( $settings->add_tag_manager_in_header == 0 )
+		<?php echo $settings->tag_manager_content; ?>
+@endif
 </body>
 </html>

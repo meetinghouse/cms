@@ -38,7 +38,7 @@
       </div>
     </div>	
 		<p>
-			<?php $teaser = strip_tags(Str::words($project->body, 50)); ?>
+			<?php $teaser = strip_tags(str_limit($project->body, 50)); ?>
 			{{$teaser}}
 		</p>
 		<div><a href="{{$project->slug}}">read more...</a></div>	
