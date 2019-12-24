@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class HidePageTitle extends Migration {
+class AddSlugToPortfolioCategoryTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class HidePageTitle extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('pages', function(Blueprint $table)
+		Schema::table('portfolio_category', function(Blueprint $table)
 		{
-			$table->boolean('hide_title')->default(false);
+			$table->string('slug')->default('');
 		});
 	}
 
@@ -25,9 +25,9 @@ class HidePageTitle extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('pages', function(Blueprint $table)
+		Schema::table('portfolio_category', function(Blueprint $table)
 		{
-			$table->dropColumn('hide_title');
+			$table->dropColumn('slug');
 		});
 	}
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class HidePageTitle extends Migration {
+class DropColumnPortfolioCategoryIdFormPagesTablee extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,7 +14,7 @@ class HidePageTitle extends Migration {
 	{
 		Schema::table('pages', function(Blueprint $table)
 		{
-			$table->boolean('hide_title')->default(false);
+			$table->dropColumn('portfolio_category_id');
 		});
 	}
 
@@ -27,7 +27,7 @@ class HidePageTitle extends Migration {
 	{
 		Schema::table('pages', function(Blueprint $table)
 		{
-			$table->dropColumn('hide_title');
+			//
 		});
 	}
 

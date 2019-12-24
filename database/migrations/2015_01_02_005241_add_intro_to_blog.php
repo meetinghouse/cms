@@ -3,30 +3,33 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIntroToBlog extends Migration
-{
+class AddIntroToBlog extends Migration {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::table('posts', function (Blueprint $table) {
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+        Schema::table('posts', function(Blueprint $table)
+        {
             $table->text('intro')->nullable();
         });
-    }
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('posts', function (Blueprint $table) {
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+        Schema::table('posts', function(Blueprint $table)
+        {
             $table->dropColumn('intro');
         });
-    }
+	}
+
 }
+

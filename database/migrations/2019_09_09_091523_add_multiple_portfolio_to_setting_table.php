@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropPortfolioMenuPositionInSettingsTable extends Migration {
+class AddMultiplePortfolioToSettingTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,10 +14,7 @@ class DropPortfolioMenuPositionInSettingsTable extends Migration {
 	{
 		Schema::table('settings', function(Blueprint $table)
 		{
-			if(Schema::hasColumn('settings', 'portfolio_menu_postion'))
-			{
-			  $table->dropColumn('portfolio_menu_postion');
-			}
+			$table->tinyInteger('multiple_portfolio')->default('0');
 		});
 	}
 
@@ -30,10 +27,7 @@ class DropPortfolioMenuPositionInSettingsTable extends Migration {
 	{
 		Schema::table('settings', function(Blueprint $table)
 		{
-			if(!Schema::hasColumn('settings', 'portfolio_menu_postion'))
-			{
-				$table->integer('portfolio_menu_postion')->nullable();
-			}
+			$table->dropColumn('multiple_portfolio');
 		});
 	}
 

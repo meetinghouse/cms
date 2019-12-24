@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class HidePageTitle extends Migration {
+class DropColumnToProjectTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class HidePageTitle extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('pages', function(Blueprint $table)
+		Schema::table('projects', function(Blueprint $table)
 		{
-			$table->boolean('hide_title')->default(false);
+			$table->dropColumn('project_category');
 		});
 	}
 
@@ -25,9 +25,9 @@ class HidePageTitle extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('pages', function(Blueprint $table)
+		Schema::table('projects', function(Blueprint $table)
 		{
-			$table->dropColumn('hide_title');
+			//
 		});
 	}
 
