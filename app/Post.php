@@ -1,8 +1,6 @@
 <?php
 
 namespace App;
-// use App\Image;
-// use App\Tag;
 
 class Post extends BaseModel
 {
@@ -28,11 +26,11 @@ class Post extends BaseModel
 
     public function images()
     {
-        return $this->morphMany('Image', 'imageable');
+        return $this->morphMany('App\Image', 'imageable');
     }
 
     public function tags()
     {
-        return $this->morphMany('Tag', 'tagable');
+        return $this->morphMany('App\Tag', 'tagable');
     }
 }

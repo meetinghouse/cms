@@ -6,11 +6,11 @@ class Portfolio extends BaseModel
 {
 
     public static $rules = [
-	'category_id' => 'required',
+    'category_id' => 'required',
     'title' => 'required',
     'body'  => 'required',
     'slug'  => 'required|unique:portfolios|unique:posts|unique:pages|unique:projects|unique:portfolio_category|regex:/^\/[A-Za-z0-9_]+$/'
-  ];
+    ];
 
 
     protected $fillable = ['title', 'published', 'body', 'slug', 'order', 'seo', 'header'];

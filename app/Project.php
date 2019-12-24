@@ -35,9 +35,10 @@ class Project extends BaseModel implements StaplerableInterface
         'thumbs',
 		'participant1',
 		'participant2'
-   ];
+    ];
 
-    public function __construct(array $attributes = array()) {
+    public function __construct(array $attributes = [])
+    {
         $this->hasAttachedFile('thumbs', [
             'styles' => [
                 'project_top' => '850x650',
@@ -51,16 +52,16 @@ class Project extends BaseModel implements StaplerableInterface
 
     public function portfolio()
     {
-        return $this->belongsTo('Portfolio');
+        return $this->belongsTo('App\Portfolio');
     }
 
     public function images()
     {
-        return $this->morphMany('Image', 'imageable')->orderBy('order', 'asc');
+        return $this->morphMany('App\Image', 'imageable')->orderBy('order', 'asc');
     }
 
     public function tags()
     {
-        return $this->morphMany('Tag', 'tagable');
+        return $this->morphMany('App\Tag', 'tagable');
     }
 }
