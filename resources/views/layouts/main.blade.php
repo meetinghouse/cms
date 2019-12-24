@@ -40,12 +40,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/dark.css') }}" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{asset('assets/css/flexslider.css') }}" crossorigin="anonymous">
     @endif
-   
-
-
-
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" />
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
 	<script src="{{asset('assets/js/html5shiv.js') }}"></script>
     <script src="{{asset('assets/js/respond.js') }}"></script>
@@ -160,8 +156,6 @@ window.theme = {!!$settings->theme!!};
 </script>
 <script src="{{asset('assets/js/jquery-1.11.js') }}"></script>
 <script src="{{asset('assets/js/respond.js') }}"></script>
-	
-
 <script src="{{asset('/assets/js/noty-2.2.2/js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
 <script src="{{asset('/assets/js/jquery-sortable.js') }}"></script>
 <script src="{{asset('/assets/js/bootstrap/bootstrap.min.js') }}"></script>
@@ -194,6 +188,12 @@ window.theme = {!!$settings->theme!!};
 @if(file_exists(public_path().'/assets/js/custom.js'))
 <script src="{{asset('/assets/js/custom.js') }}"></script>
 @endif
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+		$('.portfolio_category_select').select2();
+});
+</script>
 <script type="text/javascript">
 	// Add padding to top of body tag if logged into admin on both themes
 	jQuery(function($) {
@@ -257,9 +257,9 @@ window.theme = {!!$settings->theme!!};
 		$('.nav li').each(function(){
 			if($(this).find('li').hasClass('active')){
 				$(this).addClass('active');
+				$('.active').find('ul').addClass('collepse in');
 				$(this).removeClass('not-active');
 			}else if($(this).find('a').hasClass('active')){
-				$(this).addClass('active');
 				$(this).removeClass('not-active');
 			}
 		});
