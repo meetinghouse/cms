@@ -13,7 +13,7 @@ class Project extends BaseModel implements StaplerableInterface
     public static $rules = [
         'title' => 'required',
         'image' => 'mimes:jpeg,bmp,png,gif,jpg',
-        'slug'  => 'required|unique:posts|unique:pages|unique:projects|unique:portfolio_category|unique:portfolios|regex:/^\/[A-Za-z0-9_]+$/'
+        'slug'  => 'required|unique:posts,pages|unique:projects|unique:portfolio_category|unique:portfolios|regex:/^\/[A-Za-z0-9_]+$/'
     ];
 
     // Don't forget to fill this array
@@ -22,22 +22,22 @@ class Project extends BaseModel implements StaplerableInterface
         'published',
         'body',
         'image',
-        'tile_image',        
+        'tile_image',
+        'participant3',
         'order',
         'intro',
         'portfolio_id',
+		'project_category',
         'seo',
         'slug',
         'state_country',
         'city_county',
         'thumbs',
-		'participant3',
 		'participant1',
 		'participant2'
-    ];
+   ];
 
-    public function __construct(array $attributes = [])
-    {
+    public function __construct(array $attributes = array()) {
         $this->hasAttachedFile('thumbs', [
             'styles' => [
                 'project_top' => '850x650',
@@ -51,16 +51,16 @@ class Project extends BaseModel implements StaplerableInterface
 
     public function portfolio()
     {
-        return $this->belongsTo('App\Portfolio');
+        return $this->belongsTo('Portfolio');
     }
 
     public function images()
     {
-        return $this->morphMany('App\Image', 'imageable')->orderBy('order', 'asc');
+        return $this->morphMany('Image', 'imageable')->orderBy('order', 'asc');
     }
 
     public function tags()
     {
-        return $this->morphMany('App\Tag', 'tagable');
+        return $this->morphMany('Tag', 'tagable');
     }
 }

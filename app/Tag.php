@@ -15,12 +15,12 @@ class Tag extends Model
 
     public function posts()
     {
-        return $this->morphedByMany('App\Post', 'tagable');
+        return $this->morphedByMany('Post', 'tagable');
     }
 
     public function projects()
     {
-        return $this->morphedByMany('App\Project', 'tagable');
+        return $this->morphedByMany('Project', 'tagable');
     }
 
     public static $rules = [

@@ -24,7 +24,8 @@ class Page extends Model
         'menu_sort_order',
         'menu_parent',
         'menu_name',
-        'redirect_url'
+        'redirect_url',
+		'portfolio_category_id'
     ];
     public function parent()
     {
