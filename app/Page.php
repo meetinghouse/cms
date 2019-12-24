@@ -12,7 +12,7 @@ class Page extends Model
         'title' => 'required',
         'seo'   => 'required',
         //'image' => 'mimes:jpg,jpeg,bmp,png,gif',
-        'slug'  => 'required'
+        'slug'  => 'required|unique:posts|unique:pages|unique:projects|unique:portfolio_category|unique:portfolios|regex:/^\/[A-Za-z0-9_]+$/'
     ];
     // Moved this section down to match Posts model
     protected $fillable = [
