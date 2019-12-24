@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use Illuminate\Support\Facades\Response;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Filesystem\Filesystem;
+use View, Input, Validator, Redirect, Auth;
 
-class FilesController extends Controller
-{
+class FilesController extends BaseController {
 
     public $finder;
     public $filesystem;
@@ -25,13 +22,14 @@ class FilesController extends Controller
         if ($_FILES['upload']['type'] == 'image/png'
             || $_FILES['upload']['type'] == 'image/jpg'
             || $_FILES['upload']['type'] == 'image/gif'
-            || $_FILES['upload']['type'] == 'image/jpeg') {
+            || $_FILES['upload']['type'] == 'image/jpeg')
+        {
             $tmp = $_FILES['upload']['tmp_name'];
             $dest = $dir . '/' . $_FILES['upload']['name'];
-            $this->filesystem->copy($tmp, $dest, $override = true);
-            $array = [
+            $this->filesystem->copy($tmp, $dest, $override = TRUE);
+            $array = array(
                 'filelink' => '/assets/img/wysiwyg/'.$_FILES['upload']['name']
-            ];
+            );
             $image = '/assets/img/wysiwyg/'.$_FILES['upload']['name'];
         }
         $funcNum = $_GET['CKEditorFuncNum'] ;
@@ -49,10 +47,11 @@ class FilesController extends Controller
             || $_FILES['upload']['type'] == 'image/jpg'
             || $_FILES['upload']['type'] == 'image/gif'
             || $_FILES['upload']['type'] == 'image/jpeg'
-            || $_FILES['upload']['type'] == 'application/doc') {
+            || $_FILES['upload']['type'] == 'application/doc')
+        {
             $tmp = $_FILES['upload']['tmp_name'];
             $dest = $dir . '/' . $_FILES['upload']['name'];
-            $this->filesystem->copy($tmp, $dest, $override = true);
+            $this->filesystem->copy($tmp, $dest, $override = TRUE);
 
             $file = '/assets/files/wysiwyg/'.$_FILES['upload']['name'];
         }
@@ -69,7 +68,7 @@ class FilesController extends Controller
         $iterator = $this->finder->in($dir)->name('*.png')->name('*.jpg');
         $files = [];
         $count = 0;
-        foreach ($iterator as $file) {
+        foreach($iterator as $file) {
             $files[$count]['thumb'] = $rel . '/' . $file->getFilename();
             $files[$count]['image'] = $rel . '/' . $file->getFilename();
             $files[$count]['title'] = $file->getFilename();
@@ -97,7 +96,7 @@ class FilesController extends Controller
         $iterator = $this->finder->in($dir)->name('*.pdf')->name('*.doc');
         $files = [];
         $count = 0;
-        foreach ($iterator as $file) {
+        foreach($iterator as $file) {
             $f = $rel . '/' . $file->getFileName();
             $name = $file->getFileName();
             $files[$count]['name'] = "<a href='" . $f . "' onclick='sendLink(event, \"$f\")'>{$name}</a>";
@@ -105,6 +104,6 @@ class FilesController extends Controller
             $count++;
         }
 
-        return view('files.index', compact('files', 'script'));
+        return View::make('files.index', compact('files', 'script'));
     }
 }

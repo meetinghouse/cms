@@ -1,34 +1,28 @@
 <?php
-
 namespace App\Http\Controllers;
+use View, Input, Validator, Redirect, Auth;
 
-use App\Banner;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
+class BannersController extends BaseController {
 
-class BannersController extends Controller
-{
+  protected $banner_model;
+  protected $banner_path;
+  protected $banner_dest;
+  public    $save_to;
 
-    protected $banner_model;
-    protected $banner_path;
-    protected $banner_dest;
-    public $save_to;
+  public function __construct(Banner $banner_model = null)
+  {
+    parent::__construct();
+    $this->beforeFilter("auth", array('only' => ['index', 'create', 'delete', 'edit', 'update', 'store']));
+    $this->banner_model = ($banner_model == null) ? new Banner : $banner_model;
+    $this->banner_path = "/img/banners";
+    $this->banner_dest = public_path() . "/img/banners";
+    $this->save_to = public_path() . "/img/banners";
+  }
 
-    public function __construct(Banner $banner_model = null)
-    {
-        parent::__construct();
-        $this->beforeFilter("auth", ['only' => ['index', 'create', 'delete', 'edit', 'update', 'store']]);
-        $this->banner_model = ($banner_model == null) ? new Banner : $banner_model;
-        $this->banner_path = "/img/banners";
-        $this->banner_dest = public_path() . "/img/banners";
-        $this->save_to = public_path() . "/img/banners";
-    }
-
-    public function getBannerPath()
-    {
-        return $this->banner_path;
-    }
+  public function getBannerPath()
+  {
+    return $this->banner_path;
+  }
 
   /**
    * Display a listing of the resource.
@@ -36,14 +30,14 @@ class BannersController extends Controller
    *
    * @return Response
    */
-    public function index()
-    {
-        parent::show();
-        $banners = $this->banner_model->all();
-        $banner = $this->banner;
-        $path = $this->banner_path;
-        return $this->respond($banners, 'banners.index', compact('banners', 'banner', 'path'));
-    }
+  public function index()
+  {
+    parent::show();
+    $banners = $this->banner_model->all();
+    $banner = $this->banner;
+    $path = $this->banner_path;
+    return $this->respond($banners, 'banners.index',  compact('banners', 'banner', 'path'));
+  }
 
   /**
    * Show the form for creating a new resource.
@@ -51,11 +45,11 @@ class BannersController extends Controller
    *
    * @return Response
    */
-    public function create()
-    {
-        parent::show();
-        return view('banners.create');
-    }
+  public function create()
+  {
+    parent::show();
+    return View::make('banners.create');
+  }
 
   /**
    * Store a newly created resource in storage.
@@ -63,23 +57,24 @@ class BannersController extends Controller
    *
    * @return Response
    */
-    public function store()
+  public function store()
+  {
+
+    $validator = Validator::make($data = Input::all(), Banner::$rules);
+
+    if ($validator->fails())
     {
-
-        $validator = Validator::make($data = Input::all(), Banner::$rules);
-
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        if (isset($data['banner_name'])) {
-            $data = $this->uploadFile($data, 'banner_name');
-        }
-
-        Banner::create($data);
-
-        return redirect('/banners')->withMessage("Created Banner");
+      return Redirect::back()->withErrors($validator)->withInput();
     }
+
+    if(isset($data['banner_name'])) {
+      $data = $this->uploadFile($data, 'banner_name');
+    }
+
+    Banner::create($data);
+
+    return Redirect::to('/banners')->withMessage("Created Banner");
+  }
 
   /**
    * Display the specified resource.
@@ -88,13 +83,13 @@ class BannersController extends Controller
    * @param  int  $id
    * @return Response
    */
-    public function show($id = null)
-    {
-        parent::show();
+  public function show($id = NULL)
+  {
+    parent::show();
 
 
-        //
-    }
+    //
+  }
 
   /**
    * Show the form for editing the specified resource.
@@ -103,13 +98,13 @@ class BannersController extends Controller
    * @param  int  $id
    * @return Response
    */
-    public function edit($id = null)
-    {
-        parent::show();
-        $banner = Banner::find($id);
-        $path = $this->banner_path;
-        return view('banners.edit', compact('banner', 'path'));
-    }
+  public function edit($id = NULL)
+  {
+    parent::show();
+    $banner = Banner::find($id);
+    $path = $this->banner_path;
+    return View::make('banners.edit', compact('banner', 'path'));
+  }
 
   /**
    * Update the specified resource in storage.
@@ -118,30 +113,30 @@ class BannersController extends Controller
    * @param  int  $id
    * @return Response
    */
-    public function update($id)
+  public function update($id)
+  {
+    $banner = Banner::findOrFail($id);
+    $data = Input::all();
+    $validator = Validator::make(Input::all(), Banner::$rules_update);
+
+    if ($validator->fails())
     {
-        $banner = Banner::findOrFail($id);
-        $data = Input::all();
-        $validator = Validator::make(Input::all(), Banner::$rules_update);
-
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        if (isset($data['banner_name'])) {
-            $data = $this->uploadFile($data, 'banner_name');
-        } else {
-            $data['banner_name'] = $banner->banner_name;
-        }
-        if (isset($data['active'])) {
-            $banner->active = $data['active'];
-        } else {
-            $banner->active = 0;
-        }
-        $banner->update($data);
-
-        return redirect("/banners")->withMessage("Banner Updated");
+      return Redirect::back()->withErrors($validator)->withInput();
     }
+
+    if(isset($data['banner_name'])) {
+      $data = $this->uploadFile($data, 'banner_name');
+    } else {
+      $data['banner_name'] = $banner->banner_name;
+    }
+    if(isset($data['active'])){
+      $banner->active = $data['active'];
+    } else
+      $banner->active = 0;
+    $banner->update($data);
+
+    return Redirect::to("/banners")->withMessage("Banner Updated");
+  }
 
   /**
    * Remove the specified resource from storage.
@@ -150,9 +145,11 @@ class BannersController extends Controller
    * @param  int  $id
    * @return Response
    */
-    public function destroy($id)
-    {
-        Banner::destroy($id);
-        return Redirect::route('banners.index');
-    }
+  public function destroy($id)
+  {
+    Banner::destroy($id);
+    return Redirect::route('banners.index');
+
+  }
+
 }

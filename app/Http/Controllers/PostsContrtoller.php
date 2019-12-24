@@ -1,20 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Post;
-use App\Tag;
 use CMS\Services\ImagesService;
 use CMS\Services\TagsService;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
-use Auth;
-use \View as View;
+use View, Input, Validator, Redirect, Auth;
 
-class PostsController extends Controller
-{
+class PostsController extends BaseController {
 
     protected $post_dest;
     protected $post_uri;
@@ -34,29 +25,29 @@ class PostsController extends Controller
         $this->post_uri = 'img/posts';
         $this->save_to = public_path() . "/img/posts";
         $this->tags = $tagsService;
-        $this->beforeFilter("auth", ['only' => ['create', 'delete', 'edit', 'update', 'store']]);
+        $this->beforeFilter("auth", array('only' => ['create', 'delete', 'edit', 'update', 'store']));
     }
 
     public function index()
     {
         parent::show();
-        $posts = Post::where('published', '=', 1)->orderBy('created_at', 'desc')->get();
+        $posts = Post::where('published', '=', 1)->orderBy('created_at','desc')->get();
         $tags = $this->tags->get_tags_for_type('Post');
-        
+		
         $seo = $this->settings->blog_title;
-        if ($this->settings->theme == true) {
-            return view('posts.index_dark', compact('posts', 'tags', 'settings', 'seo'));
-        } else {
-            return view('posts.index', compact('posts', 'tags', 'settings', 'seo'));
-        }
+        if($this->settings->theme == true) {
+			return View::make('posts.index_dark', compact('posts', 'tags', 'settings', 'seo'));
+		} else {
+			return View::make('posts.index', compact('posts', 'tags', 'settings', 'seo'));
+		}
     }
 
-    public function adminIndex()
-    {
-        parent::show();
-        $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('posts.admin_index', compact('posts', 'settings'));
-    }
+  public function adminIndex()
+  {
+    parent::show();
+	$posts = Post::orderBy('created_at','desc')->get();
+    return View::make('posts.admin_index', compact('posts', 'settings'));
+  }
 
 
     /**
@@ -67,7 +58,7 @@ class PostsController extends Controller
     public function create()
     {
         parent::show();
-        return view('posts.create');
+        return View::make('posts.create');
     }
 
 
@@ -82,22 +73,22 @@ class PostsController extends Controller
         $rules = Post::$rules;
         $validator = $this->validateSlugOnCreate($all, $rules);
 
-        if ($validator->fails()) {
+        if ($validator->fails())
+        {
             return Redirect::back()->withErrors($validator)->withInput();
         }
-        if (isset($all['image'])) {
+        if(isset($all['image'])) {
             $this->imagesService->resizeAndSaveForPost($all['image'], $this->save_to);
             $all = $this->uploadFile($all, 'image');
-            ;
         }
         $post = Post::create($all);
 
-        if (isset($all['tags'])) {
-            $tags = explode(',', $all['tags']);
-            $this->tags->attachNewTags($post->id, $tags, 'Post');
-        }
+      if(isset($all['tags'])) {
+        $tags = explode(',', $all['tags']);
+        $this->tags->attachNewTags($post->id, $tags, 'Post');
+      }
 
-        if (isset($all['images'])) {
+        if(isset($all['images'])) {
             $this->imagesService->addImages($post->id, $all['images'], 'Post');
         }
         return Redirect::route('posts.index')->withMessage("Created Post");
@@ -110,21 +101,20 @@ class PostsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id = null)
+    public function show($id = NULL)
     {
         parent::show();
-
-        if (is_numeric($id)) {
-            $post = Post::find($id);
-            $seo = $post->seo;
+        if(is_numeric($id)) {
+            $post = Post::find($id);		
+			$seo = $post->seo;
 			$post_simple_user = Post::where('id',$id)->where('published',1)->get();
         }
-        if ($id == null) {
-            return view('404', compact('settings'));
+        if($id == NULL){
+            return View::make('404', compact('settings'));
         }
         $tags = $this->tags->get_tags_for_type('Post');
-        $banner = true;
-        if( Auth::user() && Auth::user()->admin == 1 )
+        $banner = TRUE;	
+		if( Auth::user() && Auth::user()->admin == 1 )
 		{			
 			return View::make('posts.show', compact('post', 'banner', 'settings', 'seo', 'tags'));
 		}else{			
@@ -150,7 +140,7 @@ class PostsController extends Controller
         parent::show();
         $post = Post::find($id);
         $path = $this->post_uri;
-        return view('posts.edit', compact('post', 'path'));
+        return View::make('posts.edit', compact('post', 'path'));
     }
 
 
@@ -171,22 +161,23 @@ class PostsController extends Controller
         $validator = $this->validateSlugEdit($all, $post, $rules);
         $data = $this->checkPublished($all);
 
-        if ($validator->fails()) {
+        if ($validator->fails())
+        {
             return Redirect::back()->withErrors($validator)->withInput();
         }
-        if (isset($data['image'])) {
+        if(isset($data['image'])) {
             $this->imagesService->resizeAndSaveForPost($all['image'], $this->save_to);
             $data = $this->uploadFile($data, 'image');
         } else {
             $data['image'] = $post->image;
         }
-        if (isset($data['image_caption_update'])) {
+        if(isset($data['image_caption_update'])){
             $this->updateImagesCaption($data['image_caption_update']);
         }
-        if (isset($data['image_order_update'])) {
+        if(isset($data['image_order_update'])){
             $this->updateImagesOrder($data['image_order_update']);
         }
-        if (isset($data['images'])) {
+        if(isset($data['images'])) {
             $this->imagesService->addImages($post->id, $data['images'], 'Post');
         }
         $data = $this->checkPublished($data);
@@ -204,7 +195,7 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $tagId = Tag::where('tags.tagable_id', '=', $id)->get();
-        foreach ($tagId as $tag) {
+        foreach($tagId as $tag){
             Tag::destroy($tag->id);
         }
         Post::destroy($id);
@@ -226,15 +217,15 @@ class PostsController extends Controller
             ->where('tags.tagable_type', '=', 'Post')
 			->where('published', '=', 1)
             ->where('tags.name', '=', $tag)
-            ->orderBy('posts.created_at', 'desc')
+			->orderBy('posts.created_at', 'desc')
             ->groupBy('posts.id')
             ->get();
         $tags = $this->tags->get_tags_for_type('Post');
         $seo = $tag;
-        if ($this->settings->theme == true) {
-            return view('posts.indexByTag_dark', compact('posts', 'settings', 'tags', 'seo'));
-        } else {
-            return view('posts.indexByTag', compact('posts', 'settings', 'tags', 'seo'));
-        }
+        if($this->settings->theme == true) {
+			return View::make('posts.indexByTag_dark', compact('posts', 'settings', 'tags', 'seo' ));
+		} else {
+			return View::make('posts.indexByTag', compact('posts', 'settings', 'tags', 'seo' ));
+		}  
     }
 }

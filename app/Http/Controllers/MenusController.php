@@ -1,40 +1,39 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Page;
 use CMS\Services\MenuService;
-use Illuminate\Support\Facades\Input;
+use View, Input, Validator, Redirect, Auth;
 
-class MenusController extends Controller
-{
+class MenusController extends BaseController {
 
     public $pages;
     public $menuService;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    public function index()
-    {
-        parent::show();
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+  public function __construct()
+  {
+    parent::__construct();
+  }
+	public function index()
+	{
+      parent::show();
         $menus = Page::tree();
-        $banner = $this->banner;
-        return $this->respond($menus, 'menus.index', compact('menus', 'banner'));
+		$banner = $this->banner;
+		return $this->respond($menus, 'menus.index',  compact('menus', 'banner'));
     }
 
     public function store()
     {
         $input = Input::all();
         $menus = new MenuService();
-        $menus->updateMenus($input['data']);
-        $menus->saveMenus();
-        return $this->json_response("success", "Menu Updates", null, 200);
+		$menus->updateMenus($input['data']);
+		$menus->saveMenus();
+		return $this->json_response("success", "Menu Updates", null, 200);
     }
+
+
+
 }

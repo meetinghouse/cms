@@ -1,18 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Page;
-use App\Portfolio;
-use App\Project;
 use CMS\Services\ImagesService;
 use CMS\Services\ProjectsService;
 use CMS\Services\TagsService;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
+use App\Project;
+use App\Portfolio;
+use App\Portfolio_Category;
+use View, Input, Validator, Redirect, Auth;
 
-class ProjectsController extends Controller
-{
+class ProjectsController extends BaseController {
 
     protected $project_dest;
     protected $project_uri;
@@ -33,7 +29,7 @@ class ProjectsController extends Controller
         $this->save_to = public_path() . "/img/projects";
         $this->projectsService = $projectsService;
         $this->tagsService = $tagsService;
-        $this->beforeFilter("auth", ['only' => ['index', 'create', 'delete', 'edit', 'update', 'store', 'adminIndex']]);
+        $this->beforeFilter("auth", array('only' => ['index', 'create', 'delete', 'edit', 'update', 'store', 'adminIndex']));
     }
     /**
      * Display a listing of projects
@@ -43,7 +39,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $page = Page::find(4);
-        return redirect($page->slug, 301);
+        return Redirect::to($page->slug, 301);
     }
 
     /**
@@ -51,14 +47,15 @@ class ProjectsController extends Controller
      *
      * @return Response
      */
-    public function adminIndex($project = null)
+    public function adminIndex($project = NULL)
     {
         parent::show();
         $projects = Project::all();
-        if ($this->settings != false) {
-            return view('projects.admin_index_dark', compact('projects'));
-        } else {
-            return view('projects.admin_index', compact('projects'));
+        if($this->settings != false){
+            return View::make('projects.admin_index_dark', compact('projects'));
+        }  else {
+            return View::make('projects.admin_index', compact('projects'));
+
         }
     }
 
@@ -72,7 +69,8 @@ class ProjectsController extends Controller
     {
         parent::show();
         $portfolios = Portfolio::allPortfoliosSelectOptions();
-        return view('projects.create', compact('portfolios'));
+		$category = Portfolio_Category::PortfolioCategoryName();
+        return View::make('projects.create', compact('portfolios', 'category'));
     }
 
     /**
@@ -86,45 +84,47 @@ class ProjectsController extends Controller
         $all = Input::all();
         $rules = Project::$rules;
         $validator = $this->validateSlugOnCreate($all, $rules);
-        if ($validator->fails()) {
+		if ($validator->fails())
+        {
             return Redirect::back()->withErrors($validator)->withInput();
-        }
-        $project = Project::create($all);
-        if (isset($all['tile_image'])) {
-            $this->imagesService->resizeAndSaveForProjects($all['tile_image'], $this->save_to, 'tile_image');
-            $data = $this->uploadFile($all, 'tile_image');
-            $all = $data;
-        }
-        if (isset($all['images'])) {
+        }		
+		$project = Project::create($all);		
+		if(isset($all['tile_image'])) {
+			$this->imagesService->resizeAndSaveForProjects($all['tile_image'], $this->save_to, 'tile_image');
+			$img_obj = $all['tile_image'];
+			$filename    = $img_obj->getClientOriginalName();
+			$dest = public_path() .'\img\projects';
+			$img_obj->move($dest, $filename);
+            Project::where('slug',$all['slug']) ->update(['tile_image' => $filename]);
+		}
+		if(isset($all['images'])) {
             $this->projectsService->addImages($project->id, $all['images'], 'Project');
 //            $this->imagesService->cropAndSaveForPages($all['image'], $this->save_to);
         }
-        if (isset($all['tags']) && !empty($all['tags'])) {
-            $tags = explode(',', $all['tags']);
+		if(isset($all['tags']) && !empty($all['tags'])) {
+			$tags = explode(',', $all['tags']);
             $this->tagsService->attachNewTags($project->id, $tags, 'Project');
-        }
-        
-        
-        return Redirect::route('admin_projects')->withMessage("Created Project");
+        }		
+		return Redirect::route('admin_projects')->withMessage("Created Project");
     }
 
-    public function show($project = null)
+    public function show($project = NULL)
     {
         parent::show();
-        if (is_numeric($project)) {
+        if(is_numeric($project)) {
             $project = Project::find($project);
         }
-        if ($project == null || $project->published == 0) {
-            return view('404', compact('settings'));
+        if($project == NULL || $project->published == 0){
+            return View::make('404', compact('settings'));
         }
         $seo = $project->seo;
         $tags = $this->tagsService->get_tags_for_type('Project');
-        $banner = true;
-        if ($this->settings->theme == true) {
-            return view('projects.show_dark', compact('project', 'banner', 'settings', 'seo', 'tags'));
-        } else {
-            return view('projects.show', compact('project', 'banner', 'settings', 'seo', 'tags'));
-        }
+        $banner = TRUE;
+		if($this->settings->theme == true) {
+			return View::make('projects.show_dark', compact('project', 'banner', 'settings', 'seo', 'tags'));
+		} else {
+			return View::make('projects.show', compact('project', 'banner', 'settings', 'seo', 'tags'));
+		}
     }
 
     /**
@@ -133,13 +133,14 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id = null)
+    public function edit($id = NULL)
     {
         parent::show();
         $project = Project::find($id);
         $portfolios = Portfolio::allPortfoliosSelectOptions();
         $path = $this->project_uri;
-        return view('projects.edit', compact('project', 'portfolios', 'path'));
+		$category = Portfolio_Category::PortfolioCategoryName();
+        return View::make('projects.edit', compact('project', 'portfolios', 'path', 'category'));
     }
 
     /**
@@ -149,54 +150,48 @@ class ProjectsController extends Controller
      * @return Response
      */
     public function update($id)
-    {
-        
+    {		
         $project  = Project::findOrFail($id);
-
         //1. see if the slug is the same as the original
         //2. if it is then we will not validate against right
         $all = Input::all();
 
         $rules = Project::$rules;
+		
         $validator = $this->validateSlugEdit($all, $project, $rules);
-        $data = $this->checkPublished($all);
-        
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
+		$data = $this->checkPublished($all);
+		
+        if ($validator->fails())
+        {			
+			return Redirect::back()->withErrors($validator)->withInput();
         }
-        if (isset($data['image'])) {
-            $this->imagesService->resizeAndSaveForProjects($all['image'], $this->save_to, 'top_image');
-            $data = $this->uploadFile($data, 'image');
+        if(isset($data['image'])) {
+			$this->imagesService->resizeAndSaveForProjects($all['image'], $this->save_to, 'top_image');
+			$data = $this->uploadFile($data, 'image');
         } else {
-            $data['image'] = $project->image;
+          $data['image'] = $project->image;
         }
-        if (isset($data['tile_image'])) {
-            $this->imagesService->resizeAndSaveForProjects($all['tile_image'], $this->save_to, 'tile_image');
-            $data = $this->uploadFile($data, 'tile_image');
+		$data['project_category'] = Input::has('project_category') ? Input::get('project_category') : 0;		
+        if(isset($data['tile_image'])) {			
+			$this->imagesService->resizeAndSaveForProjects($all['tile_image'], $this->save_to, 'tile_image');
+			$data = $this->uploadFile($data, 'tile_image');			
         } else {
             $data['tile_image'] = $project->tile_image;
         }
-
-
-        if (isset($data['image_caption_update'])) {
+        if(isset($data['image_caption_update'])){
             $this->updateImagesCaption($data['image_caption_update']);
         }
-        if (isset($data['image_order_update'])) {
+        if(isset($data['image_order_update'])){
             $this->updateImagesOrder($data['image_order_update']);
         }
-
-        if (isset($data['images'])) {
+        if(isset($data['images'])) {
 //            $this->imagesService->cropAndSaveForPages($all['images'], $this->save_to);
             $this->projectsService->addImages($project->id, $data['images'], 'Project');
         }
-
-        if (isset($data['tags'])) {
+        if(isset($data['tags'])) {
             $this->tagsService->addtags($project->id, $data['tags'], 'Project');
         }
-
-
-        $project->update($data);
-
+		$project->update($data);
         return Redirect::route('admin_projects')->withMessage("Updated Project!");
     }
 
@@ -229,7 +224,8 @@ class ProjectsController extends Controller
 //            ->orderBy('projects.order')
 //            ->get();
         $this->tag = $tag;
-        $projects = Project::whereHas('tags', function ($q) {
+        $projects = Project::whereHas('tags', function($q)
+        {
             $q->where('name', '=', $this->tag)
             ->where('tagable_type', '=', 'Project');
         })
@@ -239,6 +235,7 @@ class ProjectsController extends Controller
             ->orderBy('order')
             ->get();
         $tags = $this->tagsService->get_tags_for_type('Project');
-        return view('projects.indexByTag', compact('projects', 'settings', 'tags'));
+        return View::make('projects.indexByTag', compact('projects', 'settings', 'tags'));
     }
+
 }

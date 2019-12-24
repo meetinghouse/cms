@@ -1,15 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Portfolio;
-use App\Project;
 use CMS\Services\TagsService;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
+use View, Input, Validator, Redirect, Auth;
 
-class PortfoliosController extends Controller
-{
+class PortfoliosController extends BaseController {
 
     public $portfolio;
     private $tags;
@@ -17,7 +11,7 @@ class PortfoliosController extends Controller
     public function __construct(Portfolio $portfolio = null, TagsService $tagsService = null)
     {
         parent::__construct();
-        $this->beforeFilter("auth", ['only' => ['adminIndex', 'create', 'delete', 'edit', 'update', 'store']]);
+        $this->beforeFilter("auth", array('only' => ['adminIndex', 'create', 'delete', 'edit', 'update', 'store']));
         $this->portfolio = ($portfolio == null) ? new Portfolio : $portfolio;
         $this->tags = $tagsService;
     }
@@ -33,7 +27,7 @@ class PortfoliosController extends Controller
         parent::show();
         $portfolios = Portfolio::Published()->OrderByOrder()->get();
 
-        return view('portfolios.index', compact('portfolios'));
+        return View::make('portfolios.index', compact('portfolios'));
     }
 
     /**
@@ -44,13 +38,13 @@ class PortfoliosController extends Controller
     public function projectsIndex()
     {
         parent::show();
-        $projects = Project::where('published', '=', 1)->orderBy('order')->get();
+        $projects = Project::where('published', '=', 1)->where('project_category', 0)->orWhereNull('project_category')->orderBy('order')->get();
         $tags = $this->tags->get_tags_for_type('Project');
-        if ($this->settings->theme == true) {
-            return view('portfolios.projectsIndex_dark', compact('projects', 'tags'));
-        } else {
-            return view('portfolios.projectsIndex', compact('projects', 'tags'));
-        }
+        if($this->settings->theme == true) {
+			return View::make('portfolios.projectsIndex_dark', compact('projects', 'tags'));
+		} else {
+			return View::make('portfolios.projectsIndex', compact('projects', 'tags'));
+		}
     }
 
     /**
@@ -58,12 +52,12 @@ class PortfoliosController extends Controller
      *
      * @return Response
      */
-    public function adminIndex($portfolio = null)
+    public function adminIndex($portfolio = NULL)
     {
         parent::show();
-        $portfolios = Portfolio::OrderByOrder()->get();
-
-        return view('portfolios.admin_index', compact('portfolios'));
+		$portfolios = Portfolio::OrderByOrder()->leftJoin('Portfolio_Category','Portfolio_Category.id','=','portfolios.category_id')->select('portfolios.id','title','order','published','name')->get();
+        
+        return View::make('portfolios.admin_index', compact('portfolios'));
     }
 
     /**
@@ -74,7 +68,8 @@ class PortfoliosController extends Controller
     public function create()
     {
         parent::show();
-        return view('portfolios.create');
+		$categories = Portfolio_Category::get();
+        return View::make('portfolios.create', compact('categories'));
     }
 
     /**
@@ -88,7 +83,8 @@ class PortfoliosController extends Controller
         $rules = Portfolio::$rules;
         $validator = $this->validateSlugOnCreate($all, $rules);
 
-        if ($validator->fails()) {
+        if ($validator->fails())
+        {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
@@ -106,18 +102,18 @@ class PortfoliosController extends Controller
     public function show($portfolio = null)
     {
         parent::show();
-        if (is_numeric($portfolio)) {
+        if(is_numeric($portfolio)) {
             $portfolio = Portfolio::find($portfolio);
         }
 
-        if ($portfolio == null) {
-            return view('404', compact('settings'));
+        if($portfolio == NULL){
+            return View::make('404', compact('settings'));
         }
 
 
         $seo = $portfolio->seo;
-        $banner = true;
-        return view('portfolios.show', compact('portfolio', 'banner', 'settings', 'seo'));
+        $banner = TRUE;
+        return View::make('portfolios.show', compact('portfolio', 'banner', 'settings', 'seo'));
     }
 
     /**
@@ -126,12 +122,12 @@ class PortfoliosController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id = null)
+    public function edit($id = NULL)
     {
         parent::show();
         $portfolio = Portfolio::find($id);
-
-        return view('portfolios.edit', compact('portfolio'));
+		$categories = Portfolio_Category::get();
+		return View::make('portfolios.edit', compact('portfolio','categories'));
     }
 
     /**
@@ -151,7 +147,8 @@ class PortfoliosController extends Controller
 
         $validator = $this->validateSlugEdit($all, $portfolio, $rules);
         $data = $this->checkPublished($all);
-        if ($validator->fails()) {
+        if ($validator->fails())
+        {
             return Redirect::back()->withErrors($validator)->withInput();
         }
         $portfolio->update($data);
@@ -171,4 +168,5 @@ class PortfoliosController extends Controller
 
         return Redirect::route('portfolios.index');
     }
+	
 }

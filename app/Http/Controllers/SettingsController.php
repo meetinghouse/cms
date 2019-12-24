@@ -1,16 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Setting;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Filesystem\Filesystem;
+use App\Setting;
+use View, Input, Validator, Redirect, Auth;
 
-class SettingsController extends Controller
-{
+class SettingsController extends BaseController {
 
     protected $filesystem;
     protected $settings_path;
@@ -19,7 +13,7 @@ class SettingsController extends Controller
     {
         parent::__construct();
         $this->filesystem = ($filesystem == null) ? new Filesystem() : $filesystem;
-        $this->beforeFilter("auth", ['only' => ['index', 'create', 'delete', 'edit', 'update', 'store']]);
+        $this->beforeFilter("auth", array('only' => ['index', 'create', 'delete', 'edit', 'update', 'store']));
         $this->settings_path = public_path() . "/img/settings";
     }
     /**
@@ -63,7 +57,7 @@ class SettingsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id = null)
+    public function show($id = NULL)
     {
         parent::show();
         //
@@ -76,15 +70,13 @@ class SettingsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id = null)
-    {
-		// dd('print here');die;
-        parent::show();		
-        $banner = $this->banner;		
+    public function edit($id = NULL)
+    {		
+        parent::show();
+        $banner = $this->banner;
         $path   = "/img/settings";
         $setting = Setting::find($id);
-        return view('settings.edit', compact('setting', 'path', 'banner'));
-		
+        return View::make('settings.edit', compact('setting', 'path', 'banner'));
     }
 
     /**
@@ -133,7 +125,8 @@ class SettingsController extends Controller
         }
         $setting->logo              = $data['logo'];
         $setting->name              = $data['name'];
-        $setting->maintenance_mode  = (isset($data['maintenance_mode'])) ? 1 : 0;        
+        $setting->maintenance_mode  = (isset($data['maintenance_mode'])) ? 1 : 0;
+        $setting->theme             = (!isset($data['theme']) || $data['theme'] == '0') ? false : true;
 		$setting->add_tag_manager_in_header = (!isset($data['add_tag_manager_in_header']) || $data['add_tag_manager_in_header'] == '0') ? false : true;
 		$setting->tag_manager_content           = (isset($data['tag_manager_content'])) ? $data['tag_manager_content'] : '';
         $this->setRobot($setting->maintenance_mode);
@@ -144,25 +137,23 @@ class SettingsController extends Controller
         $setting->gplus             = (isset($data['gplus'])) ? $data['gplus'] : '';
         $setting->houzz             = (isset($data['houzz'])) ? $data['houzz'] : '';
 		$setting->instagram         = (isset($data['instagram'])) ? $data['instagram'] : '';
-        $setting->footer            = (isset($data['footer'])) ? $data['footer'] : '';        
-		$setting->portfolio_menu_position = $data['portfolio_position'];        
-		if(Auth::user() && Auth::user()->admin == 1){
-			$setting->enable_left_nav = (isset($data['enable_left_nav'])) ? 1 : 0;
-			$setting->theme             = (!isset($data['theme']) || $data['theme'] == '0') ? false : true;
-			$setting->enable_blog = (isset($data['enable_blog'])) ? true : false;
-			$setting->enable_portfolio = (isset($data['enable_portfolio'])) ? true : false;
-			$setting->enable_noindex = (isset($data['enable_noindex'])) ? true : false;
-			$setting->blog_title = (isset($data['blog_title'])) ? $data['blog_title'] : '';
-			$setting->portfolio_title = (isset($data['portfolio_title']) && !empty($data['portfolio_title'])) ? $data['portfolio_title'] : 'Portfolio';
-			$setting->blog_menu_position = $data['blog_menu_position'];
-			$setting->google_analytics            = (isset($data['google_analytics'])) ? $data['google_analytics'] : '';        
-		}
-		
+        $setting->footer            = (isset($data['footer'])) ? $data['footer'] : '';
+        $setting->google_analytics            = (isset($data['google_analytics'])) ? $data['google_analytics'] : '';
+        $setting->portfolio_menu_position = $data['portfolio_position'];
+        $setting->enable_left_nav = (isset($data['enable_left_nav'])) ? 1 : 0;
+		$setting->blog_title = (isset($data['blog_title'])) ? $data['blog_title'] : '';
+		$setting->portfolio_title = (isset($data['portfolio_title']) && !empty($data['portfolio_title'])) ? $data['portfolio_title'] : 'Portfolio';
+		$setting->enable_blog = (isset($data['enable_blog'])) ? true : false;
+		$setting->enable_portfolio = (isset($data['enable_portfolio'])) ? true : false;
+		$setting->enable_noindex = (isset($data['enable_noindex'])) ? true : false;
 		// echo '$data of view_readmore_status = '.$data['view_readmore_status'];die;
 		$setting->view_readmore_status = (isset($data['view_readmore_status'])) ? 1 : 0;
-		
+		if(Auth::user() && Auth::user()->admin == 1){
+			$setting->blog_menu_position = $data['blog_menu_position'];
+		}
+		$setting->multiple_portfolio	= (isset($data['multiple_portfolio'])) ? 1 : 0;
 		$setting->save();
-		//return redirect("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
+
         return Redirect::to("/settings/" . $setting->id . "/edit")->withMessage("Settings Updated");
     }
 
@@ -181,11 +172,12 @@ class SettingsController extends Controller
     protected function setRobot($mode)
     {
         $path = public_path();
-        if ($mode === 'on' || $mode == '1') {
+        if($mode === 'on' || $mode == '1') {
             $this->filesystem->copy($path . '/robots.txt.block', $path . '/robots.txt', $override = true);
         }
-        if ($mode === 0) {
+        if($mode === 0) {
             $this->filesystem->copy($path . '/robots.txt.allow', $path . '/robots.txt', $override = true);
         }
     }
+
 }

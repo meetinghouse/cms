@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
+use View;
 
-class AdminController extends Controller
-{
+class AdminController extends BaseController {
 
     public function __construct()
     {
@@ -11,7 +10,7 @@ class AdminController extends Controller
     }
     public function dash()
     {
-        parent::show();
-        return view('admins.dash');
+      parent::show();
+        return View::make('admins.dash');
     }
 }

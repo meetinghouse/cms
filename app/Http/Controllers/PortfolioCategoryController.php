@@ -2,8 +2,6 @@
 namespace App\Http\Controllers;
 use CMS\Services\TagsService;
 use View, Input, Validator, Redirect, Auth;
-use App\Portfolio;
-use App\Portfolio_Category;
 
 class PortfolioCategoryController extends BaseController {
 
