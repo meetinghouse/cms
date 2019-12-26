@@ -112,7 +112,7 @@
                     @endif
 				</label>
 					
-					{{ Form::text('participant1', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+					{!! Form::text('participant1', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) !!}
 					@if($errors->first('participant1'))
 						<div class="alert alert-danger">
 							<br />{{  $errors->first('participant1') }}<br />
@@ -120,14 +120,14 @@
 					@endif
 					
 					<br />
-					{{ Form::text('participant2', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+					{!! Form::text('participant2', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) !!}
 					@if($errors->first('participant2'))
 						<div class="alert alert-danger">
 							<br />{{  $errors->first('participant2') }}<br />
 						</div>
 					@endif					
 					<br />
-					{{ Form::text('participant3', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+					{!! Form::text('participant3', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) !!}
 					@if($errors->first('participant3'))
 						<div class="alert alert-danger">
 							<br />{{  $errors->first('participant3') }}<br />
@@ -181,6 +181,19 @@
             </div>
             @endif
 
+		@if($settings->theme == TRUE)
+            <div class="form-group">
+                <label for="email">Project Category (Optional)</label>&nbsp;
+				{!! Form::select('project_category',array( 0 =>'Select') + $category, $project->project_category, array('class' => 'form-control','name1'=>'project_category')) !!}
+				
+                @if($errors->first('project_category'))
+                    <div class="alert alert-danger">
+                        {{  $errors->first('project_category') }}
+                    </div>
+                @endif
+            </div>
+        @endif
+		
                     <!--sort order-->
 
             <div class="form-group">

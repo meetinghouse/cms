@@ -35,9 +35,17 @@
                 @endif
                 @if($settings->theme != true)
                 <li class=<?php if(Request::path() == 'menu') { echo 'active'; }?>><a href="/menus">Admin Menu</a></li>
+                @endif               
+				@if($settings->multiple_portfolio == true && $settings->theme == true)
+					<li class=<?php if(Request::path() == 'admin/portfolio_categories') { echo 'active'; }?>><a href="{!!url('/admin/portfolio_categories/')!!}">Portfolio Category</a></li>
+					
                 @endif
-                @if(Auth::check())                
-                <li><a href="/logout">Logout  <i class="glyphicon glyphicon-log-out"></i></a></li>
+                @if(Auth::check())
+                <li class=<?php if(Request::path() == 'users/' . Auth::user()->id .  '/edit') { echo 'active'; }?>>
+				
+				<a href="{!!URL::to('users/'.Auth::user()->id.'/edit')!!}">Profile</a>
+				</li>
+                <li><a href="/logout"><i class="glyphicon glyphicon-log-out"></i></a></li>
                 @endif
             </ul>
         </div><!--/.nav-collapse -->

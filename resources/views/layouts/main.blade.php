@@ -19,28 +19,28 @@
         @endif
     </title>
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.css') }}" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.css') }}" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{asset('assets/css/prettify.css') }}" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{asset('assets/css/main.css') }}" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{asset('assets/css/custom.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/font-awesome.css') }}">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/prettify.css') }}">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/main.css') }}">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/custom.css') }}">
 	 @if(file_exists(public_path().'/assets/css/customProject.css'))
-	<link rel="stylesheet" href="{{asset('assets/css/customProject.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/customProject.css') }}">
 	@endif
-	<link rel="stylesheet" href="{{asset('assets/css/houzz/css/houzz-icon-font.css') }}" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') }}" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.min.css') }}" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('/bower_components/jquery-colorbox/example4/colorbox.css') }}" crossorigin="anonymous">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/houzz/css/houzz-icon-font.css') }}">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css') }}">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('/bower_components/ng-tags-input/ng-tags-input.min.css') }}">
+    <link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('/bower_components/jquery-colorbox/example4/colorbox.css') }}">
    
     @if($settings->theme == false)
-		<link rel="stylesheet" href="{{asset('assets/css/colorfrog.css') }}" crossorigin="anonymous">
-		<link rel="stylesheet" href="{{asset('assets/css/originalTheme.css') }}" crossorigin="anonymous">
+		<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/colorfrog.css') }}">
+		<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/originalTheme.css') }}">
     @endif
     @if($settings->theme == true)
-    <link rel="stylesheet" href="{{asset('assets/css/dark.css') }}" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{asset('assets/css/flexslider.css') }}" crossorigin="anonymous">
+    <link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/dark.css') }}">
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="{{asset('assets/css/flexslider.css') }}">
     @endif
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" />
+	<link rel="stylesheet" media="all" type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" />
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
 	<script src="{{asset('assets/js/html5shiv.js') }}"></script>

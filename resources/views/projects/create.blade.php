@@ -111,21 +111,21 @@
                     @if($settings->theme == FALSE)
                         (<a href="http://corbettresearchgroupinc.com/admin_projects_light" target="_blank">Help</a>)
                     @endif</label>
-					{{ Form::text('participant1', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+					{!! Form::text('participant1', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) !!}
 					@if($errors->first('participant1'))
 						<div class="alert alert-danger">
 							<br />{{  $errors->first('participant1') }}<br />
 						</div>
 					@endif
 						<br />
-						{{ Form::text('participant2', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+						{!! Form::text('participant2', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) !!}
 					@if($errors->first('participant2'))
 						<div class="alert alert-danger">
 							<br />{{  $errors->first('participant2') }}<br />
 						</div>
 					@endif
 					<br />
-						{{ Form::text('participant3', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) }}
+						{!! Form::text('participant3', NULL, array('class' => 'form-control','placeholder' => 'ex: Project Manager: John Smith', 'maxlength' => 200)) !!}
 					@if($errors->first('participant3'))
 						<div class="alert alert-danger">
 							<br />{{  $errors->first('participant3') }}<br />
@@ -183,12 +183,22 @@
                 {{ Form::select('portfolio_id', ['0'=>'0'], array('class' => 'form-control', 'tabindex' => 1)) }}
                 @if($errors->first('order'))
                     <div class="alert alert-danger">
-                        {{  $errors->first('portfolio_id'); }}
+                        {!!  $errors->first('portfolio_id') !!}
                     </div>
                 @endif
             </div>
         @endif
-
+		@if($settings->theme == TRUE)
+            <div class="form-group">
+                <label for="email">Project Category (Optional)</label>&nbsp;
+                {!! Form::select('project_category',array( 0 =>'Select') + $category, '', array('class' => 'form-control','name'=>'project_category')) !!}
+				@if($errors->first('order'))
+                    <div class="alert alert-danger">
+                        {!!  $errors->first('project_category'); !!}
+                    </div>
+                @endif
+            </div>
+        @endif
                     <!--sort order-->
 
             <div class="form-group">
