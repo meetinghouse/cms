@@ -6,7 +6,7 @@ use CMS\Services\TagsService;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use App\Page;
 use App\Project;
-use View, Input, Validator, Redirect, Auth, Redirect,Session;
+use View, Input, Validator, Redirect, Auth, Session;
 
 class PagesController extends BaseController {
 
@@ -168,9 +168,9 @@ class PagesController extends BaseController {
 						$page = Page::create($input);
 						$banner = $this->bannerSet($page);
                      //  return Redirect::to('pages.admin_index'->withMessage("Created Page");
-                        return \Redirect::to('pages/' . $page->id)->withMessage("Page Created ");
+                        return Redirect::to('pages/' . $page->id)->withMessage("Page Created ");
 					} else {
-                        return \Redirect::back()->withErrors($validator)->withInput();
+                        return Redirect::back()->withErrors($validator)->withInput();
 					}
     	}
 	
@@ -232,9 +232,9 @@ class PagesController extends BaseController {
 				$page->published = (isset($page_update['published'])) ? true : false;
                 $page->save();
                 $banner = $this->bannerSet($page);
-                return \Redirect::to("/pages/")->withMessage("Page Updated");
+                return Redirect::to("/pages/")->withMessage("Page Updated");
             } else {
-                return \Redirect::to('pages/' . $page->id . '/edit')->withErrors($validator)
+                return Redirect::to('pages/' . $page->id . '/edit')->withErrors($validator)
                     ->withMessage("Error ");
             }
 
@@ -289,9 +289,9 @@ class PagesController extends BaseController {
 				$page->published = (isset($page_update['published'])) ? true : false;
                 $page->save();
                 $banner = $this->bannerSet($page);
-                return \Redirect::to("/pages/")->withMessage("Page Updated");
+                return Redirect::to("/pages/")->withMessage("Page Updated");
             } else {
-                return \Redirect::to('pages/' . $page->id . '/edit')->withErrors($validator)
+                return Redirect::to('pages/' . $page->id . '/edit')->withErrors($validator)
                     ->withMessage("Error ");
             }
         }

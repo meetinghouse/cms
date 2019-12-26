@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use CMS\Services\MenuService;
 use View, Input, Validator, Redirect, Auth;
+use App\Page;
 
 class MenusController extends BaseController {
 

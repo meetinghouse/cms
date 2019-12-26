@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use CMS\Services\TagsService;
 use View, Input, Validator, Redirect, Auth, Response, DB;
 use App\Post;
+use App\Tag;
 
 
 class TagsController extends BaseController {
