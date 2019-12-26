@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-use Laracasts\Utilities\JavaScript\Facades\JavaScript;
+// use Laracasts\Utilities\JavaScript\Facades\JavaScript;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use Symfony\Component\Filesystem\Filesystem;
 use CMS\Services\TagsService;
 use App\Setting;

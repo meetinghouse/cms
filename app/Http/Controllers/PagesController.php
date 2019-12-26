@@ -2,8 +2,10 @@
 namespace App\Http\Controllers;
 use CMS\Services\ImagesService;
 use CMS\Services\TagsService;
-use Laracasts\Utilities\JavaScript\Facades\JavaScript;
+// use Laracasts\Utilities\JavaScript\Facades\JavaScript;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use App\Page;
+use App\Project;
 use View, Input, Validator, Redirect, Auth;
 
 class PagesController extends BaseController {
@@ -100,7 +102,7 @@ class PagesController extends BaseController {
 
         private function setTags()
     {
-        return New CMS\Services\TagsService;
+        return New TagsService;
     }
 
 
