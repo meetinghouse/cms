@@ -5,7 +5,8 @@ use Carbon\Carbon;
 use CMS\Services\ImagesService;
 use Flow\Config;
 use Flow\Request;
-use View, Input, Validator, Redirect, Auth;
+use App\Image
+use View, Input, Validator, Redirect, Auth, DB, Response, File, Log;
 
 /**
  * @TODO DRY up the code
@@ -59,15 +60,14 @@ class ImagesController extends BaseController{
     public function uploadImage($model)
     {
         $this->setTemp();
-		if(! \File::exists(public_path() . '/assets/img/')){
-			\File::makeDirectory(public_path() . '/assets/img/', 0777, true, true);
+		if(! File::exists(public_path() . '/assets/img/')){
+			File::makeDirectory(public_path() . '/assets/img/', 0777, true, true);
 		}
         $this->setDestinationDir(public_path() . '/assets/img/' . $model);
         $this->checkDestination();
         $this->request = new Request();
-        \File::makeDirectory($this->chunkDir, 0777, true, true);
+        File::makeDirectory($this->chunkDir, 0777, true, true);
         $this->filename = isset($_FILES['file']) ? $_FILES['file']['name'] : $_GET['flowFilename'];
-
         if(\Flow\Basic::save($this->getDestinationDir(). '/' . $this->request->getFileName(), $this->config, $this->request)) {
             $storage = $this->getDestinationDir();
             Log::debug($storage);
@@ -179,7 +179,7 @@ class ImagesController extends BaseController{
     public function checkDestination()
     {
         if(!File::exists($this->getDestinationDir())) {
-              \File::makeDirectory($this->getDestinationDir(), $mode = 0777, true, true);
+              File::makeDirectory($this->getDestinationDir(), $mode = 0777, true, true);
         }
     }
 

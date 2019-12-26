@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 use CMS\Services\TagsService;
-use View, Input, Validator, Redirect, Auth;
+use View, Input, Validator, Redirect, Auth, Request;
 use App\Portfolio;
+use App\Setting;
+use App\Project;
 use App\Portfolio_Category;
 
 class PortfolioCategoryController extends BaseController {

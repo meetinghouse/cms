@@ -251,7 +251,7 @@ abstract class Controller extends BaseController
         if ($this->settings->theme == false) {
             $slideshow = false;
         }
-        \View::share('slideshow', $slideshow);
+        View::share('slideshow', $slideshow);
     }
 
     protected function updateImagesCaption($image_captions)

@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 use CMS\Services\TagsService;
-use View, Input, Validator, Redirect, Auth;
+use View, Input, Validator, Redirect, Auth, Response, DB;
+use App\Post;
+
 
 class TagsController extends BaseController {
     protected $tagable_id;

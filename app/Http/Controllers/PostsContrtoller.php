@@ -3,7 +3,9 @@ namespace App\Http\Controllers;
 use CMS\Services\ImagesService;
 use CMS\Services\TagsService;
 use Intervention\Image\Facades\Image;
-use View, Input, Validator, Redirect, Auth;
+use View, Input, Validator, Redirect, Auth, DB;
+use App\Post;
+use App\Tag;
 
 class PostsController extends BaseController {
 

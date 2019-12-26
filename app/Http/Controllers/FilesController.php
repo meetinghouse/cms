@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
-use View, Input, Validator, Redirect, Auth;
+use View, Input, Validator, Redirect, Auth, Response;
 
 class FilesController extends BaseController {
 

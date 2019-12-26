@@ -4,9 +4,10 @@ use CMS\Services\ImagesService;
 use CMS\Services\ProjectsService;
 use CMS\Services\TagsService;
 use App\Project;
+use App\Page;
 use App\Portfolio;
 use App\Portfolio_Category;
-use View, Input, Validator, Redirect, Auth;
+use View, Input, Validator, Redirect, Auth, DB;
 
 class ProjectsController extends BaseController {
 

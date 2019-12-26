@@ -6,7 +6,7 @@ use CMS\Services\TagsService;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use App\Page;
 use App\Project;
-use View, Input, Validator, Redirect, Auth;
+use View, Input, Validator, Redirect, Auth, Redirect,Session;
 
 class PagesController extends BaseController {
 
@@ -119,7 +119,7 @@ class PagesController extends BaseController {
 		$validator = $this->validateSlugOnCreate($input, $rules);
 		if ($validator->fails())
         {
-            return \Redirect::back()->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput();
         }
 		 
 		$validator = Validator::make($input, array('slug' => 'regex:/^\/[A-Za-z0-9_\-]+$/')); 
@@ -138,7 +138,7 @@ class PagesController extends BaseController {
 					$already_assign_portfolio .= '</ul>';
 					Session::put('message' , 'Below category is already assigned to another page.<br>'.$already_assign_portfolio);
 					Session::put('type' , 'danger');
-					return \Redirect::back()->withInput();
+					return Redirect::back()->withInput();
 				}
 			}
                      

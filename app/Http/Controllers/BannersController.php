@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Banner;
 use View, Input, Validator, Redirect, Auth;
 
 class BannersController extends BaseController {

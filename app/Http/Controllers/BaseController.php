@@ -51,10 +51,10 @@ class BaseController extends Controller {
         }
 		/* End of Calculating nav*/
       
-        \View::share('settings', $this->settings);
-        \View::share('top_left_nav', $this->top_left_nav);
-        \View::share('sub_nav', $this->sub_nav);
-		\View::share('portfolio_category', $this->portfolio_category);
+        View::share('settings', $this->settings);
+        View::share('top_left_nav', $this->top_left_nav);
+        View::share('sub_nav', $this->sub_nav);
+		View::share('portfolio_category', $this->portfolio_category);
 		
     }
 	public function show($array = NULL) {
@@ -101,8 +101,8 @@ class BaseController extends Controller {
         }
 		$shared_links = array_merge($portfolio_links, $default_menu_items);
 
-        \View::share('shared_links', $shared_links);
-        \View::share('portfolio_links', $portfolio_links);
+        View::share('shared_links', $shared_links);
+        View::share('portfolio_links', $portfolio_links);
 		
         //links for the top nav
         $top_menu_items = array(
@@ -111,13 +111,13 @@ class BaseController extends Controller {
           'About Page' => '/about',
           'Contact Page' => '/contact',
         );
-        \View::share('top_links', $top_menu_items);
+        View::share('top_links', $top_menu_items);
 		/* Share post tags for light theme */
 		if($this->settings->theme == FALSE)
 		{
 			$tags = new TagsService;
 			$tags = $tags->get_tags_for_type('Post');
-			\View::share('post_tags', $tags);
+			View::share('post_tags', $tags);
 		}
     }
 
@@ -251,7 +251,7 @@ class BaseController extends Controller {
         if ($this->settings->theme == FALSE) {
             $slideshow = FALSE;
         }
-        \View::share('slideshow', $slideshow);
+        View::share('slideshow', $slideshow);
     }
 
     protected function updateImagesCaption($image_captions) {

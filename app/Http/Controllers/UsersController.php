@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\User;
-use View, Input, Validator, Redirect, Auth;
+use View, Input, Validator, Redirect, Auth, Hash, Session;
 class UsersController extends BaseController {
 
   public $users;
