@@ -20,7 +20,7 @@
     <div class="media">
         <img class="media-object col-lg-4" src="" alt="">
         <div class="media-body">
-            <h4 class="media-heading">{!!$category->name!!}</h4>
+            <h4 class="media-heading">{{{$category->name}}}</h4>
         </div>
     </div>
     @endforeach

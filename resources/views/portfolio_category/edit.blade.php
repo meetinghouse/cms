@@ -16,7 +16,7 @@
   </div>
   @if($errors->first('name'))
   <div class="alert alert-danger">
-    {!!  $errors->first('name') !!}
+    {!!  $errors->first('name'); !!}
   </div>
   @endif
 
