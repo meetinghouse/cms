@@ -9,7 +9,6 @@ try {
     }
 } catch (\Exception $e) {
 //   do nothing, it just means there's no settings table yet because migrations need to be run
-//
 }
 
 Route::resource('pages', 'PagesController');
