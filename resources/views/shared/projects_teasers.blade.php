@@ -39,9 +39,9 @@
     </div>	
 		<p>
 			<?php $teaser = strip_tags(str_limit($project->body, 50)); ?>
-			{{$teaser}}
+			{!!$teaser!!}
 		</p>
-		<div><a href="{{$project->slug}}">read more...</a></div>	
+		<div><a href="{!!$project->slug!!}">read more...</a></div>	
   </div>
 
 </div>
