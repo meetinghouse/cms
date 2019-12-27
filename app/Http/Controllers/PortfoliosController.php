@@ -4,6 +4,7 @@ use CMS\Services\TagsService;
 use View, Input, Validator, Redirect, Auth;
 use App\Portfolio;
 use App\Portfolio_Category;
+use App\Project;
 
 class PortfoliosController extends BaseController {
 
